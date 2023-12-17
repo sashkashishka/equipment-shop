@@ -1,0 +1,18 @@
+.link {
+  margin: 0;
+  min-width: 0;
+  text-decoration: none;
+  font-weight: 500;
+  color: #2d2d2f;
+  transition: color 0.3s;
+
+  &:hover {
+    color: var(--color-basic-4);
+    text-decoration: underline;
+  }
+}
+
+.active {
+  pointer-events: none;
+  text-decoration: underline;
+}

@@ -1,0 +1,51 @@
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: none;
+  gap: 16px;
+  align-content: start;
+  width: 100%;
+  max-width: 320px;
+  padding: 16px;
+  z-index: 101;
+  background: var(--color-basic-0);
+}
+
+.sidebarVisible {
+  display: grid;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.overlayVisible {
+  display: block;
+}
+
+.menuButton {
+  height: 32px;
+  width: 32px;
+  padding: 0;
+}
+
+.closeButton {
+  z-index: 102;
+}
+
+@mixin media-768 {
+  .sidebar,
+  .menuButton,
+  .overlay {
+    display: none;
+  }
+}

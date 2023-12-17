@@ -1,0 +1,72 @@
+version: "3.8"
+services:
+  nextjs:
+    container_name: nextjs_packing_group
+    build:
+      context: ./front
+      dockerfile: Dockerfile.dev
+      tags:
+        - 'nextjs_pg:latest'
+    ports:
+      - '9090:9090'
+    expose:
+      - 9090
+    volumes:
+      - ./front:/usr/app
+      - /usr/app/node_modules
+    env_file:
+      - "./front/.env.local"
+    networks:
+      - packing_group_bridge
+    # depends_on:
+    #   - strapi
+
+  strapi:
+    container_name: strapi_packing_group
+    build:
+      context: ./strapi
+      dockerfile: Dockerfile.dev
+      tags:
+        - 'strapi_pg:latest'
+    ports:
+      - '1337:1337'
+    expose:
+      - 1337
+    volumes:
+      - ./strapi:/usr/app
+      - /usr/app/node_modules
+    env_file:
+      - "./strapi/.env"
+    networks:
+      - packing_group_bridge
+    depends_on:
+      - db
+
+  adminer:
+    image: adminer
+    logging:
+      driver: 'none'
+    ports:
+      - 8080:8080
+    networks:
+      - packing_group_bridge
+
+  db:
+    container_name: mysql_db_packing_group
+    platform: linux/amd64
+    image: mysql:8.2.0
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+    volumes:
+      - "./strapi/database/tmp/data:/var/lib/mysql"
+      - "./strapi/database/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+    env_file:
+      - "./strapi/.env"
+    networks:
+      - packing_group_bridge
+
+networks:
+  packing_group_bridge:
+

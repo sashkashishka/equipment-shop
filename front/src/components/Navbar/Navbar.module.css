@@ -1,0 +1,36 @@
+.container {
+  .section {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 16px;
+  }
+
+  .logoContainer {
+    display: flex;
+    align-items: center;
+    height: 32px;
+  }
+
+  .logoTitle {
+    margin-left: 4px;
+    color: var(--color-basic-5);
+  }
+
+  .linksContainer {
+    display: none;
+  }
+
+  @mixin media-768 {
+    .linksContainer {
+      display: flex;
+      align-items: center;
+
+      :global(.navbar-link):not(:last-of-type) {
+        margin-right: 16px;
+      }
+    }
+  }
+}
