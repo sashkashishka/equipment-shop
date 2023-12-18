@@ -1,3 +1,4 @@
+import { t } from 'ttag';
 import { Link } from '@/components/Link';
 import { Sidebar } from '@/components/Navbar/Sidebar';
 
@@ -7,13 +8,13 @@ function Links() {
   return (
     <>
       <Link className="navbar-link" href="/about-us">
-        About us
+        {t`About us`}
       </Link>
       <Link className="navbar-link" href="/contacts">
-        Contacts
+        {t`Contacts`}
       </Link>
       <Link className="navbar-link" href="/service">
-        Service
+        {t`Service`}
       </Link>
     </>
   );

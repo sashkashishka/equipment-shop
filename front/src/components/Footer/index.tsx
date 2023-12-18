@@ -1,3 +1,4 @@
+import { t } from 'ttag';
 import { Link } from '@/components/Link';
 
 import styles from './Footer.module.css';
@@ -19,13 +20,13 @@ export function Footer() {
 
         <div className={styles.linksContainer}>
           <Link className={styles.link} href="/about-us">
-            About us
+            {t`About us`}
           </Link>
           <Link className={styles.link} href="/contacts">
-            Contacts
+            {t`Contacts`}
           </Link>
           <Link className={styles.link} href="/service">
-            Service
+            {t`Service`}
           </Link>
         </div>
       </div>
