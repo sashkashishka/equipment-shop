@@ -35,9 +35,9 @@ export function Select({ className, items, ...props }: iProps) {
           <path
             d="M6 10l6 6 6-6"
             stroke="#8cabca"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
           />
         </svg>
       </div>

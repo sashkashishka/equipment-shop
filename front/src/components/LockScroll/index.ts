@@ -1,0 +1,1 @@
+export { LockScroll } from './LockScroll';

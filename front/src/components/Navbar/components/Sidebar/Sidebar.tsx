@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 
 import { Button } from '@/components/Button';
+import { LockScroll } from '@/components/LockScroll';
 import BurgerIcon from '@/images/icons/burder-menu.svg';
 import CloseIcon from '@/images/icons/close.svg';
 
@@ -27,6 +28,8 @@ export function Sidebar({ children }: iProps) {
           <BurgerIcon width={24} height={24} />
         )}
       </Button>
+
+      {isOpen && <LockScroll />}
       <div
         className={cn(styles.overlay, isOpen && styles.overlayVisible)}
         onClick={() => setIsOpen(false)}

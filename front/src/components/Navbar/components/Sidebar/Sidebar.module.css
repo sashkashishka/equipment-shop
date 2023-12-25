@@ -11,6 +11,7 @@
   padding: 16px;
   z-index: 101;
   background: var(--pgi-color-basic-0);
+  overflow-y: auto;
 }
 
 .sidebarVisible {
