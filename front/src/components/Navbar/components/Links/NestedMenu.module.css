@@ -1,0 +1,26 @@
+.container {
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: var(--pgi-wd-container-box-shadow);
+}
+
+.block {
+  position: relative;
+}
+
+.links {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--pgi-color-basic-0);
+}
+
+.linksRight {
+  top: 0;
+  left: 100%;
+}
+
+.link {
+  width: 100%;
+  padding: 8px 4px;
+}

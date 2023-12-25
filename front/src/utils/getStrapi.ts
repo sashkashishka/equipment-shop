@@ -1,4 +1,4 @@
-import { API, AUTH_HEADER } from '@/constants/api';
+import { API, AUTH_HEADER, QUERIES } from '@/constants/api';
 import {
   iCommonConfig,
   iEquipmentCategory,
@@ -7,7 +7,7 @@ import {
 
 interface iResponses {
   [API.COMMON_CONFIG]: iStrapiResponse<iCommonConfig>;
-  [API.EQUIPMENT_CATEGORIES]: iStrapiResponse<iEquipmentCategory[]>;
+  [API.EQUIPMENT_CATEGORIES]: iStrapiResponse<iEquipmentCategory>[];
 }
 
 interface iOptions {
@@ -30,7 +30,13 @@ export async function getStrapi<T extends API>(
   endpoint: T,
   { enableTagCache = true }: iOptions = {},
 ) {
-  const response = await fetch(endpoint, {
+  let url: string = endpoint;
+
+  if (QUERIES[endpoint]) {
+    url = `${url}?${new URLSearchParams(QUERIES[endpoint]())}`;
+  }
+
+  const response = await fetch(url, {
     headers: AUTH_HEADER,
     ...getTagCache(endpoint, enableTagCache),
   });

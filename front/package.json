@@ -12,9 +12,11 @@
     "ttag:json": "node ./scripts/ttag-po2json.mjs"
   },
   "dependencies": {
+    "@types/qs": "^6.9.11",
     "classnames": "^2.3.2",
     "negotiator": "^0.6.3",
     "next": "14.0.4",
+    "qs": "^6.11.2",
     "react": "^18",
     "react-dom": "^18",
     "server-only": "^0.0.1",

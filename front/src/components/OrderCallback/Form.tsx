@@ -11,7 +11,7 @@ export function Form() {
   const pathname = usePathname();
 
   return (
-    <form action="/request-callback">
+    <form action="/api/request-callback">
       <p className={styles.title}>
         {t`Have a questions?`}
         <br />

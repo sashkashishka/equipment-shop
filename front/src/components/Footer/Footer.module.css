@@ -1,9 +1,10 @@
 .container {
-  background: var(--color-secondary-0);
-  color: var(--color-basic-0);
+  background: var(--pgi-color-secondary-1);
 
   .section {
-    display: flex;
+    display: grid;
+    grid-template-columns: 100%;
+    gap: 16px;
     justify-content: space-between;
     max-width: 1640px;
     width: 100%;
@@ -11,33 +12,21 @@
     padding: 16px;
   }
 
-  .logoContainer {
-    display: flex;
-    align-items: center;
-    height: 32px;
+  .column {
+    display: grid;
+    grid-template-columns: 100%;
+    row-gap: 16px;
+    align-content: start;
   }
 
-  .logoTitle {
-    margin-left: 4px;
-    color: var(--color-basic-0);
-  }
-
-  .linksContainer {
-    display: none;
+  .copyright {
+    margin: 0;
+    color: var(--pgi-color-basic-3);
   }
 
   @mixin media-768 {
-    .linksContainer {
-      display: flex;
-      align-items: center;
-
-      .link {
-        color: var(--color-basic-0);
-      }
-
-      .link:not(:last-of-type) {
-        margin-right: 16px;
-      }
+    .section {
+      grid-template-columns: repeat(4, auto);
     }
   }
 }

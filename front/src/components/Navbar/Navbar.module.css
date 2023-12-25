@@ -47,7 +47,8 @@
     align-items: center;
     padding: 8px 0;
 
-    & :global(.navbar-link):not(:last-of-type) {
+    & > div,
+    & a:not(:last-of-type) {
       margin-right: 16px;
     }
   }

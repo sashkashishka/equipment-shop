@@ -1,41 +1,14 @@
-import { t } from 'ttag';
-
 import { Link } from '@/components/Link';
 import { OrderCallback } from '@/components/OrderCallback';
 import { SiteSearch } from '@/components/SiteSearch';
 import { Logo } from '@/components/Logo';
 import { Sidebar } from '@/components/Navbar/components/Sidebar';
 import { LanguageSwitcher } from '@/components/Navbar/components/LanguageSwitcher';
+import { Links } from '@/components/Navbar/components/Links';
 import { getStrapi } from '@/utils/getStrapi';
 import { API } from '@/constants/api';
-import { D } from '@/constants/dictionary';
 
 import styles from './Navbar.module.css';
-
-function Links() {
-  return (
-    <>
-      <Link className="navbar-link" href="/equipment">
-        {t`Equipment`}
-      </Link>
-      <Link className="navbar-link" href="/about-us">
-        {t`About company`}
-      </Link>
-      <Link className="navbar-link" href="/contacts">
-        {t`Contacts`}
-      </Link>
-      <Link className="navbar-link" href="/service">
-        {t`Service`}
-      </Link>
-      <Link className="navbar-link" href="/news">
-        {t`News`}
-      </Link>
-      <Link className="navbar-link" href="/business-conditions">
-        {t`Business conditions`}
-      </Link>
-    </>
-  );
-}
 
 export async function Navbar() {
   const data = await getStrapi(API.COMMON_CONFIG);
