@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import Negotiator from 'negotiator';
-import { defaultLocale, locales } from '@/i18n';
+import { defaultLocale, locales } from '@/i18n/common';
 
 function matchLocale(
   langs: string[],

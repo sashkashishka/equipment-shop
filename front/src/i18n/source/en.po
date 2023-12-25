@@ -14,12 +14,12 @@ msgstr ""
 msgid "About company"
 msgstr ""
 
-#: src/components/Footer/index.tsx:26
+#: src/components/Footer/Footer.tsx:18
 #: src/constants/dictionary.ts:7
 msgid "Contacts"
 msgstr ""
 
-#: src/components/Footer/index.tsx:29
+#: src/components/Footer/Footer.tsx:21
 #: src/constants/dictionary.ts:8
 msgid "Service"
 msgstr ""
@@ -32,6 +32,10 @@ msgstr ""
 msgid "Business conditions"
 msgstr ""
 
-#: src/components/Footer/index.tsx:23
+#: src/components/Footer/Footer.tsx:15
 msgid "About us"
+msgstr ""
+
+#: src/constants/dictionary.ts:14
+msgid "Request a call back"
 msgstr ""

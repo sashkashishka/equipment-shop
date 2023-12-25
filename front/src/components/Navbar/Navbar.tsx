@@ -1,3 +1,5 @@
+import { t } from 'ttag';
+
 import { Link } from '@/components/Link';
 import { OrderCallback } from '@/components/OrderCallback';
 import { SiteSearch } from '@/components/SiteSearch';
@@ -14,22 +16,22 @@ function Links() {
   return (
     <>
       <Link className="navbar-link" href="/equipment">
-        {D.equipment()}
+        {t`Equipment`}
       </Link>
       <Link className="navbar-link" href="/about-us">
-        {D.aboutUs()}
+        {t`About company`}
       </Link>
       <Link className="navbar-link" href="/contacts">
-        {D.contacts()}
+        {t`Contacts`}
       </Link>
       <Link className="navbar-link" href="/service">
-        {D.service()}
+        {t`Service`}
       </Link>
       <Link className="navbar-link" href="/news">
-        {D.news()}
+        {t`News`}
       </Link>
       <Link className="navbar-link" href="/business-conditions">
-        {D.businessConditions()}
+        {t`Business conditions`}
       </Link>
     </>
   );

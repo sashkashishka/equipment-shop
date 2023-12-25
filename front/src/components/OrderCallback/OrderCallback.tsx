@@ -1,9 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { t } from 'ttag';
 
 import { Button } from '@/components/Button';
 import { Dialog } from '@/components/Dialog';
+
+import { Form } from './Form';
 
 import styles from './OrderCallback.module.css';
 
@@ -13,11 +16,11 @@ export function OrderCallback() {
   return (
     <>
       <Button className={styles.button} onClick={() => setIsOpen(true)}>
-        Order callback
+        {t`Request a call back`}
       </Button>
 
       <Dialog isOpen={isOpen} setIsOpen={setIsOpen}>
-        form
+        <Form />
       </Dialog>
     </>
   );

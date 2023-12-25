@@ -24,37 +24,43 @@
       "About company": {
         "msgid": "About company",
         "msgstr": [
-          ""
+          "pro nas"
         ]
       },
       "Contacts": {
         "msgid": "Contacts",
         "msgstr": [
-          ""
+          "kontak"
         ]
       },
       "Service": {
         "msgid": "Service",
         "msgstr": [
-          ""
+          "serva"
         ]
       },
       "News": {
         "msgid": "News",
         "msgstr": [
-          ""
+          "novisty"
         ]
       },
       "Business conditions": {
         "msgid": "Business conditions",
         "msgstr": [
-          ""
+          "chtoto pro busine"
         ]
       },
       "About us": {
         "msgid": "About us",
         "msgstr": [
-          ""
+          "o nas"
+        ]
+      },
+      "Request a call back": {
+        "msgid": "Request a call back",
+        "msgstr": [
+          "zaprosit zvonok"
         ]
       }
     }

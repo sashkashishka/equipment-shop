@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
-import { NavigationBar } from '@/components/Navbar';
+import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { initTtag } from '@/i18n';
+import { initTtag } from '@/i18n/server';
+import { InitTtag } from '@/i18n/client';
+import { getStrapi } from '@/utils/getStrapi';
+import { API } from '@/constants/api';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,13 +18,15 @@ interface iProps {
   params: { locale: string };
 }
 
-export default function RootLayout({ children, params }: iProps) {
+export default async function RootLayout({ children, params }: iProps) {
   initTtag(params.locale);
+  await getStrapi(API.EQUIPMENT_CATEGORIES);
 
   return (
-    <html lang="en">
+    <html lang={params.locale}>
       <body>
-        <NavigationBar />
+        <InitTtag locale={params.locale} />
+        <Navbar />
 
         <div className="content">{children}</div>
 
