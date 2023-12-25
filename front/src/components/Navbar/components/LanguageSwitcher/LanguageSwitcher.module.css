@@ -1,0 +1,7 @@
+.languageSwitcher {
+  width: 90px;
+
+  & select {
+    font-size: 32px;
+  }
+}

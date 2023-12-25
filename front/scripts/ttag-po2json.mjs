@@ -12,13 +12,13 @@ exec(
 );
 
 exec(
-  './node_modules/ttag-cli/bin/ttag po2json ./src/i18n/source/de.po > ./src/i18n/locales/de.po.json',
+  './node_modules/ttag-cli/bin/ttag po2json ./src/i18n/source/sk.po > ./src/i18n/locales/sk.po.json',
   (err) => {
     if (err) {
       console.err(err);
       return;
     }
 
-    console.log('Extracted DE translations to json');
+    console.log('Extracted SK translations to json');
   },
 );

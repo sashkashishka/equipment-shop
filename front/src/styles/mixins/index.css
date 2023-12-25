@@ -16,8 +16,8 @@
   }
 }
 
-@define-mixin media-1440 {
-  @media (min-width: 1440px) {
+@define-mixin media-1640 {
+  @media (min-width: 1640px) {
     @mixin-content;
   }
 }

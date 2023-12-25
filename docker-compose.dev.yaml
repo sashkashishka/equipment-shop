@@ -18,8 +18,8 @@ services:
       - "./front/.env.local"
     networks:
       - packing_group_bridge
-    # depends_on:
-    #   - strapi
+    depends_on:
+      - strapi
 
   strapi:
     container_name: strapi_packing_group

@@ -1,17 +1,16 @@
 import 'server-only';
 
-import de from './locales/de.po.json';
 import en from './locales/en.po.json';
+import sk from './locales/sk.po.json';
 import { addLocale, useLocale } from 'ttag';
 
-export const locales = ['en', 'de'];
+export const locales = ['en', 'sk'];
 
 export const defaultLocale = 'en';
 
 export function initTtag(locale: string) {
   addLocale('en', en);
-  addLocale('de', de);
+  addLocale('sk', sk);
 
-  // eslint-disable-next-line
   useLocale(locale);
 }

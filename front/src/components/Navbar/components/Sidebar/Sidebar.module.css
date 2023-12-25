@@ -10,7 +10,7 @@
   max-width: 320px;
   padding: 16px;
   z-index: 101;
-  background: var(--color-basic-0);
+  background: var(--pgi-color-basic-0);
 }
 
 .sidebarVisible {
@@ -33,6 +33,9 @@
 }
 
 .menuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 32px;
   width: 32px;
   padding: 0;
