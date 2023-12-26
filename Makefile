@@ -16,6 +16,9 @@ build_nocache:
 build_nocache_nextjs:
 	docker compose -f docker-compose.dev.yaml build --no-cache nextjs
 
+build_nocache_strapi:
+	docker compose -f docker-compose.dev.yaml build --no-cache strapi
+
 exec_strapi_sh:
 	docker compose -f docker-compose.dev.yaml exec -it strapi /bin/sh
 

@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import './globals.css';
 
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { initTtag } from '@/i18n/server';
 import { InitTtag } from '@/i18n/client';
-import { getStrapi } from '@/utils/getStrapi';
-import { API } from '@/constants/api';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,19 +19,20 @@ interface iProps {
   params: { locale: string };
 }
 
-export default async function RootLayout({ children, params }: iProps) {
+export default async function PageLayout({ children, params }: iProps) {
   initTtag(params.locale);
-  await getStrapi(API.EQUIPMENT_CATEGORIES);
 
   return (
     <html lang={params.locale}>
       <body>
         <InitTtag locale={params.locale} />
-        <Navbar />
+        <div className="content">
+          <Navbar />
 
-        <div className="content">{children}</div>
+          <div>{children}</div>
 
-        <Footer />
+          <Footer />
+        </div>
       </body>
     </html>
   );

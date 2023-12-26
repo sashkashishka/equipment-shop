@@ -1,16 +1,14 @@
 import { t } from 'ttag';
-import { API } from '@/constants/api';
-import { getStrapi } from '@/utils/getStrapi';
 import { Link } from '@/components/Link';
 import { NestedMenu } from './NestedMenu';
-import { getEquipmentMenuLinks } from '@/utils/getLinksTree';
+import { getMenuLinks } from '@/utils/strapi/getMenuLinks';
 
 export async function Links() {
-  const data = await getStrapi(API.EQUIPMENT_CATEGORIES);
+  const equipmentMenuLinks = await getMenuLinks();
 
   return (
     <>
-      <NestedMenu equipmentMenuLinks={getEquipmentMenuLinks(data)} />
+      <NestedMenu equipmentMenuLinks={equipmentMenuLinks} />
       <Link href="/about-us">{t`About company`}</Link>
       <Link href="/contacts">{t`Contacts`}</Link>
       <Link href="/service">{t`Service`}</Link>

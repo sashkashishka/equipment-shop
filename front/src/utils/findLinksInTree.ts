@@ -1,15 +1,15 @@
-import type { iEquipmentMenuLink } from './getLinksTree';
+interface iTreeStructure {
+  children?: iTreeStructure[];
+  [key: string]: any;
+}
 
-export function findLinksInTree(
-  tree: iEquipmentMenuLink[],
-  predicates: string[],
-) {
-  const links: Omit<iEquipmentMenuLink, 'children'>[] = [];
+export function findLinksInTree(tree: iTreeStructure[], predicates: string[]) {
+  const links: Omit<iTreeStructure, 'children'>[] = [];
 
-  function walk(tree: iEquipmentMenuLink[]) {
-    return tree.forEach(({ slug, label, url, children }) => {
-      if (predicates.includes(slug)) {
-        links.push({ label, url, slug });
+  function walk(tree: iTreeStructure[]) {
+    return tree.forEach(({ children, ...rest }) => {
+      if (predicates.includes(rest.slug)) {
+        links.push(rest);
       }
 
       if (children) {

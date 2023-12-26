@@ -1,5 +1,6 @@
 .sidebar {
   display: none;
+  align-self: start;
   padding: 16px;
   background: var(--pgi-color-secondary-2);
   border-radius: 8px;

@@ -1,0 +1,1 @@
+export { HTMLParser } from './HTMLParser';

@@ -32,9 +32,13 @@ export function LanguageSwitcher({ languages }: iProps) {
       onChange={(e) => {
         const lang = e.target.value;
 
-        window.location.replace(
-          pathname.replace(params.locale as string, lang),
-        );
+        let url = pathname.replace(params.locale as string, lang);
+
+        if (pathname.includes('/equipment')) {
+          url = `/${lang}`;
+        }
+
+        window.location.replace(url);
       }}
     />
   );

@@ -4,6 +4,12 @@
   }
 }
 
+@define-mixin media-425 {
+  @media (min-width: 425px) {
+    @mixin-content;
+  }
+}
+
 @define-mixin media-768 {
   @media (min-width: 768px) {
     @mixin-content;

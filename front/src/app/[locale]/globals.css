@@ -602,6 +602,7 @@ template {
   --pgi-rating-star-stroke: #6354c1;
   --pgi-bestWriters-rating-font-size: 18px;
   --pgi-bestWriters-rating-color: #2d2d2f;
+  --pgi-box-shadow-sm: rgba(45, 45, 47, 0.16) 0px 4px 8px;
 }
 
 * {
@@ -619,4 +620,11 @@ body {
     Noto Sans,
     sans-serif;
   font-size: 16px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
 }

@@ -9,18 +9,22 @@ export interface iCommonConfig {
   copyright: string;
 }
 
-interface iProduct {
-  slug: string;
-  name: string;
+interface iPhoto {
+  url: string;
 }
 
-export interface iEquipmentCategory {
+export interface iEquipment {
   slug: string;
   name: string;
-  children: {
-    data: iStrapiResponse<iEquipmentCategory>[];
+  type: 'category' | 'productList' | 'product';
+  title: string;
+  subtitle: string;
+  topText?: string;
+  bottomText?: string;
+  photos: {
+    data: iStrapiResponse<iPhoto>[];
   };
-  products?: {
-    data: iStrapiResponse<iProduct>[];
+  children: {
+    data: iStrapiResponse<iEquipment>[];
   };
 }

@@ -1,0 +1,32 @@
+.container {
+  background: var(--pgi-color-basic-0);
+  box-shadow: var(--pgi-wd-container-box-shadow);
+  border-radius: 8px;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 0 16px;
+  color: var(--pgi-color-basic-5);
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+  gap: 16px;
+}
+
+@mixin media-425 {
+  .cardGrid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@mixin media-768 {
+  .cardGrid {
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  }
+}

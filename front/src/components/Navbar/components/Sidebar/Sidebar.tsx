@@ -25,7 +25,7 @@ export function Sidebar({ children }: iProps) {
     <>
       <Button
         type="button"
-        className={cn(styles.menuButton, isOpen && styles.closeButton)}
+        className={cn(styles.btn, styles.menuButton, isOpen && styles.closeButton)}
         onClick={() => setIsOpen(!isOpen)}
       >
         {isOpen ? (

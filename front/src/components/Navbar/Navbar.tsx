@@ -5,13 +5,12 @@ import { Logo } from '@/components/Logo';
 import { Sidebar } from '@/components/Navbar/components/Sidebar';
 import { LanguageSwitcher } from '@/components/Navbar/components/LanguageSwitcher';
 import { Links } from '@/components/Navbar/components/Links';
-import { getStrapi } from '@/utils/getStrapi';
-import { API } from '@/constants/api';
+import { getCommonConfig } from '@/utils/strapi/getCommonConfig';
 
 import styles from './Navbar.module.css';
 
 export async function Navbar() {
-  const data = await getStrapi(API.COMMON_CONFIG);
+  const data = await getCommonConfig();
 
   return (
     <header className={styles.container}>

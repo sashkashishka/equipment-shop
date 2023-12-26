@@ -1,6 +1,7 @@
-import type { iEquipmentCategory, iStrapiResponse } from '@/types/strapi';
+import type { iEquipment, iStrapiResponse } from '@/types/strapi';
 
 export interface iEquipmentMenuLink {
+  id: number;
   label: string;
   url: string;
   slug: string;
@@ -8,16 +9,18 @@ export interface iEquipmentMenuLink {
 }
 
 export function getEquipmentMenuLinks(
-  data: iStrapiResponse<iEquipmentCategory>[],
+  data: iStrapiResponse<iEquipment>[],
   prefix = '/equipment',
 ): iEquipmentMenuLink[] {
   return data.map<iEquipmentMenuLink>((v) => {
+    const id = v.id;
     const label = v.attributes.name;
     const slug = v.attributes.slug;
     const url = `${prefix}/${v.attributes.slug}`;
 
     if (!v?.attributes?.children?.data?.length) {
       return {
+        id,
         label,
         url,
         slug,
@@ -25,6 +28,7 @@ export function getEquipmentMenuLinks(
     }
 
     return {
+      id,
       label,
       url,
       slug,
@@ -51,7 +55,7 @@ export interface iEquipmentFooterLink {
 }
 
 export function getEquipmentFooterLinks(
-  data: iStrapiResponse<iEquipmentCategory>[],
+  data: iStrapiResponse<iEquipment>[],
   prefix = '/equipment',
   depth = 1,
 ): iEquipmentFooterLink[] {
@@ -73,4 +77,36 @@ export function getEquipmentFooterLinks(
   }
 
   return flatten(tree);
+}
+
+export interface iPageTree {
+  id: number;
+  slug: string;
+  type: iEquipment['type'];
+  children?: iPageTree[];
+}
+
+export function getPageTree(
+  data: iStrapiResponse<iEquipment>[],
+): iPageTree[] {
+  return data.map<iPageTree>((v) => {
+    const id = v.id;
+    const type = v.attributes.type;
+    const slug = v.attributes.slug;
+
+    if (!v?.attributes?.children?.data?.length) {
+      return {
+        id,
+        type,
+        slug,
+      };
+    }
+
+    return {
+      id,
+      type,
+      slug,
+      children: getPageTree(v?.attributes?.children?.data),
+    };
+  });
 }

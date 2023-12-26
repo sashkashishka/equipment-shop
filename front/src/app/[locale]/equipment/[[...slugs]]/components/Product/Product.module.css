@@ -1,0 +1,31 @@
+.container {
+  background: var(--pgi-color-basic-0);
+  box-shadow: var(--pgi-wd-container-box-shadow);
+  border-radius: 8px;
+  padding: 16px;
+  overflow: hidden;
+
+  &:not(:last-of-type) {
+    margin-bottom: 16px;
+  }
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 0 16px;
+  color: var(--pgi-color-basic-5);
+}
+
+.topBlock {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+}
+
+@mixin media-1024 {
+  .topBlock {
+    grid-template-columns: 1fr minmax(auto, 288px);
+    gap: 24px;
+  }
+}

@@ -1,17 +1,22 @@
 import { API, AUTH_HEADER, QUERIES } from '@/constants/api';
-import {
+import type {
   iCommonConfig,
-  iEquipmentCategory,
+  iEquipment,
   iStrapiResponse,
 } from '@/types/strapi';
+import { generatePath, PathParam } from '@/utils/generatePath';
 
 interface iResponses {
   [API.COMMON_CONFIG]: iStrapiResponse<iCommonConfig>;
-  [API.EQUIPMENT_CATEGORIES]: iStrapiResponse<iEquipmentCategory>[];
+  [API.EQUIPMENT_CATEGORIES]: iStrapiResponse<iEquipment>[];
+  [API.EQUIPMENT_CATEGORY]: iStrapiResponse<iEquipment>;
 }
 
-interface iOptions {
+interface iOptions<T extends API> {
   enableTagCache?: boolean;
+  params?: {
+    [key in PathParam<T>]: string | null;
+  };
 }
 
 function getTagCache(tag: string, enabled: boolean) {
@@ -28,9 +33,9 @@ function getTagCache(tag: string, enabled: boolean) {
 
 export async function getStrapi<T extends API>(
   endpoint: T,
-  { enableTagCache = true }: iOptions = {},
+  { enableTagCache = true, params }: iOptions<T> = {},
 ) {
-  let url: string = endpoint;
+  let url: string = generatePath(endpoint, params);
 
   if (QUERIES[endpoint]) {
     url = `${url}?${new URLSearchParams(QUERIES[endpoint]())}`;

@@ -2,17 +2,15 @@ import { t } from 'ttag';
 
 import { Link } from '@/components/Link';
 import { Logo } from '@/components/Logo';
-import { getStrapi } from '@/utils/getStrapi';
-import { getEquipmentFooterLinks } from '@/utils/getLinksTree';
-import { API } from '@/constants/api';
+import { OrderCallback } from '@/components/OrderCallback';
+import { getCommonConfig } from '@/utils/strapi/getCommonConfig';
+import { getFooterLinks } from '@/utils/strapi/getFooterLinks';
 
 import styles from './Footer.module.css';
-import { OrderCallback } from '../OrderCallback';
 
 export async function Footer() {
-  const commonConfig = await getStrapi(API.COMMON_CONFIG);
-  const equipmentCategories = await getStrapi(API.EQUIPMENT_CATEGORIES);
-  const equipmentFooterLinks = getEquipmentFooterLinks(equipmentCategories);
+  const commonConfig = await getCommonConfig();
+  const equipmentFooterLinks = await getFooterLinks();
 
   return (
     <footer className={styles.container}>

@@ -10,6 +10,7 @@ export const AUTH_HEADER = {
 export enum API {
   COMMON_CONFIG = `${PREFIX}/api/common-config`,
   EQUIPMENT_CATEGORIES = `${PREFIX}/api/equipment-categories`,
+  EQUIPMENT_CATEGORY = `${PREFIX}/api/equipment-categories/:id`,
 }
 
 export const QUERIES = {
@@ -25,38 +26,34 @@ export const QUERIES = {
         root: true,
       },
       populate: {
-        products: {
-          fields: ['slug', 'name'],
-        },
         children: {
-          fields: ['slug', 'name'],
+          fields: ['slug', 'name', 'type'],
           populate: {
-            products: {
-              fields: ['slug', 'name'],
-            },
-
             children: {
-              fields: ['slug', 'name'],
+              fields: ['slug', 'name', 'type'],
               populate: {
-                products: {
-                  fields: ['slug', 'name'],
-                },
-
                 children: {
-                  fields: ['slug', 'name'],
+                  fields: ['slug', 'name', 'type'],
                   populate: {
-                    products: {
-                      fields: ['slug', 'name'],
-                    },
-
                     children: {
-                      fields: ['slug', 'name'],
+                      fields: ['slug', 'name', 'type'],
                     },
                   },
                 },
               },
             },
           },
+        },
+      },
+    });
+  },
+  [API.EQUIPMENT_CATEGORY]() {
+    return qs.stringify({
+      locale: getCurrentLocale(),
+      populate: {
+        photos: true,
+        children: {
+          populate: ['slug', 'name', 'title', 'subtitle', 'photos'],
         },
       },
     });
