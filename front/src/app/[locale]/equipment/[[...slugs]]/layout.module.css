@@ -1,0 +1,20 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 1640px;
+  margin: auto;
+  padding: 24px 16px;
+}
+
+.content {
+  background: var(--pgi-color-basic-0);
+  border-radius: 8px;
+  box-shadow: var(--pgi-wd-container-box-shadow);
+}
+
+@mixin media-768 {
+  .layout {
+    grid-template-columns: clamp(200px, 30%, 300px) 1fr;
+    gap: 24px;
+  }
+}

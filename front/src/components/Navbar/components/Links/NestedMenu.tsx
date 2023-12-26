@@ -5,6 +5,8 @@ import cn from 'classnames';
 import { iEquipmentMenuLink } from '@/utils/getLinksTree';
 import { Link } from '@/components/Link';
 
+import ArrowDownIcon from '@/images/icons/arrow-down.svg';
+
 import styles from './NestedMenu.module.css';
 
 interface iBlockProps {
@@ -23,8 +25,23 @@ function Block({ link, isNested }: iBlockProps) {
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
-      <Link href={link.url} className={cn(isNested && styles.link)}>
+      <Link
+        href={link.url}
+        className={cn(isNested && styles.link)}
+        onClick={(e) => {
+          if (hasChild && !isOpen) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }}
+      >
         {link.label}
+
+        {hasChild && (
+          <span className={styles.arrow}>
+            <ArrowDownIcon />
+          </span>
+        )}
       </Link>
 
       {hasChild && isOpen && (

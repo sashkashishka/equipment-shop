@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react';
 import cn from 'classnames';
 
+import ArrowDownIcon from '@/images/icons/arrow-down.svg';
+
 import styles from './Select.module.css';
 
 interface iOption {
@@ -25,21 +27,7 @@ export function Select({ className, items, ...props }: iProps) {
       </select>
 
       <div className={styles.chevron}>
-        <svg
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-          tabIndex={-1}
-        >
-          <path
-            d="M6 10l6 6 6-6"
-            stroke="#8cabca"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-          />
-        </svg>
+        <ArrowDownIcon />
       </div>
     </div>
   );

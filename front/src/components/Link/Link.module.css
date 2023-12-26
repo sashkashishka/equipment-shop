@@ -1,8 +1,8 @@
 .link {
-  align-items: center;
-  color: var(--pgi-link-color);
   display: inline-flex;
+  align-items: center;
   gap: 4px;
+  color: var(--pgi-link-color);
   line-height: normal;
   text-decoration: none;
 

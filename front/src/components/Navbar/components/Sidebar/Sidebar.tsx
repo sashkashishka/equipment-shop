@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import cn from 'classnames';
 
 import { Button } from '@/components/Button';
@@ -14,6 +15,11 @@ interface iProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function Sidebar({ children }: iProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
     <>
