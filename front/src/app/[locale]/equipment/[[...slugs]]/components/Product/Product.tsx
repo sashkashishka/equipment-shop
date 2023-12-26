@@ -1,3 +1,5 @@
+import cn from 'classnames';
+
 import { getEquipmentContent } from '@/utils/strapi/getEquipmentContent';
 import { HTMLParser } from '@/components/HTMLParser';
 
@@ -14,8 +16,8 @@ export async function Product({ id }: iProps) {
 
   return (
     <>
-      <div className={styles.container}>
-        <h2 className={styles.title}>{title}</h2>
+      <div className={cn('pageContent', styles.container)}>
+        <h2 className={cn('h2Title', styles.title)}>{title}</h2>
 
         <div className={styles.topBlock}>
           <PhotoCarousel photos={photos} title={title} />
@@ -25,9 +27,9 @@ export async function Product({ id }: iProps) {
         {bottomText && <HTMLParser>{bottomText}</HTMLParser>}
       </div>
 
-      <div className={styles.container}>service</div>
+      <div className={cn('pageContent', styles.container)}>service</div>
 
-      <div className={styles.container}>similar goods</div>
+      <div className={cn('pageContent', styles.container)}>similar goods</div>
     </>
   );
 }

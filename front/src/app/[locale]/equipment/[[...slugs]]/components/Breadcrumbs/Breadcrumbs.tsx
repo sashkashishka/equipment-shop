@@ -9,6 +9,7 @@ import { Link } from '@/components/Link';
 
 import { iEquipmentMenuLink } from '@/utils/getLinksTree';
 import { findLinksInTree } from '@/utils/findLinksInTree';
+import { ROUTES } from '@/constants/routes';
 
 import styles from './Breadcrumbs.module.css';
 
@@ -23,7 +24,7 @@ export function Breadcrumbs({ className, equipmentMenuLink }: iProps) {
 
   return (
     <div className={cn(styles.container, className)}>
-      <Link href="/">{t`Main`}</Link>
+      <Link href={ROUTES.MAIN}>{t`Main`}</Link>
 
       {links.map((l, i, arr) => {
         const isLast = i === arr.length - 1;

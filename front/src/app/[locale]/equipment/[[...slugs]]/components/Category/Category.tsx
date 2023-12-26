@@ -1,3 +1,5 @@
+import cn from 'classnames';
+
 import { getEquipmentContent } from '@/utils/strapi/getEquipmentContent';
 import { HTMLParser } from '@/components/HTMLParser';
 import { CategoryCard } from '../CategoryCard';
@@ -13,8 +15,8 @@ export async function Category({ id }: iProps) {
     await getEquipmentContent(id);
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>{title}</h2>
+    <div className="pageContent">
+      <h2 className={cn('h2Title', styles.title)}>{title}</h2>
       {topText && <HTMLParser>{topText}</HTMLParser>}
 
       <div className={styles.cardGrid}>

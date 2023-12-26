@@ -5,6 +5,7 @@ import { Logo } from '@/components/Logo';
 import { OrderCallback } from '@/components/OrderCallback';
 import { getCommonConfig } from '@/utils/strapi/getCommonConfig';
 import { getFooterLinks } from '@/utils/strapi/getFooterLinks';
+import { ROUTES } from '@/constants/routes';
 
 import styles from './Footer.module.css';
 
@@ -32,11 +33,13 @@ export async function Footer() {
         </div>
 
         <div className={styles.column}>
-          <Link href="/about-us">{t`About company`}</Link>
-          <Link href="/contacts">{t`Contacts`}</Link>
-          <Link href="/service">{t`Service`}</Link>
-          <Link href="/news">{t`News`}</Link>
-          <Link href="/business-conditions">{t`Business conditions`}</Link>
+          <Link href={ROUTES.ABOUT_US}>{t`About company`}</Link>
+          <Link href={ROUTES.CONTACTS}>{t`Contacts`}</Link>
+          <Link href={ROUTES.SERVICES}>{t`Services`}</Link>
+          <Link href={ROUTES.NEWS}>{t`News`}</Link>
+          <Link
+            href={ROUTES.BUSINESS_CONDITIONS}
+          >{t`Business conditions`}</Link>
         </div>
 
         <div className={styles.column}>

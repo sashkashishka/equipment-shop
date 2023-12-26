@@ -28,3 +28,32 @@ export interface iEquipment {
     data: iStrapiResponse<iEquipment>[];
   };
 }
+
+export interface iHtmlContent {
+  html: string;
+  __component: 'content.html';
+}
+
+export interface iServiceContent {
+  icon: {
+    data: iStrapiResponse<iPhoto>[];
+  };
+  description: string;
+  children: {
+    data: iStrapiResponse<iPage>[];
+  };
+  __component: 'service.service';
+}
+
+export interface iContactsContent {
+  email: string;
+  phone: string;
+  address: string;
+  __component: 'contacts.contacts';
+}
+
+export interface iPage {
+  name: string;
+  slug: string;
+  content: Array<iHtmlContent | iServiceContent | iContactsContent>;
+}

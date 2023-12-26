@@ -1,0 +1,33 @@
+.title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 0 16px;
+  color: var(--pgi-color-basic-5);
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 16px;
+  border-radius: 8px;
+  padding: 12px;
+  transition: box-shadow 0.3 ease-in-out;
+
+  .cardTitle,
+  .cardDescription {
+    margin: 0;
+    text-decoration: none !important;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  &:hover {
+    background: var(--pgi-color-basic-0);
+    box-shadow: var(--pgi-wd-container-box-shadow);
+  }
+}

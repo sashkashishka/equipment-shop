@@ -3,6 +3,7 @@ import type {
   iCommonConfig,
   iEquipment,
   iStrapiResponse,
+  iPage,
 } from '@/types/strapi';
 import { generatePath, PathParam } from '@/utils/generatePath';
 
@@ -10,6 +11,7 @@ interface iResponses {
   [API.COMMON_CONFIG]: iStrapiResponse<iCommonConfig>;
   [API.EQUIPMENT_CATEGORIES]: iStrapiResponse<iEquipment>[];
   [API.EQUIPMENT_CATEGORY]: iStrapiResponse<iEquipment>;
+  [API.PAGE]: iStrapiResponse<iPage>[];
 }
 
 interface iOptions<T extends API> {
@@ -17,6 +19,7 @@ interface iOptions<T extends API> {
   params?: {
     [key in PathParam<T>]: string | null;
   };
+  filter?: Record<string, string>;
 }
 
 function getTagCache(tag: string, enabled: boolean) {
@@ -33,12 +36,12 @@ function getTagCache(tag: string, enabled: boolean) {
 
 export async function getStrapi<T extends API>(
   endpoint: T,
-  { enableTagCache = true, params }: iOptions<T> = {},
+  { enableTagCache = true, params, filter }: iOptions<T> = {},
 ) {
   let url: string = generatePath(endpoint, params);
 
   if (QUERIES[endpoint]) {
-    url = `${url}?${new URLSearchParams(QUERIES[endpoint]())}`;
+    url = `${url}?${new URLSearchParams(QUERIES[endpoint](filter))}`;
   }
 
   const response = await fetch(url, {

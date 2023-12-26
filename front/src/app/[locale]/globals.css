@@ -628,3 +628,19 @@ body {
   grid-template-rows: auto 1fr auto;
   height: 100vh;
 }
+
+.pageContent {
+  background: var(--pgi-color-basic-0);
+  box-shadow: var(--pgi-wd-container-box-shadow);
+  border-radius: 8px;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.h2Title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 0 16px;
+  color: var(--pgi-color-basic-5);
+}
