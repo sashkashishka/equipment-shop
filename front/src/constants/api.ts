@@ -10,6 +10,7 @@ export const AUTH_HEADER = {
 
 export enum API {
   COMMON_CONFIG = `${PREFIX}/api/common-config`,
+  EQUIPMENT_CONFIG = `${PREFIX}/api/equipment-config`,
   EQUIPMENT_CATEGORIES = `${PREFIX}/api/equipment-categories`,
   EQUIPMENT_CATEGORY = `${PREFIX}/api/equipment-categories/:id`,
   PAGE = `${PREFIX}/api/pages`,
@@ -19,6 +20,21 @@ export const QUERIES = {
   [API.COMMON_CONFIG]() {
     return qs.stringify({
       locale: getCurrentLocale(),
+      populate: {
+        links: {
+          fields: ['slug', 'name'],
+        },
+      },
+    });
+  },
+  [API.EQUIPMENT_CONFIG]() {
+    return qs.stringify({
+      locale: getCurrentLocale(),
+      populate: {
+        services: {
+          populate: ['title', 'description', 'icon', 'children'],
+        },
+      },
     });
   },
   [API.EQUIPMENT_CATEGORIES]() {

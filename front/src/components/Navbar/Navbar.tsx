@@ -10,7 +10,8 @@ import { getCommonConfig } from '@/utils/strapi/getCommonConfig';
 import styles from './Navbar.module.css';
 
 export async function Navbar() {
-  const data = await getCommonConfig();
+  const { phone, languages, equipmentLinksTree, links } =
+    await getCommonConfig();
 
   return (
     <header className={styles.container}>
@@ -18,17 +19,14 @@ export async function Navbar() {
         <div className={styles.topSection}>
           <Logo />
 
-          <Link
-            className={styles.phoneLink}
-            href={`tel:${data.attributes.phone}`}
-          >
-            {data.attributes.phone}
+          <Link className={styles.phoneLink} href={`tel:${phone}`}>
+            {phone}
           </Link>
 
           <Sidebar>
-            <LanguageSwitcher languages={data.attributes.languages} />
+            <LanguageSwitcher languages={languages} />
 
-            <Links />
+            <Links links={links} equipmentLinksTree={equipmentLinksTree} />
           </Sidebar>
         </div>
 
@@ -42,22 +40,19 @@ export async function Navbar() {
         <div className={styles.topSection}>
           <Logo />
 
-          <Link
-            className={styles.phoneLink}
-            href={`tel:${data.attributes.phone}`}
-          >
-            {data.attributes.phone}
+          <Link className={styles.phoneLink} href={`tel:${phone}`}>
+            {phone}
           </Link>
 
           <SiteSearch />
 
           <OrderCallback />
 
-          <LanguageSwitcher languages={data.attributes.languages} />
+          <LanguageSwitcher languages={languages} />
         </div>
 
         <div className={styles.bottomSection}>
-          <Links />
+          <Links links={links} equipmentLinksTree={equipmentLinksTree} />
         </div>
       </div>
     </header>

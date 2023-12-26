@@ -4,6 +4,7 @@ import type {
   iEquipment,
   iStrapiResponse,
   iPage,
+  iEquipmentConfig,
 } from '@/types/strapi';
 import { generatePath, PathParam } from '@/utils/generatePath';
 
@@ -12,6 +13,7 @@ interface iResponses {
   [API.EQUIPMENT_CATEGORIES]: iStrapiResponse<iEquipment>[];
   [API.EQUIPMENT_CATEGORY]: iStrapiResponse<iEquipment>;
   [API.PAGE]: iStrapiResponse<iPage>[];
+  [API.EQUIPMENT_CONFIG]: iStrapiResponse<iEquipmentConfig>;
 }
 
 interface iOptions<T extends API> {

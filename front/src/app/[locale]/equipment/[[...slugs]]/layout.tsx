@@ -1,26 +1,26 @@
 import React from 'react';
 
-import { getMenuAndSidebarLinks } from '@/utils/strapi/getSidebarLinks';
 import { Sidebar } from './components/Sidebar';
 import { Breadcrumbs } from './components/Breadcrumbs';
 
 import styles from './layout.module.css';
+import { getCommonConfig } from '@/utils/strapi/getCommonConfig';
 
 interface iProps {
   children: React.ReactNode | React.ReactNode[];
 }
 
 export default async function EquipmentLayout({ children }: iProps) {
-  const { menuLinks, sidebarLinks } = await getMenuAndSidebarLinks();
+  const { equipmentLinksTree } = await getCommonConfig();
 
   return (
     <div className={styles.layout}>
-      <Sidebar equipmentSidebarLinks={sidebarLinks} />
+      <Sidebar equipmentLinksTree={equipmentLinksTree[0].children!} />
 
       <div>
         <Breadcrumbs
           className={styles.breadcrumbs}
-          equipmentMenuLink={menuLinks}
+          equipmentLinksTree={equipmentLinksTree}
         />
         {children}
       </div>

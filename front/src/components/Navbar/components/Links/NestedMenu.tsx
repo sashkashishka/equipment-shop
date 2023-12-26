@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import cn from 'classnames';
-import { iEquipmentMenuLink } from '@/utils/getLinksTree';
+import { iEquipmentLink } from '@/utils/getLinksTree';
 import { Link } from '@/components/Link';
 
 import ArrowDownIcon from '@/images/icons/arrow-down.svg';
@@ -10,7 +10,7 @@ import ArrowDownIcon from '@/images/icons/arrow-down.svg';
 import styles from './NestedMenu.module.css';
 
 interface iBlockProps {
-  link: iEquipmentMenuLink;
+  link: iEquipmentLink;
   isNested: boolean;
 }
 
@@ -46,7 +46,7 @@ function Block({ link, isNested }: iBlockProps) {
 
       {hasChild && isOpen && (
         <div className={cn(styles.links, isNested && styles.linksRight)}>
-          <NestedMenu isNested equipmentMenuLinks={link.children!} />
+          <NestedMenu isNested equipmentLinksTree={link.children!} />
         </div>
       )}
     </div>
@@ -54,14 +54,14 @@ function Block({ link, isNested }: iBlockProps) {
 }
 
 interface iProps {
-  equipmentMenuLinks: iEquipmentMenuLink[];
+  equipmentLinksTree: iEquipmentLink[];
   isNested?: boolean;
 }
 
-export function NestedMenu({ equipmentMenuLinks, isNested = false }: iProps) {
+export function NestedMenu({ equipmentLinksTree, isNested = false }: iProps) {
   return (
     <div className={cn(isNested && styles.container)}>
-      {equipmentMenuLinks.map((link) => (
+      {equipmentLinksTree.map((link) => (
         <Block key={link.url} link={link} isNested={isNested} />
       ))}
     </div>

@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card .link {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: var(--pgi-color-basic-1);
+  box-shadow: var(--pgi-wd-container-box-shadow);
+  border-radius: 8px;
+}
+
+.cardIcon {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+}
+
+.cardTitle {
+  margin: 0;
+}

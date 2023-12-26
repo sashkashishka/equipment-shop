@@ -7,20 +7,19 @@ import cn from 'classnames';
 
 import { Link } from '@/components/Link';
 
-import { iEquipmentMenuLink } from '@/utils/getLinksTree';
+import type { iCommonConfigContent } from '@/utils/strapi/getCommonConfig';
 import { findLinksInTree } from '@/utils/findLinksInTree';
 import { ROUTES } from '@/constants/routes';
 
 import styles from './Breadcrumbs.module.css';
 
-interface iProps {
+interface iProps extends Pick<iCommonConfigContent, 'equipmentLinksTree'> {
   className?: string;
-  equipmentMenuLink: iEquipmentMenuLink[];
 }
 
-export function Breadcrumbs({ className, equipmentMenuLink }: iProps) {
+export function Breadcrumbs({ className, equipmentLinksTree }: iProps) {
   const { slugs } = useParams();
-  const links = findLinksInTree(equipmentMenuLink, slugs as string[]);
+  const links = findLinksInTree(equipmentLinksTree, slugs as string[]);
 
   return (
     <div className={cn(styles.container, className)}>

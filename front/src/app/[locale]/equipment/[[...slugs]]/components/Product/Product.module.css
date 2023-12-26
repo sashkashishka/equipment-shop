@@ -1,7 +1,6 @@
 .container {
-  &:not(:last-of-type) {
-    margin-bottom: 16px;
-  }
+  display: grid;
+  gap: 16px;
 }
 
 .title {

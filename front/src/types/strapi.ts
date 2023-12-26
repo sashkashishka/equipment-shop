@@ -3,13 +3,21 @@ export interface iStrapiResponse<T> {
   attributes: T;
 }
 
+export interface iLinks {
+  slug: string;
+  name: string;
+}
+
 export interface iCommonConfig {
   phone: string;
   languages: string[];
   copyright: string;
+  links: {
+    data: iStrapiResponse<iLinks>[];
+  };
 }
 
-interface iPhoto {
+export interface iMediaImage {
   url: string;
 }
 
@@ -22,7 +30,7 @@ export interface iEquipment {
   topText?: string;
   bottomText?: string;
   photos: {
-    data: iStrapiResponse<iPhoto>[];
+    data: iStrapiResponse<iMediaImage>[];
   };
   children: {
     data: iStrapiResponse<iEquipment>[];
@@ -36,7 +44,7 @@ export interface iHtmlContent {
 
 export interface iServiceContent {
   icon: {
-    data: iStrapiResponse<iPhoto>[];
+    data: iStrapiResponse<iMediaImage>[];
   };
   description: string;
   children: {
@@ -56,4 +64,8 @@ export interface iPage {
   name: string;
   slug: string;
   content: Array<iHtmlContent | iServiceContent | iContactsContent>;
+}
+
+export interface iEquipmentConfig {
+  services: iServiceContent[];
 }

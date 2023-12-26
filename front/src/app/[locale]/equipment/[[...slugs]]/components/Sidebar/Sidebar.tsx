@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation';
 import { t } from 'ttag';
 import cn from 'classnames';
-import { iEquipmentMenuLink } from '@/utils/getLinksTree';
+import type { iEquipmentLink } from '@/utils/getLinksTree';
 import { Link } from '@/components/Link';
 
 import ArrowDownIcon from '@/images/icons/arrow-down.svg';
@@ -11,18 +11,18 @@ import ArrowDownIcon from '@/images/icons/arrow-down.svg';
 import styles from './Sidebar.module.css';
 
 interface iNestedMenuProps {
-  equipmentSidebarLinks: iEquipmentMenuLink[];
+  equipmentLinksTree: iEquipmentLink[];
   isNested?: boolean;
 }
 
-function NestedMenu({ equipmentSidebarLinks }: iNestedMenuProps) {
+function NestedMenu({ equipmentLinksTree }: iNestedMenuProps) {
   const params = useParams();
 
   const activeEquipment = params.slugs.slice(1);
 
   return (
     <>
-      {equipmentSidebarLinks.map((link) => {
+      {equipmentLinksTree.map((link) => {
         const hasChild = !!link?.children?.length;
         const isOpen = activeEquipment.includes(link.slug);
         const active =
@@ -45,7 +45,7 @@ function NestedMenu({ equipmentSidebarLinks }: iNestedMenuProps) {
 
             {hasChild && isOpen && (
               <div className={styles.links}>
-                <NestedMenu isNested equipmentSidebarLinks={link.children!} />
+                <NestedMenu isNested equipmentLinksTree={link.children!} />
               </div>
             )}
           </div>
@@ -56,14 +56,14 @@ function NestedMenu({ equipmentSidebarLinks }: iNestedMenuProps) {
 }
 
 interface iSidebarProps {
-  equipmentSidebarLinks: iEquipmentMenuLink[];
+  equipmentLinksTree: iEquipmentLink[];
 }
 
-export function Sidebar({ equipmentSidebarLinks }: iSidebarProps) {
+export function Sidebar({ equipmentLinksTree }: iSidebarProps) {
   return (
     <div className={styles.sidebar}>
       <div className={styles.sidebarTitle}>{t`Equipment catalog`}</div>
-      <NestedMenu equipmentSidebarLinks={equipmentSidebarLinks} />
+      <NestedMenu equipmentLinksTree={equipmentLinksTree} />
     </div>
   );
 }

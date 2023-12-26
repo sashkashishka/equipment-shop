@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 
-import { getPageTypeBySlug } from '@/utils/strapi/getPageTypeBySlug';
+import { getEquipmentPageTypeBySlug } from '@/utils/strapi/getEquipmentPageTypeBySlug';
 
 import { Category } from './components/Category';
 import { ProductList } from './components/ProductList';
@@ -12,7 +12,7 @@ interface iProps {
 
 export default async function Equipment({ params }: iProps) {
   const [slug] = params.slugs.slice(-1);
-  const [page] = await getPageTypeBySlug(slug);
+  const [page] = await getEquipmentPageTypeBySlug(slug);
 
   if (!page) {
     notFound();

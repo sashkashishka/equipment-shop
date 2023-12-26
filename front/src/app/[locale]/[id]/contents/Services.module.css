@@ -6,6 +6,12 @@
   color: var(--pgi-color-basic-5);
 }
 
+.cardList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
 .card {
   display: grid;
   grid-template-columns: 72px 1fr;

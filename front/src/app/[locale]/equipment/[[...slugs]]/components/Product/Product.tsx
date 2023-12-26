@@ -5,6 +5,7 @@ import { HTMLParser } from '@/components/HTMLParser';
 
 import { PhotoCarousel } from './PhotoCarousel';
 import { Form } from './Form';
+import { ServiceBlock } from './ServiceBlock';
 
 import styles from './Product.module.css';
 
@@ -15,8 +16,8 @@ export async function Product({ id }: iProps) {
   const { title, bottomText, photos } = await getEquipmentContent(id);
 
   return (
-    <>
-      <div className={cn('pageContent', styles.container)}>
+    <div className={styles.container}>
+      <div className="pageContent">
         <h2 className={cn('h2Title', styles.title)}>{title}</h2>
 
         <div className={styles.topBlock}>
@@ -27,9 +28,9 @@ export async function Product({ id }: iProps) {
         {bottomText && <HTMLParser>{bottomText}</HTMLParser>}
       </div>
 
-      <div className={cn('pageContent', styles.container)}>service</div>
+      <ServiceBlock />
 
-      <div className={cn('pageContent', styles.container)}>similar goods</div>
-    </>
+      <div className="pageContent">similar goods</div>
+    </div>
   );
 }
