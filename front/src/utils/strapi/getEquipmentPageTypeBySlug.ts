@@ -1,8 +1,8 @@
 import { getCommonConfig } from '@/utils/strapi/getCommonConfig';
-import { findLinksInTree } from '@/utils/findLinksInTree';
+import { searchTree, includesSlug } from '@/utils/searchTree';
 
 export async function getEquipmentPageTypeBySlug(slug: string) {
   const { equipmentLinksTree } = await getCommonConfig();
 
-  return findLinksInTree(equipmentLinksTree, [slug]);
+  return searchTree(equipmentLinksTree, includesSlug([slug]));
 }

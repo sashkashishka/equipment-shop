@@ -21,12 +21,7 @@ export function PhotoCarousel({ photos, title }: iProps) {
     >
       {photos.map((photo) => (
         <SwiperSlide key={photo.url}>
-          <img
-            key={photo.url}
-            className={styles.slide}
-            src={photo.url}
-            alt={`${title}-1`}
-          />
+          <img className={styles.slide} src={photo.url} alt={`${title}-1`} />
         </SwiperSlide>
       ))}
     </Swiper>

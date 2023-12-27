@@ -3,9 +3,10 @@ import cn from 'classnames';
 import { getEquipmentContent } from '@/utils/strapi/getEquipmentContent';
 import { HTMLParser } from '@/components/HTMLParser';
 
-import { PhotoCarousel } from './PhotoCarousel';
-import { Form } from './Form';
-import { ServiceBlock } from './ServiceBlock';
+import { PhotoCarousel } from './components/PhotoCarousel';
+import { Form } from './components/Form';
+import { ServiceBlock } from './components/ServiceBlock';
+import { SimilarProducts } from './components/SimilarProducts';
 
 import styles from './Product.module.css';
 
@@ -30,7 +31,7 @@ export async function Product({ id }: iProps) {
 
       <ServiceBlock />
 
-      <div className="pageContent">similar goods</div>
+      <SimilarProducts id={id} />
     </div>
   );
 }

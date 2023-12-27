@@ -2,11 +2,12 @@ import { API } from '@/constants/api';
 import { getStrapi } from '@/utils/strapi/getStrapi';
 import { transformImages, iImage } from '@/utils/strapi/transformImages';
 import { iEquipmentLink } from '@/utils/getLinksTree';
-import { findLinksInTree } from '@/utils/findLinksInTree';
+import { searchTree, includesSlug } from '@/utils/searchTree';
 import { iEquipment, iStrapiResponse } from '@/types/strapi';
 import { getCommonConfig } from './getCommonConfig';
 
 export interface iEquipmentContent {
+  id: iStrapiResponse<iEquipment>['id'];
   slug: iEquipment['slug'];
   title: iEquipment['title'];
   subtitle: iEquipment['subtitle'];
@@ -22,11 +23,15 @@ function transform(
   data: iStrapiResponse<iEquipment>,
   equipmentLinksTree: iEquipmentLink[],
 ): iEquipmentContent {
-  const { attributes } = data;
+  const { id, attributes } = data;
 
-  const [link] = findLinksInTree(equipmentLinksTree, [attributes.slug]);
+  const [link] = searchTree(
+    equipmentLinksTree,
+    includesSlug([attributes.slug]),
+  );
 
   return {
+    id,
     slug: attributes.slug,
     title: attributes.title,
     subtitle: attributes.subtitle,
