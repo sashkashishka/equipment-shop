@@ -1,21 +1,25 @@
-'use client';
 import { t } from 'ttag';
 
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
+import { Select } from '@/components/Select';
+import { Textarea } from '@/components/Textarea';
+import { getCommonConfig } from '@/utils/strapi/getCommonConfig';
 
 import styles from './Form.module.css';
 
-interface iProps {
-  productName: string;
-}
+export async function Form() {
+  const { equipmentLinksFlatten } = await getCommonConfig();
 
-export function Form({ productName }: iProps) {
+  const items = equipmentLinksFlatten.slice(1).map(({ id, label, slug }) => ({
+    id,
+    label,
+    value: slug,
+  }));
+
   return (
     <form action="/api/send-request" className={styles.form}>
-      <p className={styles.title}>
-        {t`You will receive a detailed commercial offer`}
-      </p>
+      <p className={styles.title}>{t`Feedback`}</p>
 
       <label htmlFor="p-name">{t`Name`}</label>
       <Input
@@ -51,8 +55,16 @@ export function Form({ productName }: iProps) {
       />
       <br />
       <br />
-      <Input type="hidden" name="product" value={productName} />
 
+      <label htmlFor="p-product">{t`Equipment`}</label>
+      <Select id="p-product" items={items} required />
+
+      <br />
+      <label htmlFor="p-message">{t`Message`}</label>
+      <Textarea id="p-message" rows={3} />
+
+      <br />
+      <br />
       <Button type="submit">{t`Get the price`}</Button>
     </form>
   );
