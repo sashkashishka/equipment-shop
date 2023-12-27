@@ -2,7 +2,7 @@ import { t } from 'ttag';
 import { Link } from '@/components/Link';
 import { ROUTES } from '@/constants/routes';
 
-import styles from './not-found.module.css';
+import styles from './service-pages.module.css';
 
 export default function NotFound() {
   return (
