@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_services_services",
+  "info": {
+    "displayName": "services",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "service": {
+      "displayName": "service",
+      "type": "component",
+      "repeatable": true,
+      "component": "services.service"
+    }
+  }
+}
