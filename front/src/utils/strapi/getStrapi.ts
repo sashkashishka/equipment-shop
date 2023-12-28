@@ -1,10 +1,16 @@
-import { API, AUTH_HEADER, QUERIES } from '@/constants/api';
+import {
+  API,
+  AUTH_HEADER,
+  QUERIES,
+  iQueryBuilderOptions,
+} from '@/constants/api';
 import type {
   iCommonConfig,
   iEquipment,
   iStrapiResponse,
   iPage,
   iEquipmentConfig,
+  iBlogPost,
 } from '@/types/strapi';
 import { generatePath, PathParam } from '@/utils/generatePath';
 
@@ -14,14 +20,14 @@ interface iResponses {
   [API.EQUIPMENT_CATEGORY]: iStrapiResponse<iEquipment>;
   [API.PAGE]: iStrapiResponse<iPage>[];
   [API.EQUIPMENT_CONFIG]: iStrapiResponse<iEquipmentConfig>;
+  [API.BLOG]: iStrapiResponse<iBlogPost>[];
 }
 
-interface iOptions<T extends API> {
+interface iOptions<T extends API> extends iQueryBuilderOptions {
   enableTagCache?: boolean;
   params?: {
     [key in PathParam<T>]: string | null;
   };
-  filter?: Record<string, string>;
 }
 
 function getTagCache(tag: string, enabled: boolean) {
@@ -38,17 +44,19 @@ function getTagCache(tag: string, enabled: boolean) {
 
 export async function getStrapi<T extends API>(
   endpoint: T,
-  { enableTagCache = true, params, filter }: iOptions<T> = {},
+  { enableTagCache = true, params, filters, pagination }: iOptions<T> = {},
 ) {
   let url: string = generatePath(endpoint, params);
 
   if (QUERIES[endpoint]) {
-    url = `${url}?${new URLSearchParams(QUERIES[endpoint](filter))}`;
+    url = `${url}?${new URLSearchParams(
+      QUERIES[endpoint]({ filters, pagination }),
+    )}`;
   }
 
   const response = await fetch(url, {
     headers: AUTH_HEADER,
-    ...getTagCache(endpoint, enableTagCache),
+    ...getTagCache(url, enableTagCache),
   });
 
   if (!response.ok) {

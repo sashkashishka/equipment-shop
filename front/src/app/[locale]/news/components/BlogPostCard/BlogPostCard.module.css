@@ -1,0 +1,46 @@
+.card {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  border-radius: 10px;
+  background: var(--p-color-basic-1);
+
+  .cardContent {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.photo {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  background: var(--p-color-basic-0);
+  border-radius: 10px;
+}
+
+.title,
+.briefInfo,
+.time {
+  margin: 0 8px 4px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.briefInfo {
+  height: 60px;
+  line-height: 20px; /* Height / no. of lines to display */
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+@mixin media-768 {
+  .photo {
+    height: 350px;
+  }
+}

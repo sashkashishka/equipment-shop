@@ -14,6 +14,16 @@ export enum API {
   EQUIPMENT_CATEGORIES = `${PREFIX}/api/equipment-categories`,
   EQUIPMENT_CATEGORY = `${PREFIX}/api/equipment-categories/:id`,
   PAGE = `${PREFIX}/api/pages`,
+  BLOG = `${PREFIX}/api/blogs`,
+}
+
+export interface iQueryBuilderOptions {
+  filters?: Record<string, any>;
+  pagination?: {
+    start: number;
+    limit: number;
+    withCount: boolean;
+  };
 }
 
 export const QUERIES = {
@@ -76,7 +86,7 @@ export const QUERIES = {
       },
     });
   },
-  [API.PAGE](filters?: Record<string, string>) {
+  [API.PAGE]({ filters }: iQueryBuilderOptions = {}) {
     return qs.stringify({
       locale: getCurrentLocale(),
       filters,
@@ -99,6 +109,15 @@ export const QUERIES = {
           },
         },
       },
+    });
+  },
+
+  [API.BLOG]({ filters, pagination }: iQueryBuilderOptions = {}) {
+    return qs.stringify({
+      locale: getCurrentLocale(),
+      filters,
+      pagination,
+      populate: ['photos'],
     });
   },
 };

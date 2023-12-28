@@ -81,7 +81,7 @@ function transform(data: iStrapiResponse<iPage>[]): iDynamicPageContent[] {
 }
 
 export function getDynamicPageContent(slug: string) {
-  return getStrapi(API.PAGE, { filter: { slug } })
+  return getStrapi(API.PAGE, { filters: { slug } })
     .then(transform)
     .then(([data]) => data);
 }

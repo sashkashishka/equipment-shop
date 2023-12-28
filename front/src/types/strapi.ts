@@ -73,3 +73,13 @@ export interface iPage {
 export interface iEquipmentConfig {
   services: iServiceContent[];
 }
+
+export interface iBlogPost {
+  slug: string;
+  title: string;
+  photos: {
+    data: iStrapiResponse<iMediaImage>[];
+  };
+  content: string;
+  publishedAt: string; // Date
+}

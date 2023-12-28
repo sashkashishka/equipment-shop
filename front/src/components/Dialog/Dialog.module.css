@@ -17,18 +17,18 @@
   padding: 16px;
   background: var(--p-color-basic-0);
   z-index: 2;
-}
 
-.closeButton {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  width: 32px;
-  padding: 4px;
+  .closeButton {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    width: 32px;
+    padding: 4px;
+  }
 }
 
 .overlay {

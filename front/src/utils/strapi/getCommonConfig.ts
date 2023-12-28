@@ -1,3 +1,4 @@
+import { t } from 'ttag';
 import { API } from '@/constants/api';
 import type {
   iCommonConfig,
@@ -11,6 +12,7 @@ import {
   getEquipmentLinksFlatten,
   iEquipmentLink,
 } from '@/utils/getLinksTree';
+import { ROUTES } from '@/constants/routes';
 
 interface iLinksContent extends Pick<iLinks, 'name'> {
   link: string;
@@ -23,20 +25,26 @@ export interface iCommonConfigContent
   equipmentLinksFlatten: Omit<iEquipmentLink, 'children'>[];
 }
 
+const staticLinks = [{ name: t`News`, link: ROUTES.NEWS }];
+
 function transform(
   config: iStrapiResponse<iCommonConfig>,
   equipmentLinks: iStrapiResponse<iEquipment>[],
 ): iCommonConfigContent {
   const { attributes } = config;
 
+  const links = attributes.links.data.map((l) => ({
+    name: l.attributes.name,
+    link: `/${l.attributes.slug}`,
+  }));
+
+  staticLinks.forEach((l) => links.unshift(l));
+
   return {
     phone: attributes.phone,
     copyright: attributes.copyright,
     languages: attributes.languages,
-    links: attributes.links.data.map((l) => ({
-      name: l.attributes.name,
-      link: `/${l.attributes.slug}`,
-    })),
+    links,
     equipmentLinksTree: getEquipmentLinksTree(equipmentLinks),
     equipmentLinksFlatten: getEquipmentLinksFlatten(equipmentLinks),
   };
