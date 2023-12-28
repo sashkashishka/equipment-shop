@@ -2,13 +2,22 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  color: var(--pgi-link-color);
+  color: var(--p-link-color);
+  font-weight: 500;
   line-height: normal;
   text-decoration: none;
 
   &:hover {
-    color: var(--pgi-link-color--hover);
+    color: var(--p-link-color--hover);
     cursor: pointer;
     text-decoration: underline;
+  }
+}
+
+.linkLight {
+  color: var(--p-color-basic-0);
+
+  &:hover {
+    color: var(--p-color-basic-0);
   }
 }

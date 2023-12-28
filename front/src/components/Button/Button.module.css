@@ -1,33 +1,33 @@
 .button {
-  background-color: var(--pgi-button-background);
-  border-color: var(--pgi-button-border-color);
-  border-radius: var(--pgi-button-border-radius);
-  border-style: var(--pgi-button-border-style);
-  border-width: var(--pgi-button-border-width);
-  box-shadow: var(--pgi-button-shadow);
-  color: var(--pgi-button-color);
-  font-size: var(--pgi-button-font-size);
-  font-weight: var(--pgi-button-font-weight);
-  line-height: var(--pgi-button-line-height);
+  background-color: var(--p-button-background);
+  border-color: var(--p-button-border-color);
+  border-radius: var(--p-button-border-radius);
+  border-style: var(--p-button-border-style);
+  border-width: var(--p-button-border-width);
+  box-shadow: var(--p-button-shadow);
+  color: var(--p-button-color);
+  font-size: var(--p-button-font-size);
+  font-weight: var(--p-button-font-weight);
+  line-height: var(--p-button-line-height);
   outline: none;
-  padding: var(--pgi-button-padding-top) var(--pgi-button-padding-right)
-    var(--pgi-button-padding-bottom) var(--pgi-button-padding-left);
+  padding: var(--p-button-padding-top) var(--p-button-padding-right)
+    var(--p-button-padding-bottom) var(--p-button-padding-left);
   transition: all 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
   width: 100%;
 
   &:hover {
-    background-color: var(--pgi-button-background--hover);
-    border-color: var(--pgi-button-border-color--hover);
-    box-shadow: var(--pgi-button-shadow--hover);
-    color: var(--pgi-button-color--hover);
+    background-color: var(--p-button-background--hover);
+    border-color: var(--p-button-border-color--hover);
+    box-shadow: var(--p-button-shadow--hover);
+    color: var(--p-button-color--hover);
     cursor: pointer;
   }
 
   &:active,
   &:focus {
-    background-color: var(--pgi-button-background--focus);
-    border-color: var(--pgi-button-border-color--focus);
-    box-shadow: var(--pgi-button-shadow--focus);
-    color: var(--pgi-button-color--focus);
+    background-color: var(--p-button-background--focus);
+    border-color: var(--p-button-border-color--focus);
+    box-shadow: var(--p-button-shadow--focus);
+    color: var(--p-button-color--focus);
   }
 }

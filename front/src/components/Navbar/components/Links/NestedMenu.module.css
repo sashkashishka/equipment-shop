@@ -8,9 +8,9 @@
 
 @mixin media-768 {
   .container {
-    padding: 8px;
+    padding: 16px;
+    background: var(--p-color-basic-1);
     border-radius: 8px;
-    box-shadow: var(--pgi-wd-container-box-shadow);
   }
 
   .block {
@@ -21,7 +21,6 @@
     position: absolute;
     top: 100%;
     left: 0;
-    background: var(--pgi-color-basic-0);
   }
 
   .linksRight {

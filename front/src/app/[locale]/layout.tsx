@@ -30,11 +30,11 @@ export default async function PageLayout({ children, params }: iProps) {
   return (
     <html>
       <body>
-        <div className="content">
+        <div className="body">
           <InitTtag locale={params.locale} />
           <Navbar />
 
-          <div>{children}</div>
+          <div className="content">{children}</div>
 
           <Footer />
         </div>

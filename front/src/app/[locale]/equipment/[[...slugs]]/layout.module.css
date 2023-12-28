@@ -6,17 +6,9 @@
   padding: 24px 16px;
 }
 
-.breadcrumbs {
-  margin-bottom: 16px;
-  background: var(--pgi-color-basic-1);
-  box-shadow: var(--pgi-wd-container-box-shadow);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
 @mixin media-768 {
   .layout {
     grid-template-columns: 300px 1fr;
-    gap: 24px;
+    gap: 48px;
   }
 }

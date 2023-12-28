@@ -32,6 +32,7 @@ function NestedMenu({ equipmentLinksTree }: iNestedMenuProps) {
           <div key={link.url} className={styles.block}>
             <Link
               href={link.url}
+              data-test={active}
               className={cn(styles.link, active && styles.linkActive)}
             >
               {link.label}

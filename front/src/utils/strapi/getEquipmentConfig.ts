@@ -7,13 +7,11 @@ function transform(config: iStrapiResponse<iEquipmentConfig>) {
   const { attributes } = config;
 
   return {
-    serviceTypes: attributes.services.map((content) => {
-      return {
-        icon: transformImages(content?.icon?.data),
-        title: content?.children?.data?.[0]?.attributes?.name,
-        link: `/${content?.children?.data?.[0]?.attributes?.slug}`,
-      };
-    }),
+    serviceTypes: attributes.services.map((content) => ({
+      photo: transformImages([content?.photo?.data]),
+      title: content?.children?.data?.attributes?.name,
+      link: `/${content?.children?.data?.attributes?.slug}`,
+    })),
   };
 }
 

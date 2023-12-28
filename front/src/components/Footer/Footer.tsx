@@ -37,7 +37,10 @@ export async function Footer() {
         </div>
 
         <div className={styles.column}>
-          <Link className={styles.phoneLink} href={`tel:${phone}`}>
+          <Link
+            className={styles.phoneLink}
+            href={`tel:${phone}`}
+          >
             {phone}
           </Link>
 

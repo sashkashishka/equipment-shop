@@ -1,7 +1,14 @@
 .container {
-  padding: 16px;
-}
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 300;
 
-.item {
-  display: inline-flex;
+  .item {
+    display: inline-flex;
+    font-weight: 300;
+  }
+
+  .last {
+    font-weight: 500;
+  }
 }

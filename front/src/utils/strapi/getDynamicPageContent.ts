@@ -3,17 +3,23 @@ import { getStrapi } from '@/utils/strapi/getStrapi';
 import {
   iHtmlContent,
   iPage,
-  iServiceContent,
   iStrapiResponse,
   iContactsContent,
+  iServiceContent,
+  iServicesContent,
 } from '@/types/strapi';
 import { iImage, transformImages } from '@/utils/strapi/transformImages';
 
-export interface iServiceTypeContent
-  extends Pick<iServiceContent, '__component' | 'description'> {
+interface iServiceTypeContent {
   title: iPage['name'];
   link: string;
-  icon: iImage[];
+  photo: iImage[];
+  description: iServiceContent['description'];
+}
+
+export interface iServicesTypeContent
+  extends Pick<iServicesContent, '__component'> {
+  service: Array<iServiceTypeContent>;
 }
 
 export interface iHtmlTypeContent
@@ -28,7 +34,9 @@ export interface iContactsTypeContent
 export interface iDynamicPageContent {
   title: iPage['name'];
   slug: iPage['slug'];
-  content: Array<iServiceTypeContent | iHtmlTypeContent | iContactsTypeContent>;
+  content: Array<
+    iServicesTypeContent | iHtmlTypeContent | iContactsTypeContent
+  >;
 }
 
 function transform(data: iStrapiResponse<iPage>[]): iDynamicPageContent[] {
@@ -38,13 +46,15 @@ function transform(data: iStrapiResponse<iPage>[]): iDynamicPageContent[] {
       slug: attributes.slug,
       content: (attributes.content || []).map((content) => {
         switch (content.__component) {
-          case 'service.service': {
+          case 'services.services': {
             return {
-              title: content?.children?.data?.[0]?.attributes?.name,
-              link: `/${content?.children?.data?.[0]?.attributes?.slug}`,
-              icon: transformImages(content?.icon?.data),
-              description: content.description,
               __component: content.__component,
+              service: content.service.map((service) => ({
+                title: service?.children?.data?.attributes?.name,
+                link: `/${service?.children?.data?.attributes?.slug}`,
+                photo: transformImages([service?.photo?.data]),
+                description: service.description,
+              })),
             };
           }
 

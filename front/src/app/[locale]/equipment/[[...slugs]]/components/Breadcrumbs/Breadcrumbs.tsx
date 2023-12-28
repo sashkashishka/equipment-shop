@@ -13,17 +13,15 @@ import { ROUTES } from '@/constants/routes';
 
 import styles from './Breadcrumbs.module.css';
 
-interface iProps extends Pick<iCommonConfigContent, 'equipmentLinksTree'> {
-  className?: string;
-}
+interface iProps extends Pick<iCommonConfigContent, 'equipmentLinksTree'> {}
 
-export function Breadcrumbs({ className, equipmentLinksTree }: iProps) {
+export function Breadcrumbs({ equipmentLinksTree }: iProps) {
   const { slugs } = useParams();
   const links = searchTree(equipmentLinksTree, includesSlug(slugs as string[]));
 
   return (
-    <div className={cn(styles.container, className)}>
-      <Link href={ROUTES.MAIN}>{t`Main`}</Link>
+    <div className={styles.container}>
+      <Link href={ROUTES.MAIN} className={styles.item}>{t`Main`}</Link>
 
       {links.map((l, i, arr) => {
         const isLast = i === arr.length - 1;
@@ -32,7 +30,10 @@ export function Breadcrumbs({ className, equipmentLinksTree }: iProps) {
         return (
           <React.Fragment key={l.slug}>
             {' / '}
-            <Component href={l.url} className={styles.item}>
+            <Component
+              href={l.url}
+              className={cn(styles.item, isLast && styles.last)}
+            >
               {l.label}
             </Component>
           </React.Fragment>

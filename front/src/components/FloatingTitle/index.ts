@@ -1,0 +1,1 @@
+export { FloatingTitle } from './FloatingTitle';

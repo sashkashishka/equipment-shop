@@ -40,8 +40,19 @@ export function ProductCarousel({ products }: iProductCarouselProps) {
       mousewheel={true}
       keyboard={true}
       modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-      slidesPerView={3}
+      breakpoints={{
+        320: {
+          slidesPerView: 1,
+        },
+        425: {
+          slidesPerView: 2,
+        },
+        700: {
+          slidesPerView: 3,
+        },
+      }}
       spaceBetween={16}
+      className={styles.container}
     >
       {products.map((product) => (
         <SwiperSlide key={product.id}>

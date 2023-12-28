@@ -14,45 +14,47 @@ export async function Navbar() {
     await getCommonConfig();
 
   return (
-    <header className={styles.container}>
-      <div className={styles.mobile}>
-        <div className={styles.topSection}>
-          <Logo />
+    <header className={styles.header}>
+      <div className={styles.container}>
+        <div className={styles.mobile}>
+          <div className={styles.topSection}>
+            <Logo />
 
-          <Link className={styles.phoneLink} href={`tel:${phone}`}>
-            {phone}
-          </Link>
+            <Link className={styles.phoneLink} href={`tel:${phone}`}>
+              {phone}
+            </Link>
 
-          <Sidebar>
+            <Sidebar>
+              <LanguageSwitcher languages={languages} />
+
+              <Links links={links} equipmentLinksTree={equipmentLinksTree} />
+            </Sidebar>
+          </div>
+
+          <div className={styles.bottomSection}>
+            <SiteSearch />
+            <OrderCallback />
+          </div>
+        </div>
+
+        <div className={styles.desktop}>
+          <div className={styles.topSection}>
+            <Logo />
+
+            <Link className={styles.phoneLink} href={`tel:${phone}`}>
+              {phone}
+            </Link>
+
+            <SiteSearch />
+
+            <OrderCallback />
+
             <LanguageSwitcher languages={languages} />
+          </div>
 
+          <div className={styles.bottomSection}>
             <Links links={links} equipmentLinksTree={equipmentLinksTree} />
-          </Sidebar>
-        </div>
-
-        <div className={styles.bottomSection}>
-          <SiteSearch />
-          <OrderCallback />
-        </div>
-      </div>
-
-      <div className={styles.desktop}>
-        <div className={styles.topSection}>
-          <Logo />
-
-          <Link className={styles.phoneLink} href={`tel:${phone}`}>
-            {phone}
-          </Link>
-
-          <SiteSearch />
-
-          <OrderCallback />
-
-          <LanguageSwitcher languages={languages} />
-        </div>
-
-        <div className={styles.bottomSection}>
-          <Links links={links} equipmentLinksTree={equipmentLinksTree} />
+          </div>
         </div>
       </div>
     </header>

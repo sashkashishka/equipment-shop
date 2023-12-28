@@ -1,10 +1,9 @@
 .card {
   width: 100%;
   height: 100%;
-  padding: 8px;
-  border-radius: 4px;
-  background: var(--pgi-color-basic-0);
-  box-shadow: var(--pgi-box-shadow-sm);
+  padding: 8px 8px 16px;
+  border-radius: 10px;
+  background: var(--p-color-basic-1);
 
   .cardContent {
     display: grid;
@@ -17,21 +16,21 @@
   height: 250px;
   object-fit: contain;
   margin-bottom: 8px;
-  background: var(--pgi-color-basic-1);
-  border-radius: 4px;
+  background: var(--p-color-basic-0);
+  border-radius: 10px;
 }
 
 .title,
 .subtitle {
-  margin: 0 8px 4px;
+  margin: 0 8px 0;
 }
 
 .title {
   font-size: 18px;
-  color: var(--pgi-color-basic-5);
+  font-weight: 500;
 }
 
 .subtitle {
   font-size: 14px;
-  color: var(--pgi-color-basic-4);
+  font-weight: 300;
 }

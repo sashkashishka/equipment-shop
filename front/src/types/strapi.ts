@@ -43,14 +43,18 @@ export interface iHtmlContent {
 }
 
 export interface iServiceContent {
-  icon: {
-    data: iStrapiResponse<iMediaImage>[];
+  photo: {
+    data: iStrapiResponse<iMediaImage>;
   };
   description: string;
   children: {
-    data: iStrapiResponse<iPage>[];
+    data: iStrapiResponse<iPage>;
   };
-  __component: 'service.service';
+}
+
+export interface iServicesContent {
+  service: iServiceContent[];
+  __component: 'services.services';
 }
 
 export interface iContactsContent {
@@ -63,7 +67,7 @@ export interface iContactsContent {
 export interface iPage {
   name: string;
   slug: string;
-  content: Array<iHtmlContent | iServiceContent | iContactsContent>;
+  content: Array<iHtmlContent | iServicesContent | iContactsContent>;
 }
 
 export interface iEquipmentConfig {

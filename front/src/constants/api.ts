@@ -32,7 +32,7 @@ export const QUERIES = {
       locale: getCurrentLocale(),
       populate: {
         services: {
-          populate: ['title', 'description', 'icon', 'children'],
+          populate: ['title', 'description', 'photo', 'children'],
         },
       },
     });
@@ -82,7 +82,21 @@ export const QUERIES = {
       filters,
       populate: {
         content: {
-          populate: ['title', 'description', 'icon', 'children'],
+          on: {
+            'content.html': {
+              fields: ['html'],
+            },
+            'contacts.contacts': {
+              fields: ['address', 'phone', 'email'],
+            },
+            'services.services': {
+              populate: {
+                service: {
+                  populate: ['description', 'photo', 'children'],
+                },
+              },
+            },
+          },
         },
       },
     });

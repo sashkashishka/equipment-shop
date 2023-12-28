@@ -1,24 +1,24 @@
-.title {
-  text-align: center;
-  font-size: 32px;
-  font-weight: bold;
-  margin: 0 0 16px;
-  color: var(--pgi-color-basic-5);
-}
-
-.cardList {
+.container {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
   gap: 16px;
 }
 
 .card {
   display: grid;
-  grid-template-columns: 72px 1fr;
-  gap: 16px;
-  border-radius: 8px;
-  padding: 12px;
-  transition: box-shadow 0.3 ease-in-out;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  border-radius: 10px;
+  background: var(--p-color-basic-1);
+  padding: 8px;
+
+  .cardIcon {
+    width: 100%;
+    height: 100%;
+    background: var(--p-color-basic-0);
+    border-radius: 10px;
+    object-fit: contain;
+  }
 
   .cardTitle,
   .cardDescription {
@@ -30,10 +30,5 @@
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 8px;
-  }
-
-  &:hover {
-    background: var(--pgi-color-basic-0);
-    box-shadow: var(--pgi-wd-container-box-shadow);
   }
 }

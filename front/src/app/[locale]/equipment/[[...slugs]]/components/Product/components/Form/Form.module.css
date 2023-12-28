@@ -1,6 +1,12 @@
-.form label {
-  display: inline-block;
-  margin-bottom: 4px;
+.form {
+  background: var(--p-color-basic-1);
+  padding: 16px;
+  border-radius: 10px;
+
+  label {
+    display: inline-block;
+    margin-bottom: 4px;
+  }
 }
 
 .title {

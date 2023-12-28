@@ -10,7 +10,7 @@
   max-width: 320px;
   padding: 16px;
   z-index: 101;
-  background: var(--pgi-color-basic-0);
+  background: var(--p-color-basic-0);
   overflow-y: auto;
 }
 

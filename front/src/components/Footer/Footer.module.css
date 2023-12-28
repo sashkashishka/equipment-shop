@@ -1,5 +1,5 @@
 .container {
-  background: var(--pgi-color-secondary-1);
+  border-top: 1px solid var(--p-color-basic-1);
 
   .section {
     display: grid;
@@ -9,7 +9,7 @@
     max-width: 1640px;
     width: 100%;
     margin: 0 auto;
-    padding: 16px;
+    padding: 32px 16px;
   }
 
   .column {
@@ -21,7 +21,6 @@
 
   .copyright {
     margin: 0;
-    color: var(--pgi-color-basic-3);
   }
 
   @mixin media-768 {

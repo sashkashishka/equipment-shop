@@ -20,7 +20,7 @@ export default async function DynamicPage({ params }: iProps) {
   }
 
   return (
-    <div className="pageContent">
+    <div>
       <h2 className="h2Title">{data.title}</h2>
 
       <div className={styles.content}>
@@ -34,7 +34,7 @@ export default async function DynamicPage({ params }: iProps) {
               return <ContactsContent content={item} />;
             }
 
-            case 'service.service': {
+            case 'services.services': {
               return <ServicesContent content={item} />;
             }
           }

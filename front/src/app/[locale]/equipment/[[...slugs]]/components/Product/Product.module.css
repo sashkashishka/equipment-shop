@@ -13,9 +13,19 @@
   width: 100%;
 }
 
+.blocks {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+}
+
 @mixin media-1024 {
   .topBlock {
     grid-template-columns: 1fr minmax(auto, 288px);
+    gap: 24px;
+  }
+
+  .blocks {
     gap: 24px;
   }
 }

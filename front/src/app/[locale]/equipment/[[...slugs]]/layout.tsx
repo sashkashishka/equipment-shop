@@ -18,10 +18,7 @@ export default async function EquipmentLayout({ children }: iProps) {
       <Sidebar equipmentLinksTree={equipmentLinksTree[0].children!} />
 
       <div>
-        <Breadcrumbs
-          className={styles.breadcrumbs}
-          equipmentLinksTree={equipmentLinksTree}
-        />
+        <Breadcrumbs equipmentLinksTree={equipmentLinksTree} />
         {children}
       </div>
     </div>

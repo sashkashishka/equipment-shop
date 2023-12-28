@@ -1,0 +1,7 @@
+.container {
+  padding: 16px 20px;
+  border-radius: 10px;
+  background: var(--p-color-basic-1);
+  font-weight: 700;
+  font-size: 20px;
+}

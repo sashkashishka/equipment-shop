@@ -15,7 +15,7 @@ export async function Category({ id }: iProps) {
     await getEquipmentContent(id);
 
   return (
-    <div className="pageContent">
+    <>
       <h2 className={cn('h2Title', styles.title)}>{title}</h2>
       {topText && <HTMLParser>{topText}</HTMLParser>}
 
@@ -25,6 +25,6 @@ export async function Category({ id }: iProps) {
         ))}
       </div>
       {bottomText && <HTMLParser>{bottomText}</HTMLParser>}
-    </div>
+    </>
   );
 }

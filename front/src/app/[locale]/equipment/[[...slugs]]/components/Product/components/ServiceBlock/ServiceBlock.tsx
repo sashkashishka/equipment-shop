@@ -1,6 +1,6 @@
-import cn from 'classnames';
-
+import { t } from 'ttag';
 import { Link } from '@/components/Link';
+import { FloatingTitle } from '@/components/FloatingTitle';
 import { getEquipmentConfig } from '@/utils/strapi/getEquipmentConfig';
 
 import styles from './ServiceBlock.module.css';
@@ -9,22 +9,20 @@ export async function ServiceBlock() {
   const { serviceTypes } = await getEquipmentConfig();
 
   return (
-    <div className={cn('pageContent', styles.container)}>
-      {serviceTypes.map(({ icon, link, title }) => (
-        <div key={link} className={styles.card}>
-          <Link href={link} className={styles.link}>
-            <img
-              src={icon[0].url}
-              alt={title}
-              width={75}
-              height={75}
-              className={styles.cardIcon}
-            />
+    <div className={styles.wrapper}>
+      <FloatingTitle>{t`Services`}</FloatingTitle>
 
-            <p className={styles.cardTitle}>{title}</p>
-          </Link>
-        </div>
-      ))}
+      <div className={styles.container}>
+        {serviceTypes.map(({ photo, link, title }) => (
+          <div key={link} className={styles.card}>
+            <Link href={link} className={styles.link}>
+              <img src={photo[0].url} alt={title} className={styles.cardIcon} />
+
+              <p className={styles.cardTitle}>{title}</p>
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

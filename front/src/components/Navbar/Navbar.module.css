@@ -1,11 +1,15 @@
-.container {
+.header {
   position: sticky;
   top: 0;
-  background: var(--pgi-color-basic-0);
+  background: var(--p-color-basic-0);
+  border-bottom: 1px solid var(--p-color-basic-1);
+  z-index: 2;
+}
+
+.container {
   max-width: 1640px;
   width: 100%;
   margin: auto;
-  z-index: 2;
 }
 
 .mobile {

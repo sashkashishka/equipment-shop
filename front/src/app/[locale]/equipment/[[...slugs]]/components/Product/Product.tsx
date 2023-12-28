@@ -18,20 +18,21 @@ export async function Product({ id }: iProps) {
 
   return (
     <div className={styles.container}>
-      <div className="pageContent">
-        <h2 className={cn('h2Title', styles.title)}>{title}</h2>
+      <h2 className={cn('h2Title', styles.title)}>{title}</h2>
 
-        <div className={styles.topBlock}>
-          <PhotoCarousel photos={photos} title={title} />
-          <Form productName={title} />
-        </div>
-
-        {bottomText && <HTMLParser>{bottomText}</HTMLParser>}
+      <div className={styles.topBlock}>
+        <PhotoCarousel photos={photos} title={title} />
+        <Form productName={title} />
       </div>
 
+      {bottomText && <HTMLParser>{bottomText}</HTMLParser>}
+
+      <div className={styles.blocks}>
       <ServiceBlock />
 
       <SimilarProducts id={id} />
+
+      </div>
     </div>
   );
 }
