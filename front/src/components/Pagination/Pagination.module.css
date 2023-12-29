@@ -1,0 +1,24 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(var(--pagination-qty), auto);
+  gap: 8px;
+  justify-content: center;
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 8px;
+  }
+
+  .btnLeft svg {
+    transform: rotate(90deg);
+  }
+
+  .btnRight svg {
+    transform: rotate(-90deg);
+  }
+}
+

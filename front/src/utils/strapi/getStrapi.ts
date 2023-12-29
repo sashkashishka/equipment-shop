@@ -11,6 +11,7 @@ import type {
   iPage,
   iEquipmentConfig,
   iBlogPost,
+  iStrapiMeta,
 } from '@/types/strapi';
 import { generatePath, PathParam } from '@/utils/generatePath';
 
@@ -44,13 +45,13 @@ function getTagCache(tag: string, enabled: boolean) {
 
 export async function getStrapi<T extends API>(
   endpoint: T,
-  { enableTagCache = true, params, filters, pagination }: iOptions<T> = {},
+  { enableTagCache = true, params, filters, pagination, sort }: iOptions<T> = {},
 ) {
   let url: string = generatePath(endpoint, params);
 
   if (QUERIES[endpoint]) {
     url = `${url}?${new URLSearchParams(
-      QUERIES[endpoint]({ filters, pagination }),
+      QUERIES[endpoint]({ filters, pagination, sort }),
     )}`;
   }
 
@@ -63,7 +64,10 @@ export async function getStrapi<T extends API>(
     throw new Error(`Failed to fetch ${API.COMMON_CONFIG}`);
   }
 
-  const { data } = await response.json();
+  const { data, meta } = await response.json();
 
-  return data as iResponses[T];
+  return {
+    data: data as iResponses[T],
+    meta: meta as iStrapiMeta,
+  };
 }

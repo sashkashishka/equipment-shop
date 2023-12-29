@@ -48,7 +48,7 @@ function transform(
 
 export async function getEquipmentContent(id: number) {
   const { equipmentLinksTree } = await getCommonConfig();
-  const data = await getStrapi(API.EQUIPMENT_CATEGORY, {
+  const { data } = await getStrapi(API.EQUIPMENT_CATEGORY, {
     params: { id: String(id) },
   });
 

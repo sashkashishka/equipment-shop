@@ -1,5 +1,7 @@
 import { t } from 'ttag';
+import { ROUTES } from '@/constants/routes';
 import { getBlogPosts } from '@/utils/strapi/getBlogPosts';
+import { Pagination } from '@/components/Pagination';
 
 import { BlogPostCard } from './components/BlogPostCard';
 
@@ -10,19 +12,24 @@ interface iProps {
 }
 
 export default async function NewsPage({ searchParams }: iProps) {
-  const data = await getBlogPosts(searchParams.page);
+  const { posts, pagination } = await getBlogPosts(searchParams.page);
 
   return (
     <div>
       <h2 className="h2Title">{t`News`}</h2>
 
       <div className={styles.postGrid}>
-        {data.map((post) => (
+        {posts.map((post) => (
           <BlogPostCard key={post.id} post={post} />
         ))}
       </div>
 
-      pagination
+      <Pagination
+        current={searchParams.page}
+        total={pagination.total}
+        limit={pagination.limit}
+        url={ROUTES.NEWS}
+      />
     </div>
   );
 }

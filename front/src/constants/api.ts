@@ -24,6 +24,7 @@ export interface iQueryBuilderOptions {
     limit: number;
     withCount: boolean;
   };
+  sort?: string[];
 }
 
 export const QUERIES = {
@@ -112,9 +113,10 @@ export const QUERIES = {
     });
   },
 
-  [API.BLOG]({ filters, pagination }: iQueryBuilderOptions = {}) {
+  [API.BLOG]({ filters, pagination, sort }: iQueryBuilderOptions = {}) {
     return qs.stringify({
       locale: getCurrentLocale(),
+      sort,
       filters,
       pagination,
       populate: ['photos'],

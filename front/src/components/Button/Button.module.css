@@ -31,3 +31,28 @@
     color: var(--p-button-color--focus);
   }
 }
+
+.button.buttonTertiary {
+  --p-button-background: #fff;
+  --p-button-border-color: #1d1d1f;
+  --p-button-border-radius: 10px;
+  --p-button-border-style: solid;
+  --p-button-border-width: 1px;
+  --p-button-shadow: none;
+  --p-button-color: #1d1d1f;
+  --p-button-font-size: 16px;
+  --p-button-font-weight: 500;
+  --p-button-line-height: 20px;
+  --p-button-padding-top: 8px;
+  --p-button-padding-right: 8px;
+  --p-button-padding-left: 8px;
+  --p-button-padding-bottom: 8px;
+  --p-button-background--hover: #f0f0f0;
+  --p-button-border-color--hover: #1d1d1f;
+  --p-button-shadow--hover: none;
+  --p-button-color--hover: #1d1d1f;
+  --p-button-background--focus: #f0f0f0;
+  --p-button-border-color--focus: #1d1d1f;
+  --p-button-shadow--focus: none;
+  --p-button-color--focus: #1d1d1f;
+}

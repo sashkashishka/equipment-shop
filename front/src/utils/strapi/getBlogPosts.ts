@@ -26,10 +26,15 @@ function transform(posts: iStrapiResponse<iBlogPost>[]): iBlogPostContent[] {
 }
 
 export async function getBlogPosts(page: string = '1') {
-  const data = await getStrapi(API.BLOG, {
+  const { data, meta } = await getStrapi(API.BLOG, {
     enableTagCache: false,
-    pagination: getPaginationParams(Number(page)),
+    sort: ['publishedAt:desc'],
+
+    pagination: getPaginationParams(Number(page), 10),
   });
 
-  return transform(data);
+  return {
+    posts: transform(data),
+    pagination: meta.pagination,
+  };
 }

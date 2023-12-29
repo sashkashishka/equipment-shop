@@ -16,7 +16,7 @@ function transform(config: iStrapiResponse<iEquipmentConfig>) {
 }
 
 export async function getEquipmentConfig() {
-  const config = await getStrapi(API.EQUIPMENT_CONFIG);
+  const { data: config } = await getStrapi(API.EQUIPMENT_CONFIG);
 
   return transform(config);
 }

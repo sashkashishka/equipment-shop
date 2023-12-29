@@ -17,14 +17,16 @@ export async function Category({ id }: iProps) {
   return (
     <>
       <h2 className={cn('h2Title', styles.title)}>{title}</h2>
-      {topText && <HTMLParser>{topText}</HTMLParser>}
+      {topText && <HTMLParser className={styles.section}>{topText}</HTMLParser>}
 
-      <div className={styles.cardGrid}>
+      <div className={cn(styles.cardGrid, styles.section)}>
         {children?.map((category) => (
           <CategoryCard key={category.slug} category={category} />
         ))}
       </div>
-      {bottomText && <HTMLParser>{bottomText}</HTMLParser>}
+      {bottomText && (
+        <HTMLParser className={styles.section}>{bottomText}</HTMLParser>
+      )}
     </>
   );
 }

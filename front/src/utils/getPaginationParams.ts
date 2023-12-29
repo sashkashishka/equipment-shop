@@ -2,11 +2,11 @@ import type { iQueryBuilderOptions } from '@/constants/api';
 
 export function getPaginationParams(
   page: number,
-  qty = 10,
+  limit = 10,
 ): iQueryBuilderOptions['pagination'] {
   return {
-    start: Math.max(page - 1, 0) * qty,
-    limit: qty,
+    start: Math.max(page - 1, 0) * limit,
+    limit,
     withCount: true,
   };
 }

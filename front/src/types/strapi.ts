@@ -3,6 +3,14 @@ export interface iStrapiResponse<T> {
   attributes: T;
 }
 
+export interface iStrapiMeta {
+  pagination: {
+    start: number;
+    limit: number;
+    total: number;
+  };
+}
+
 export interface iLinks {
   slug: string;
   name: string;

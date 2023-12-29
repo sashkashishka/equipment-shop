@@ -51,7 +51,7 @@ function transform(
 }
 
 export async function getCommonConfig() {
-  const [commonConfig, equipmentLinks] = await Promise.all([
+  const [{ data: commonConfig }, { data: equipmentLinks }] = await Promise.all([
     getStrapi(API.COMMON_CONFIG),
     getStrapi(API.EQUIPMENT_CATEGORIES),
   ]);
