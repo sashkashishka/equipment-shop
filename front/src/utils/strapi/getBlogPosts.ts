@@ -27,9 +27,7 @@ function transform(posts: iStrapiResponse<iBlogPost>[]): iBlogPostContent[] {
 
 export async function getBlogPosts(page: string = '1') {
   const { data, meta } = await getStrapi(API.BLOG, {
-    enableTagCache: false,
     sort: ['publishedAt:desc'],
-
     pagination: getPaginationParams(Number(page), 10),
   });
 
@@ -37,4 +35,18 @@ export async function getBlogPosts(page: string = '1') {
     posts: transform(data),
     pagination: meta.pagination,
   };
+}
+
+export async function getBlogPostBySlug(slug: string) {
+  try {
+    const { data } = await getStrapi(API.BLOG, {
+      filters: { slug },
+    });
+
+    const [post] = transform(data);
+
+    return post;
+  } catch (e) {
+    console.error(e);
+  }
 }

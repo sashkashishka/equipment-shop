@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/thumbs';
 import './globals.css';
 
 import { Navbar } from '@/components/Navbar';

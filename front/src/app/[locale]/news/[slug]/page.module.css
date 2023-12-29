@@ -1,0 +1,20 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .title {
+    text-align: start;
+  }
+
+  .title, .time {
+    margin-bottom: 8px;
+  }
+}
