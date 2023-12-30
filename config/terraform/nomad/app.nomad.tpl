@@ -151,12 +151,6 @@ job "application" {
     task "nextjs" {
       driver = "docker"
 
-      volume_mount {
-        volume      = "nextjs_data"
-        destination = "/usr/app/host-content"
-        propagation_mode = "private"
-      }
-
       config {
         image = "${docker_username}/pgi-front:${front_version}"
         ports =  ["nextjs"]
