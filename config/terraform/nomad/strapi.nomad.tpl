@@ -52,8 +52,6 @@ job "strapi" {
         ADMIN_JWT_SECRET= "${strapi_admin_jwt_secret}"
         TRANSFER_TOKEN_SALT= "${strapi_transfer_token_salt}"
 
-        DATABASE_HOST="localhost"
-        DATABASE_PORT="3306"
         DATABASE_NAME="${db_name}"
         DATABASE_USERNAME="${db_user}"
         DATABASE_PASSWORD="${db_password}"
