@@ -42,6 +42,7 @@ job "database" {
       }
 
       env {
+        MYSQL_ROOT_HOST="0.0.0.0"
         MYSQL_ROOT_PASSWORD = "${mysql_root_password}"
         MYSQL_DATABASE="${db_name}"
         MYSQL_USER="${db_user}"
