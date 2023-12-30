@@ -28,6 +28,7 @@ resource "nomad_job" "strapi" {
   jobspec = templatefile(
     "${path.module}/nomad/strapi.nomad.tpl",
     {
+       docker_username = var.docker_username,
        strapi_app_keys            = var.strapi_app_keys,
        strapi_api_token_salt      = var.strapi_api_token_salt,
        strapi_admin_jwt_secret    = var.strapi_admin_jwt_secret,
