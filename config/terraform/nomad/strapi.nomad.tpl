@@ -10,7 +10,7 @@ job "strapi" {
     }
 
     network {
-      mode = "host"
+      mode = "bridge"
       port "strapi" {
         to = 1337
       }
