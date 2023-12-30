@@ -2,6 +2,8 @@ import {
   API,
   AUTH_HEADER,
   QUERIES,
+  STRAPI_PREFIX,
+  STRAPI_HOST,
   iQueryBuilderOptions,
 } from '@/constants/api';
 import type {
@@ -33,6 +35,7 @@ interface iOptions<T extends API> extends iQueryBuilderOptions {
   };
 }
 
+// TODO adapt cache policy
 function getTagCache(tag: string, enabled: boolean) {
   if (process.env.NODE_ENV === 'development' || !enabled) {
     return {
@@ -58,7 +61,7 @@ export async function getStrapi<T extends API>(
   let url: string = generatePath(endpoint, params);
 
   if (QUERIES[endpoint]) {
-    url = `${url}?${new URLSearchParams(
+    url = `${STRAPI_HOST}${url}?${new URLSearchParams(
       QUERIES[endpoint]({ filters, pagination, sort }),
     )}`;
   }

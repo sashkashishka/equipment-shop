@@ -1,11 +1,8 @@
 import type { iMediaImage, iStrapiResponse } from '@/types/strapi';
+import { STRAPI_PREFIX } from '@/constants/api';
 
-// TODO move default values to env file
-const STRAPI_HOST = process.env.STRAPI_HOST || 'http://localhost:1337';
-
-// TODO make photo transform utility
 function getImageUrl(url: string) {
-  return `${STRAPI_HOST}${url}`;
+  return `${STRAPI_PREFIX}${url}`;
 }
 
 export interface iImage {

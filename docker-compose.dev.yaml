@@ -15,7 +15,7 @@ services:
       - ./front:/usr/app
       - /usr/app/node_modules
     env_file:
-      - "./front/.env.local"
+      - ".env"
     networks:
       - packing_group_bridge
     depends_on:
@@ -36,7 +36,7 @@ services:
       - ./strapi:/usr/app
       - /usr/app/node_modules
     env_file:
-      - "./strapi/.env"
+      - ".env"
     networks:
       - packing_group_bridge
     depends_on:
@@ -63,7 +63,7 @@ services:
       - "./strapi/database/tmp/data:/var/lib/mysql"
       - "./strapi/database/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
     env_file:
-      - "./strapi/.env"
+      - ".env"
     networks:
       - packing_group_bridge
 

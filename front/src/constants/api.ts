@@ -1,21 +1,21 @@
 import qs from 'qs';
 import { getCurrentLocale } from '@/i18n/common';
 
-// TODO use env variable
-const PREFIX = 'http://strapi:1337';
+export const STRAPI_HOST = process.env.STRAPI_HOST;
+export const STRAPI_PREFIX = process.env.STRAPI_PREFIX;
 
 export const AUTH_HEADER = {
-  authorization: `bearer ${process.env.API_TOKEN}`,
+  authorization: `bearer ${process.env.STRAPI_API_TOKEN}`,
 };
 
 export enum API {
-  COMMON_CONFIG = `${PREFIX}/api/common-config`,
-  EQUIPMENT_CONFIG = `${PREFIX}/api/equipment-config`,
-  EQUIPMENT_CATEGORIES = `${PREFIX}/api/equipment-categories`,
-  EQUIPMENT_CATEGORY = `${PREFIX}/api/equipment-categories/:id`,
-  PAGE = `${PREFIX}/api/pages`,
-  BLOG = `${PREFIX}/api/blogs`,
-  MAIN_PAGE = `${PREFIX}/api/main-page`,
+  COMMON_CONFIG = `/api/common-config`,
+  EQUIPMENT_CONFIG = `/api/equipment-config`,
+  EQUIPMENT_CATEGORIES = `/api/equipment-categories`,
+  EQUIPMENT_CATEGORY = `/api/equipment-categories/:id`,
+  PAGE = `/api/pages`,
+  BLOG = `/api/blogs`,
+  MAIN_PAGE = `/api/main-page`,
 }
 
 export interface iQueryBuilderOptions {
