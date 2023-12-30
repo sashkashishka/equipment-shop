@@ -13,7 +13,6 @@ job "strapi" {
       mode = "host"
       port "strapi" {
         to = 1337
-        static = 1337
       }
     }
 
@@ -34,6 +33,18 @@ job "strapi" {
        restart {
          attempts = 2
        }
+
+      template {
+        data = <<EOH
+          {{ range nomadService "db" }}
+            DATABASE_HOST={{ .Address }}
+            DATABASE_PORT={{ .Port }}
+          {{ end }}
+        EOH
+
+        destination = "secrets/config.env"
+        env         = true
+      }
 
       env {
         APP_KEYS = "${strapi_app_keys}"
