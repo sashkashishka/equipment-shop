@@ -75,7 +75,9 @@ jobs:
         -var jwt_secret=${{ secrets.JWT_SECRET }} \
         -var node_env=production \
         -var docker_username=${{ secrets.DOCKER_USERNAME }} \
-        -var version=${{ steps.short-sha.outputs.sha }} \
+        -var strapi_version=5636de \
+        -var front_version=5636de \
+        # -var img_version=${{ steps.short-sha.outputs.sha }} \
         -var strapi_app_keys=${{ secrets.STRAPI_APP_KEYS }} \
         -var strapi_api_token_salt=${{ secrets.STRAPI_API_TOKEN_SALT }} \
         -var strapi_admin_jwt_secret=${{ secrets.STRAPI_ADMIN_JWT_SECRET }} \

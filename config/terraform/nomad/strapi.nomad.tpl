@@ -33,7 +33,7 @@ job "strapi" {
       }
 
       config {
-        image = "${docker_username}/pgi-strapi:${version}"
+        image = "${docker_username}/pgi-strapi:${strapi_version}"
         ports =  ["strapi"]
       }
 

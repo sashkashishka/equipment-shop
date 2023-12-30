@@ -16,7 +16,6 @@ resource "nomad_job" "db" {
   jobspec = templatefile(
     "${path.module}/nomad/db.nomad.tpl",
     {
-      version = var.version,
       mysql_root_password = var.mysql_root_password,
       db_name     = var.db_name,
       db_user         = var.db_user,
@@ -39,6 +38,7 @@ resource "nomad_job" "strapi" {
        db_user                    = var.db_user,
        db_password                = var.db_password,
        jwt_secret                 = var.jwt_secret,
+       strapi_version = var.strapi_version,
     }
   )
   depends_on = [
@@ -55,6 +55,7 @@ resource "nomad_job" "strapi" {
 #       strapi_prefix    = var.strapi_prefix,
 #       strapi_host      = var.strapi_host,
 #       strapi_api_token = var.strapi_api_token,
+#       front_version = var.front_version
 #     }
 #   )
 #   depends_on = [
@@ -116,8 +117,13 @@ variable "docker_username" {
   type        = string
 }
 
-variable "version" {
-  description = "git commit hash"
+variable "strapi_version" {
+  description = "strapi docker image version"
+  type        = string
+}
+
+variable "front_version" {
+  description = "front docker image version"
   type        = string
 }
 
