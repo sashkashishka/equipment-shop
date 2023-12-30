@@ -20,71 +20,62 @@ jobs:
       with:
         length: 6
 
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_TOKEN }}
-
-    - name: Extract metadata (tags, labels) for Docker
-      id: meta
-      uses: docker/metadata-action@v4
-      with:
-        images: |
-          sashkashishka/pgi-front
-          sashkashishka/pgi-strapi
-
-    - name: Build and push front image
-      uses: docker/build-push-action@v4
-      with:
-        context: ./front
-        file: ./front/Dockerfile
-        push: true
-        tags: sashkashishka/pgi-front:${{ steps.short-sha.outputs.sha }}
-
-    - name: Build and push strapi image
-      uses: docker/build-push-action@v4
-      with:
-        context: ./strapi
-        file: ./strapi/Dockerfile
-        push: true
-        tags: sashkashishka/pgi-strapi:${{ steps.short-sha.outputs.sha }}
-
+    # - name: Log in to Docker Hub
+    #   uses: docker/login-action@v2
+    #   with:
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_TOKEN }}
 
     # - name: Extract metadata (tags, labels) for Docker
     #   id: meta
     #   uses: docker/metadata-action@v4
     #   with:
-    #     images: sashkashishka/parser
+    #     images: |
+    #       sashkashishka/pgi-front
+    #       sashkashishka/pgi-strapi
 
-    # - name: Build and push Docker image
+    # - name: Build and push front image
     #   uses: docker/build-push-action@v4
     #   with:
-    #     context: .
-    #     file: ./Dockerfile
+    #     context: ./front
+    #     file: ./front/Dockerfile
     #     push: true
-    #     tags: sashkashishka/parser:latest
+    #     tags: sashkashishka/pgi-front:${{ steps.short-sha.outputs.sha }}
 
-    # - name: Setup Terraform
-    #   uses: hashicorp/setup-terraform@v1
+    # - name: Build and push strapi image
+    #   uses: docker/build-push-action@v4
+    #   with:
+    #     context: ./strapi
+    #     file: ./strapi/Dockerfile
+    #     push: true
+    #     tags: sashkashishka/pgi-strapi:${{ steps.short-sha.outputs.sha }}
 
-    # - name: Terraform Init
-    #   run: terraform init
 
-    # - name: Terraform Format
-    #   run: terraform fmt -check
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
 
-    # - name: Terraform Apply
-    #   run: |
-    #     terraform apply -auto-approve -input=false \
-    #     -var prisma_database=${{ secrets.PRISMA_DATABASE}} \
-    #     -var prisma_user=${{ secrets.PRISMA_USER }} \
-    #     -var prisma_password=${{ secrets.PRISMA_PASSWORD}} \
-    #     -var mysql_root_password=${{ secrets.MYSQL_ROOT_PASSWORD }} \
-    #     -var docker_username=${{ secrets.DOCKER_USERNAME }} \
-    #     -var jwt_secret=${{ secrets.JWT_SECRET }} \
-    #     -var hash_salt=${{ secrets.HASH_SALT }} \
-    #     -var nomad_token=${{ secrets.NOMAD_TOKEN }} \
-    #     -var commit_hash=${{ github.sha }} \
-    #     -var nomad_addr=${{ secrets.NOMAD_ADDR }} \
-    #     -var node_env=production
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Format
+      run: terraform fmt -check
+
+    - name: Terraform Apply
+      run: |
+        terraform apply -auto-approve -input=false \
+        -var mysql_root_password=${{ secrets.MYSQL_ROOT_PASSWORD }} \
+        -var db_name=${{ secrets.DB_NAME }} \
+        -var db_user=${{ secrets.DB_USER }} \
+        -var db_password=${{ secrets.DB_PASSWORD}} \
+        -var nomad_token=${{ secrets.NOMAD_TOKEN }} \
+        -var nomad_addr=${{ secrets.NOMAD_ADDR }} \
+        -var jwt_secret=${{ secrets.JWT_SECRET }} \
+        -var node_env=production \
+        -var docker_username=${{ secrets.DOCKER_USERNAME }} \
+        -var version=${{ steps.short-sha.outputs.sha }} \
+        -var strapi_app_keys=${{ secrets.STRAPI_APP_KEYS }} \
+        -var strapi_api_token_salt=${{ secrets.STRAPI_API_TOKEN_SALT }} \
+        -var strapi_admin_jwt_secret=${{ secrets.STRAPI_ADMIN_JWT_SECRET }} \
+        -var strapi_transfer_token_salt=${{ secrets.STRAPI_TRANSFER_TOKEN_SALT }} \
+        -var jwt_secret=${{ secrets.JWT_SECRET }} \
+        -var hostname=${{ secrets.HOSTNAME }}
