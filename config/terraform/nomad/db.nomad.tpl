@@ -34,29 +34,17 @@ job "database" {
       config {
         image = "mysql:8.2.0"
         ports =  ["db"]
-        mount {
-          type = "bind"
-          source = "local"
-          target = "/docker-entrypoint-initdb.d"
-       }
       }
 
       restart {
         attempts = 1
       }
 
-       template {
-        data = <<EOH
-          CREATE DATABASE IF NOT EXISTS ${db_name};
-          CREATE USER IF NOT EXISTS '${db_user}'@'%' IDENTIFIED BY '${db_password}';
-          GRANT ALTER,CREATE,DELETE,DROP,INDEX,INSERT, REFERENCES, SELECT,UPDATE,TRIGGER,ALTER ROUTINE, CREATE ROUTINE, EXECUTE, CREATE TEMPORARY TABLES ON ${db_name}.* TO '${db_user}'@'%';
-        EOH
-
-        destination = "$${NOMAD_TASK_DIR}/init.sql"
-      }
-
       env {
         MYSQL_ROOT_PASSWORD = "${mysql_root_password}"
+        MYSQL_DATABASE="${db_name}"
+        MYSQL_USER="${db_user}"
+        MYSQL_PASSWORD="${db_password}"
       }
     }
   }
