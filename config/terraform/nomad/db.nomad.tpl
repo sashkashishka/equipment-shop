@@ -46,6 +46,11 @@ job "database" {
         MYSQL_USER="${db_user}"
         MYSQL_PASSWORD="${db_password}"
       }
+
+      resources {
+        memory = 500
+        memory_max = 620
+      }
     }
   }
 }
