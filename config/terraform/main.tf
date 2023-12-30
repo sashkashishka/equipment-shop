@@ -12,40 +12,40 @@ provider "nomad" {
   secret_id = var.nomad_token
 }
 
-resource "nomad_job" "db" {
+resource "nomad_job" "app" {
   jobspec = templatefile(
-    "${path.module}/nomad/db.nomad.tpl",
+    "${path.module}/nomad/app.nomad.tpl",
     {
+      hostname    = var.hostname,
+      strapi_prefix    = var.strapi_prefix,
       mysql_root_password = var.mysql_root_password,
       db_name     = var.db_name,
       db_user         = var.db_user,
       db_password     = var.db_password,
+      docker_username = var.docker_username,
+      strapi_version = var.strapi_version,
+      strapi_app_keys            = var.strapi_app_keys,
+      strapi_api_token_salt      = var.strapi_api_token_salt,
+      strapi_admin_jwt_secret    = var.strapi_admin_jwt_secret,
+      strapi_transfer_token_salt = var.strapi_transfer_token_salt,
+      jwt_secret                 = var.jwt_secret,
+      front_version = var.front_version,
+      strapi_api_token = var.strapi_api_token,
+      node_env        = var.node_env,
     }
   )
 }
 
-resource "nomad_job" "strapi" {
-  jobspec = templatefile(
-    "${path.module}/nomad/strapi.nomad.tpl",
-    {
-       docker_username = var.docker_username,
-       strapi_app_keys            = var.strapi_app_keys,
-       strapi_api_token_salt      = var.strapi_api_token_salt,
-       strapi_admin_jwt_secret    = var.strapi_admin_jwt_secret,
-       strapi_transfer_token_salt = var.strapi_transfer_token_salt,
-       # strapi_db_host             = var.strapi_db_host,
-       # strapi_db_port             = var.strapi_db_port,
-       db_name                    = var.db_name,
-       db_user                    = var.db_user,
-       db_password                = var.db_password,
-       jwt_secret                 = var.jwt_secret,
-       strapi_version = var.strapi_version,
-    }
-  )
-  depends_on = [
-    nomad_job.db
-  ]
-}
+# resource "nomad_job" "strapi" {
+#   jobspec = templatefile(
+#     "${path.module}/nomad/strapi.nomad.tpl",
+#     {
+#     }
+#   )
+#   depends_on = [
+#     nomad_job.db
+#   ]
+# }
 
 # resource "nomad_job" "nextjs" {
 #   jobspec = templatefile(
@@ -55,7 +55,6 @@ resource "nomad_job" "strapi" {
 #       docker_username = var.docker_username,
 #       strapi_prefix    = var.strapi_prefix,
 #       strapi_host      = var.strapi_host,
-#       strapi_api_token = var.strapi_api_token,
 #       front_version = var.front_version
 #     }
 #   )
@@ -64,18 +63,17 @@ resource "nomad_job" "strapi" {
 #   ]
 # }
 
-resource "nomad_job" "nginx" {
-  jobspec = templatefile(
-    "${path.module}/nomad/nginx.nomad.tpl",
-    {
-       strapi_prefix    = var.strapi_prefix,
-       hostname    = var.hostname,
-    }
-  )
-  depends_on = [
-    nomad_job.strapi
-  ]
-}
+# resource "nomad_job" "nginx" {
+#   jobspec = templatefile(
+#     "${path.module}/nomad/nginx.nomad.tpl",
+#     {
+#        strapi_prefix    = var.strapi_prefix,
+#     }
+#   )
+#   depends_on = [
+#     nomad_job.strapi
+#   ]
+# }
 
 variable "mysql_root_password" {
   description = "Mysql root password"
@@ -173,10 +171,10 @@ variable "strapi_prefix" {
   type        = string
 }
 
-# variable "strapi_api_token" {
-#   description = "strapi api token"
-#   type        = string
-# }
+variable "strapi_api_token" {
+  description = "strapi api token"
+  type        = string
+}
 
 variable "hostname" {
   description = "hostname"
