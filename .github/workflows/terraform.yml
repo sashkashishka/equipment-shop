@@ -81,5 +81,6 @@ jobs:
         -var strapi_api_token_salt=${{ secrets.STRAPI_API_TOKEN_SALT }} \
         -var strapi_admin_jwt_secret=${{ secrets.STRAPI_ADMIN_JWT_SECRET }} \
         -var strapi_transfer_token_salt=${{ secrets.STRAPI_TRANSFER_TOKEN_SALT }} \
+        -var strapi_prefix=${{ secrets.STRAPI_PREFIX }} \
         -var jwt_secret=${{ secrets.JWT_SECRET }} \
         -var hostname=${{ secrets.HOSTNAME }}

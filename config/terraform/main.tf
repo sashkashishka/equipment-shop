@@ -162,20 +162,20 @@ variable "jwt_secret" {
   type        = string
 }
 
-variable "strapi_host" {
-  description = "strapi host"
-  type        = string
-}
+# variable "strapi_host" {
+#   description = "strapi host"
+#   type        = string
+# }
 
 variable "strapi_prefix" {
   description = "strapi prefix"
   type        = string
 }
 
-variable "strapi_api_token" {
-  description = "strapi api token"
-  type        = string
-}
+# variable "strapi_api_token" {
+#   description = "strapi api token"
+#   type        = string
+# }
 
 variable "hostname" {
   description = "hostname"
