@@ -91,3 +91,25 @@ export interface iBlogPost {
   content: string;
   publishedAt: string; // Date
 }
+
+export interface iYoutubeVideoComponent {
+  name: string;
+  url: string;
+}
+
+export interface iMainPageConfig {
+  aboutCompany: string;
+  equipment: {
+    data: iStrapiResponse<iEquipment>[];
+  };
+  services: {
+    data: iStrapiResponse<iPage>;
+  };
+  videos: iYoutubeVideoComponent[];
+  carousel: {
+    photos: {
+      data: iStrapiResponse<iMediaImage>[];
+    };
+    videos: iYoutubeVideoComponent[];
+  };
+}

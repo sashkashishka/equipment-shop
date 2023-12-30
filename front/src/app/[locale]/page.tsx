@@ -1,7 +1,14 @@
-export default function MainPage() {
+import { getMainPageConfig } from '@/utils/strapi/getMainPageConfig';
+import { Carousel } from './components/Carousel';
+
+import styles from './page.module.css';
+
+export default async function MainPage() {
+  const { carousel } = await getMainPageConfig();
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-4">
-      main page
-    </main>
+    <div className={styles.container}>
+      <Carousel carousel={carousel} />
+    </div>
   );
 }

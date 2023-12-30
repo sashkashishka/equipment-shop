@@ -12,6 +12,7 @@ import type {
   iEquipmentConfig,
   iBlogPost,
   iStrapiMeta,
+  iMainPageConfig,
 } from '@/types/strapi';
 import { generatePath, PathParam } from '@/utils/generatePath';
 
@@ -22,6 +23,7 @@ interface iResponses {
   [API.PAGE]: iStrapiResponse<iPage>[];
   [API.EQUIPMENT_CONFIG]: iStrapiResponse<iEquipmentConfig>;
   [API.BLOG]: iStrapiResponse<iBlogPost>[];
+  [API.MAIN_PAGE]: iStrapiResponse<iMainPageConfig>;
 }
 
 interface iOptions<T extends API> extends iQueryBuilderOptions {
@@ -45,7 +47,13 @@ function getTagCache(tag: string, enabled: boolean) {
 
 export async function getStrapi<T extends API>(
   endpoint: T,
-  { enableTagCache = true, params, filters, pagination, sort }: iOptions<T> = {},
+  {
+    enableTagCache = true,
+    params,
+    filters,
+    pagination,
+    sort,
+  }: iOptions<T> = {},
 ) {
   let url: string = generatePath(endpoint, params);
 

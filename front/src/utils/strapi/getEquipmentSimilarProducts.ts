@@ -9,8 +9,7 @@ export async function getEquipmentSimilarProducts(id: number) {
     const [parent] = searchTree(equipmentLinksTree, searchParent(id));
     const { children } = await getEquipmentContent(parent.id);
 
-    return children;
-    // return children!.filter((item) => item.id !== id);
+    return children!.filter((item) => item.id !== id);
   } catch (e) {
     console.error(e);
   }

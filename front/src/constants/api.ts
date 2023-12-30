@@ -15,6 +15,7 @@ export enum API {
   EQUIPMENT_CATEGORY = `${PREFIX}/api/equipment-categories/:id`,
   PAGE = `${PREFIX}/api/pages`,
   BLOG = `${PREFIX}/api/blogs`,
+  MAIN_PAGE = `${PREFIX}/api/main-page`,
 }
 
 export interface iQueryBuilderOptions {
@@ -120,6 +121,37 @@ export const QUERIES = {
       filters,
       pagination,
       populate: ['photos'],
+    });
+  },
+
+  [API.MAIN_PAGE]() {
+    return qs.stringify({
+      locale: getCurrentLocale(),
+      populate: {
+        videos: true,
+        carousel: {
+          populate: ['photos', 'videos'],
+        },
+        equipment: {
+          fields: ['id', 'slug', 'name'],
+          populate: ['photos'],
+        },
+        services: {
+          populate: {
+            content: {
+              on: {
+                'services.services': {
+                  populate: {
+                    service: {
+                      populate: ['description', 'photo', 'children'],
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     });
   },
 };

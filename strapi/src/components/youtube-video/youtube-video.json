@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_youtube_video_youtube_videos",
+  "info": {
+    "displayName": "youtube video",
+    "icon": "play"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

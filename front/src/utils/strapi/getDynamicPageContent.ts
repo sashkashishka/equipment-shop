@@ -10,7 +10,7 @@ import {
 } from '@/types/strapi';
 import { iImage, transformImages } from '@/utils/strapi/transformImages';
 
-interface iServiceTypeContent {
+export interface iServiceTypeContent {
   title: iPage['name'];
   link: string;
   photo: iImage[];
