@@ -52,7 +52,7 @@ job "application" {
 
             location /${strapi_prefix} {
               rewrite ^/${strapi_prefix}/?(.*)$ /$1 break;
-              proxy_pass http://${NOMAD_ADDR_strapi}:${NOMAD_PORT_strapi};
+              proxy_pass http://$${NOMAD_ADDR_strapi}:$${NOMAD_PORT_strapi};
               proxy_set_header Host $host;
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -60,7 +60,7 @@ job "application" {
             }
 
             location / {
-              proxy_pass http://${NOMAD_ADDR_nextjs}:${NOMAD_PORT_nextjs};
+              proxy_pass http://$${NOMAD_ADDR_nextjs}:$${NOMAD_PORT_nextjs};
               proxy_set_header Host $host;
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -73,7 +73,7 @@ job "application" {
             server_name content.${hostname};
 
             location / {
-              proxy_pass http://${NOMAD_ADDR_strapi}:${NOMAD_PORT_strapi};
+              proxy_pass http://$${NOMAD_ADDR_strapi}:$${NOMAD_PORT_strapi};
               proxy_set_header Host $host;
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -137,8 +137,8 @@ job "application" {
         ADMIN_JWT_SECRET= "${strapi_admin_jwt_secret}"
         TRANSFER_TOKEN_SALT= "${strapi_transfer_token_salt}"
 
-        DATABASE_HOST="${NOMAD_ADDR_db}"
-        DATABASE_PORT="${NOMAD_PORT_db}"
+        DATABASE_HOST="$${NOMAD_ADDR_db}"
+        DATABASE_PORT="$${NOMAD_PORT_db}"
         DATABASE_NAME="${db_name}"
         DATABASE_USERNAME="${db_user}"
         DATABASE_PASSWORD="${db_password}"
@@ -168,7 +168,7 @@ job "application" {
 
       env {
         STRAPI_PREFIX = "${strapi_prefix}"
-        STRAPI_HOST = "${NOMAD_ADDR_strapi}"
+        STRAPI_HOST = "$${NOMAD_ADDR_strapi}"
         STRAPI_API_TOKEN = "${strapi_api_token}"
         NODE_ENV = "${node_env}"
       }
