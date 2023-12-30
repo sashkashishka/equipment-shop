@@ -26,12 +26,6 @@ job "strapi" {
     task "strapi" {
       driver = "docker"
 
-      volume_mount {
-        volume      = "strapi_data"
-        destination = "/opt/app/public"
-        propagation_mode = "private"
-      }
-
       config {
         image = "${docker_username}/pgi-strapi:${strapi_version}"
         ports =  ["strapi"]
