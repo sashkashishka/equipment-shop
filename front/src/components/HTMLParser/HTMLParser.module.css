@@ -1,6 +1,49 @@
 .content {
+  table {
+    width: 100% !important;
+    border-collapse: collapse;
+    margin: 24px 0;
+  }
+
+  table thead {
+    background: var(--p-color-body);
+    color: var(--p-color-basic-0);
+  }
+
+  table thead th {
+    border: 1px solid var(--p-color-body);
+  }
+
+  table thead th,
+  table tbody td {
+    padding: 8px;
+  }
+
+  table tbody td {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid var(--p-color-body);
+  }
+
+  table tbody tr:nth-child(odd) {
+    background: var(--p-color-basic-1);
+  }
+
+  table tbody tr:nth-child(even) {
+    background: var(--p-color-basic-2);
+  }
 
   img {
     height: 100%;
+  }
+
+  a {
+    color: var(--p-color-body);
+  }
+
+  ul,
+  ol {
+    list-style-position: inside;
+    margin: 24px 0;
   }
 }
