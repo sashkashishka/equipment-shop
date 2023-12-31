@@ -1,0 +1,150 @@
+name: Deploy
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # front:
+  #   name: Build front image
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v4
+
+  #   - name: Extract metadata (tags, labels) for Docker
+  #     id: meta
+  #     uses: docker/metadata-action@v5
+  #     with:
+  #       images: sashkashishka/pgi-front
+  #       tags: |
+  #         type=schedule
+  #         type=ref,event=branch
+  #         type=ref,event=pr
+  #         type=semver,pattern={{version}}
+  #         type=semver,pattern={{major}}.{{minor}}
+  #         type=semver,pattern={{major}}
+
+  #   - name: Set up QEMU
+  #     uses: docker/setup-qemu-action@v3
+
+  #   - name: Set up Docker Buildx
+  #     uses: docker/setup-buildx-action@v3
+
+  #   - name: Log in to Docker Hub
+  #     uses: docker/login-action@v3
+  #     with:
+  #       username: ${{ secrets.DOCKER_USERNAME }}
+  #       password: ${{ secrets.DOCKER_TOKEN }}
+
+  #   - uses: benjlevesque/short-sha@v2.2
+  #     id: short-sha
+  #     with:
+  #       length: 6
+
+  #   - name: Build and push front image
+  #     uses: docker/build-push-action@v5
+  #     with:
+  #       context: ./front
+  #       file: ./front/Dockerfile
+  #       push: true
+  #       tags: ${{ steps.meta.outputs.tags }}
+  #       labels: ${{ steps.meta.outputs.labels }}
+
+
+  # strapi:
+  #   name: Build strapi image
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v4
+
+  #   - name: Extract metadata (tags, labels) for Docker
+  #     id: meta
+  #     uses: docker/metadata-action@v5
+  #     with:
+  #       images: sashkashishka/pgi-strapi
+  #       tags: |
+  #         type=schedule
+  #         type=ref,event=branch
+  #         type=ref,event=pr
+  #         type=semver,pattern={{version}}
+  #         type=semver,pattern={{major}}.{{minor}}
+  #         type=semver,pattern={{major}}
+
+  #   - name: Set up QEMU
+  #     uses: docker/setup-qemu-action@v3
+
+  #   - name: Set up Docker Buildx
+  #     uses: docker/setup-buildx-action@v3
+
+  #   - name: Log in to Docker Hub
+  #     uses: docker/login-action@v3
+  #     with:
+  #       username: ${{ secrets.DOCKER_USERNAME }}
+  #       password: ${{ secrets.DOCKER_TOKEN }}
+
+  #   - uses: benjlevesque/short-sha@v2.2
+  #     id: short-sha
+  #     with:
+  #       length: 6
+
+  #   - name: Build and push strapi image
+  #     uses: docker/build-push-action@v5
+  #     with:
+  #       context: ./strapi
+  #       file: ./strapi/Dockerfile
+  #       push: true
+  #       tags: ${{ steps.meta.outputs.tags }}
+  #       labels: ${{ steps.meta.outputs.labels }}
+
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    # needs: [front, strapi]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Copy deploy dir
+      uses: appleboy/scp-action@v0.1.6
+      with:
+        host: ${{ secrets.HOSTNAME }}
+        username: ${{ secrets.USER }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        source: "deploy/"
+        target: ~/${{ secrets.DIR }}
+
+    # - name: Setup Terraform
+    #   uses: hashicorp/setup-terraform@v1
+
+    # - name: Terraform Init
+    #   working-directory: config/terraform
+    #   run: terraform init
+
+    # - name: Terraform Apply
+    #   working-directory: config/terraform
+    #   run: |
+    #     terraform apply -auto-approve -input=false \
+    #     -var mysql_root_password=${{ secrets.MYSQL_ROOT_PASSWORD }} \
+    #     -var db_name=${{ secrets.DB_NAME }} \
+    #     -var db_user=${{ secrets.DB_USER }} \
+    #     -var db_password=${{ secrets.DB_PASSWORD}} \
+    #     -var nomad_token=${{ secrets.NOMAD_TOKEN }} \
+    #     -var nomad_addr=${{ secrets.NOMAD_ADDR }} \
+    #     -var jwt_secret=${{ secrets.JWT_SECRET }} \
+    #     -var node_env=production \
+    #     -var strapi_image=${{ steps.metaStrapi.outputs.tags }} \
+    #     -var front_image=${{ steps.metaFront.outputs.tags }} \
+    #     -var strapi_app_keys=${{ secrets.STRAPI_APP_KEYS }} \
+    #     -var strapi_api_token_salt=${{ secrets.STRAPI_API_TOKEN_SALT }} \
+    #     -var strapi_admin_jwt_secret=${{ secrets.STRAPI_ADMIN_JWT_SECRET }} \
+    #     -var strapi_transfer_token_salt=${{ secrets.STRAPI_TRANSFER_TOKEN_SALT }} \
+    #     -var strapi_prefix=${{ secrets.STRAPI_PREFIX }} \
+    #     -var strapi_api_token=${{ secrets.STRAPI_API_TOKEN }} \
+    #     -var jwt_secret=${{ secrets.JWT_SECRET }} \
+    #     -var hostname=${{ secrets.HOSTNAME }}
