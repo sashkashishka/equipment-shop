@@ -2,7 +2,6 @@ import {
   API,
   AUTH_HEADER,
   QUERIES,
-  STRAPI_PREFIX,
   STRAPI_HOST,
   iQueryBuilderOptions,
 } from '@/constants/api';
