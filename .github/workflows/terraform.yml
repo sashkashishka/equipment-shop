@@ -101,9 +101,16 @@ jobs:
           type=semver,pattern={{major}}.{{minor}}
           type=semver,pattern={{major}}
 
+    - name: Get latest tag
+      id: latest_tag
+      uses: jacobtomlinson/gha-get-docker-hub-tags@0.1.1
+      with:
+        org: 'sashkashishka'  # Docker Hub user or organisation name
+        repo: 'pgi-front'  # Docker Hub repository name
+
     - name: Echo tags
       env:
-        TAG_1: ${{  steps.metaFront.outputs.tags  }}
+        TAG_1: ${{  steps.latest_tag.outputs.tag  }}
         TAG_2: ${{  steps.metaStrapi.outputs.tags  }}
       run: |
         echo ${{  env.TAG_1  }}
