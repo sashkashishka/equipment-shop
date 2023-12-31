@@ -116,7 +116,7 @@ jobs:
         username: ${{ secrets.USER }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        source: "deploy/docker-compose.yaml,!deploy/envs/,deploy/scripts/,deploy/volumes/,deploy/config/"
+        source: "deploy/docker-compose.yaml,deploy/scripts/,deploy/volumes/,deploy/config/,!deploy/envs/"
         target: ~/${{ secrets.DIR }}
 
     # - name: Setup Terraform
