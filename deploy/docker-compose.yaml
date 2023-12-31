@@ -27,7 +27,7 @@ services:
         target: /usr/app/logs
         read_only: false
     env_file:
-      - "./config/envs/.env.nextjs"
+      - "./envs/.env.nextjs"
     networks:
       - pgi_bridge
     depends_on:
@@ -42,7 +42,7 @@ services:
         target: /opt/app/public
         read_only: false
     env_file:
-      - "./config/envs/.env.strapi"
+      - "./envs/.env.strapi"
     networks:
       - pgi_bridge
     depends_on:
@@ -64,7 +64,7 @@ services:
         target: /docker-entrypoint-initdb.d
         read_only: true
     env_file:
-      - "./config/envs/.env.strapi"
+      - "./envs/.env.strapi"
     networks:
       - pgi_bridge
 
