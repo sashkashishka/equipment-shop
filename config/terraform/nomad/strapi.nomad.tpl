@@ -26,7 +26,7 @@ job "strapi" {
       driver = "docker"
 
       config {
-        image = "${docker_username}/pgi-strapi:${strapi_version}"
+        image = "${strapi_image}"
         ports =  ["strapi"]
       }
 
@@ -61,5 +61,3 @@ job "strapi" {
     }
   }
 }
-
-

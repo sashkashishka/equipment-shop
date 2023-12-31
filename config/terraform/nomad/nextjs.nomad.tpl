@@ -34,7 +34,7 @@ job "nextjs" {
       driver = "docker"
 
       config {
-        image = "${docker_username}/pgi-front:${front_version}"
+        image = "${front_image}"
         ports =  ["nextjs"]
       }
 
