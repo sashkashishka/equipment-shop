@@ -82,7 +82,7 @@ resource "nomad_job" "nextjs" {
       node_env        = var.node_env,
       docker_username = var.docker_username,
       strapi_prefix    = var.strapi_prefix,
-      # strapi_host      = var.strapi_host,
+      strapi_api_token = var.strapi_api_token,
       front_version = var.front_version
     }
   )
