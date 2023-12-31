@@ -16,12 +16,6 @@ job "nginx" {
       }
     }
 
-    service {
-      name     = "nginx"
-      provider = "nomad"
-      port     = "nginx"
-    }
-
     task "nginx" {
       driver = "docker"
 
@@ -56,7 +50,7 @@ job "nginx" {
             }
 
             location / {
-            {{ range nomadService "nginx" }}
+            {{ range nomadService "nextjs" }}
               proxy_pass http://{{ .Address }}:{{ .Port }};
             {{ end }}
               proxy_set_header Host $host;
