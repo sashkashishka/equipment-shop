@@ -6,9 +6,13 @@ job "nginx" {
 
     network {
       mode = "host"
-      port "nginx" {
+      port "nginx1" {
         to = 80
         static = 80
+      }
+      port "nginx2" {
+        to = 8000
+        static = 8000
       }
     }
 
@@ -23,7 +27,7 @@ job "nginx" {
 
       config {
         image = "nginx:1.25.3"
-        ports =  ["nginx"]
+        ports =  ["nginx1", "nginx2"]
         volumes = [
           "local:/etc/nginx/conf.d",
         ]
@@ -36,7 +40,7 @@ job "nginx" {
        template {
         data = <<EOH
           server {
-            listen 3000;
+            listen 80;
             server_name ${hostname};
 
             location /${strapi_prefix} {
@@ -64,7 +68,7 @@ job "nginx" {
 
 
             server {
-              listen 9090;
+              listen 8000;
               server_name ${hostname};
 
               location / {
