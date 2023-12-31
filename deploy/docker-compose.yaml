@@ -3,6 +3,7 @@ services:
   nginx:
     container_name: nginx-pgi
     image: nginx:1.25.3
+    restart: on-failure
     volumes:
       - type: bind
         source: ./volume/nginx/nginx.conf
@@ -15,12 +16,13 @@ services:
       - 80:80
     networks:
       - pgi_bridge
-    # depends_on:
-    #   - nextjs
+    depends_on:
+      - nextjs
 
   nextjs:
     container_name: nextjs-pgi
-    image: sashkashishka/pgi-front
+    image: sashkashishka/pgi-front:$FRONT_VERSION
+    restart: on-failure
     volumes:
       - type: bind
         source: ./volume/nextjs
@@ -35,7 +37,8 @@ services:
 
   strapi:
     container_name: strapi-pgi
-    image: sashkashishka/pgi-strapi
+    image: sashkashishka/pgi-strapi:$STRAPI_VERSION
+    restart: on-failure
     volumes:
       - type: bind
         source: ./volume/strapi
@@ -51,6 +54,7 @@ services:
   db:
     container_name: mysql-pgi
     platform: linux/amd64
+    restart: on-failure
     image: mysql:8.2.0
     ports:
       - "3306:3306"
