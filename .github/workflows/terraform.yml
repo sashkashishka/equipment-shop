@@ -72,12 +72,23 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Extract metadata (tags, labels) for Docker
-      id: meta
+      id: metaFront
       uses: docker/metadata-action@v5
       with:
-        images: |
-          sashkashishka/pgi-front
-          sashkashishka/pgi-strapi
+        images: sashkashishka/pgi-front
+        tags: |
+          type=schedule
+          type=ref,event=branch
+          type=ref,event=pr
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+          type=semver,pattern={{major}}
+
+    - name: Extract metadata (tags, labels) for Docker
+      id: metaStrapi
+      uses: docker/metadata-action@v5
+      with:
+        images: sashkashishka/pgi-strapi
         tags: |
           type=schedule
           type=ref,event=branch
@@ -88,8 +99,11 @@ jobs:
 
     - name: Echo tags
       env:
-        TAG_1: ${{  steps.meta.outputs.tags[0]  }}
-      run: echo ${{  env.TAG_1  }}
+        TAG_1: ${{  steps.metaFront.outputs.tags  }}
+        TAG_2: ${{  steps.metaStrapi.outputs.tags  }}
+      run: |
+        echo ${{  env.TAG_1  }}
+        echo ${{  env.TAG_2  }}
 
 
   #   - name: Log in to Docker Hub
