@@ -10,10 +10,9 @@ job "database" {
     }
 
     network {
-      mode = "host"
+      mode = "bridge"
       port "db" {
         to = 3306
-        static = 58321
       }
     }
 
@@ -42,7 +41,6 @@ job "database" {
       }
 
       env {
-        MYSQL_ROOT_HOST="0.0.0.0"
         MYSQL_ROOT_PASSWORD = "${mysql_root_password}"
         MYSQL_DATABASE="${db_name}"
         MYSQL_USER="${db_user}"

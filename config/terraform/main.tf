@@ -91,17 +91,18 @@ resource "nomad_job" "strapi" {
 #   ]
 # }
 
-# resource "nomad_job" "nginx" {
-#   jobspec = templatefile(
-#     "${path.module}/nomad/nginx.nomad.tpl",
-#     {
-#        strapi_prefix    = var.strapi_prefix,
-#     }
-#   )
-#   depends_on = [
-#     nomad_job.strapi
-#   ]
-# }
+resource "nomad_job" "nginx" {
+  jobspec = templatefile(
+    "${path.module}/nomad/nginx.nomad.tpl",
+    {
+      hostname    = var.hostname,
+       strapi_prefix    = var.strapi_prefix,
+    }
+  )
+  depends_on = [
+    nomad_job.strapi
+  ]
+}
 
 variable "mysql_root_password" {
   description = "Mysql root password"

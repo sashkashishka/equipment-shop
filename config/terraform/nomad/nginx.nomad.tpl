@@ -55,18 +55,21 @@ job "nginx" {
             }
           }
 
-          server {
-            listen 80;
-            server_name content.${hostname};
 
-            location / {
-              proxy_pass http://localhost:1337;
-              proxy_set_header Host $host;
-              proxy_set_header X-Real-IP $remote_addr;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto $scheme;
+          {{ range nomadService "strapi" }}
+            server {
+              listen 80;
+              server_name content.${hostname};
+
+              location / {
+                proxy_pass http://{{ .Address }}:{{ .Port }};
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+              }
             }
-          }
+          {{ end }}
         EOH
 
         destination = "$${NOMAD_TASK_DIR}/nginx.conf"
