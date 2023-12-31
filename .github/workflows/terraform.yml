@@ -157,7 +157,6 @@ jobs:
         -var nomad_addr=${{ secrets.NOMAD_ADDR }} \
         -var jwt_secret=${{ secrets.JWT_SECRET }} \
         -var node_env=production \
-        -var docker_username=${{ secrets.DOCKER_USERNAME }} \
         -var strapi_image=${{ steps.metaStrapi.outputs.tag }} \
         -var front_image=${{ steps.metaFront.outputs.tag }} \
         -var strapi_app_keys=${{ secrets.STRAPI_APP_KEYS }} \
