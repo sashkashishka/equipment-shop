@@ -1,10 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Mousewheel, Keyboard } from 'swiper/modules';
 import { iMainPageConfigContent } from '@/utils/strapi/getMainPageConfig';
-import { iImage } from '@/utils/strapi/transformImages';
 
 import styles from './Carousel.module.css';
 import { YoutubeVideo } from '@/components/YoutubeVideo';
