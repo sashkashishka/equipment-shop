@@ -75,21 +75,21 @@ resource "nomad_job" "strapi" {
   ]
 }
 
-# resource "nomad_job" "nextjs" {
-#   jobspec = templatefile(
-#     "${path.module}/nomad/nextjs.nomad.tpl",
-#     {
-#       node_env        = var.node_env,
-#       docker_username = var.docker_username,
-#       strapi_prefix    = var.strapi_prefix,
-#       strapi_host      = var.strapi_host,
-#       front_version = var.front_version
-#     }
-#   )
-#   depends_on = [
-#     nomad_job.strapi
-#   ]
-# }
+resource "nomad_job" "nextjs" {
+  jobspec = templatefile(
+    "${path.module}/nomad/nextjs.nomad.tpl",
+    {
+      node_env        = var.node_env,
+      docker_username = var.docker_username,
+      strapi_prefix    = var.strapi_prefix,
+      # strapi_host      = var.strapi_host,
+      front_version = var.front_version
+    }
+  )
+  depends_on = [
+    nomad_job.strapi
+  ]
+}
 
 resource "nomad_job" "nginx" {
   jobspec = templatefile(

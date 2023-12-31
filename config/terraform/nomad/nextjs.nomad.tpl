@@ -10,10 +10,9 @@ job "nextjs" {
     }
 
     network {
-      mode = "host"
+      mode = "bridge"
       port "nextjs" {
         to = 3000
-        static = 3000
       }
     }
 
@@ -34,12 +33,6 @@ job "nextjs" {
     task "nextjs" {
       driver = "docker"
 
-      volume_mount {
-        volume      = "nextjs_data"
-        destination = "/usr/app/host-content"
-        propagation_mode = "private"
-      }
-
       config {
         image = "${docker_username}/pgi-front:${version}"
         ports =  ["nextjs"]
@@ -49,9 +42,19 @@ job "nextjs" {
          attempts = 2
        }
 
+      template {
+        data = <<EOH
+          {{ range nomadService "strapi" }}
+            STRAPI_HOST={{ .Address }}:{{ .Port }}
+          {{ end }}
+        EOH
+
+        destination = "secrets/config.env"
+        env         = true
+      }
+
       env {
         STRAPI_PREFIX = "${strapi_prefix}"
-        STRAPI_HOST = "${strapi_host}"
         STRAPI_API_TOKEN = "${strapi_api_token}"
         NODE_ENV = "${node_env}"
       }

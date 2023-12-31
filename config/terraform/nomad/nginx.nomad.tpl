@@ -38,7 +38,9 @@ job "nginx" {
 
             location /${strapi_prefix} {
               rewrite ^/${strapi_prefix}/?(.*)$ /$1 break;
-              proxy_pass http://localhost:1337;
+              {{ range nomadService "strapi" }}
+                proxy_pass http://{{ .Address }}:{{ .Port }};
+              {{ end }}
               proxy_set_header Host $host;
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -46,8 +48,9 @@ job "nginx" {
             }
 
             location / {
-              # Handle other requests with the Next.js server on localhost
-              proxy_pass http://localhost:3000;
+              {{ range nomadService "nextjs" }}
+                proxy_pass http://{{ .Address }}:{{ .Port }};
+              {{ end }}
               proxy_set_header Host $host;
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -56,20 +59,20 @@ job "nginx" {
           }
 
 
-          {{ range nomadService "strapi" }}
             server {
-              listen 80;
-              server_name content.${hostname};
+              listen 8000;
+              server_name ${hostname};
 
               location / {
-                proxy_pass http://{{ .Address }}:{{ .Port }};
+                {{ range nomadService "strapi" }}
+                  proxy_pass http://{{ .Address }}:{{ .Port }};
+                {{ end }}
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                 proxy_set_header X-Forwarded-Proto $scheme;
               }
             }
-          {{ end }}
         EOH
 
         destination = "$${NOMAD_TASK_DIR}/nginx.conf"
