@@ -49,7 +49,6 @@ job "nginx" {
 
           server {
             listen 80;
-            server_name ${hostname};
 
             location /${strapi_prefix} {
               rewrite ^/${strapi_prefix}/?(.*)$ /$1 break;
@@ -72,7 +71,6 @@ job "nginx" {
 
             server {
               listen 8000;
-              server_name ${hostname};
 
               location / {
                 proxy_pass http://strapi;
