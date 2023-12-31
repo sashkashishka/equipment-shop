@@ -25,7 +25,7 @@ job "nginx" {
         image = "nginx:1.25.3"
         ports =  ["nginx"]
         volumes = [
-          "$${NOMAD_TASK_DIR}:/etc/nginx/conf.d",
+          "local:/etc/nginx/conf.d",
         ]
       }
 
@@ -35,15 +35,25 @@ job "nginx" {
 
        template {
         data = <<EOH
+          upstream strapi {
+            {{ range nomadService "strapi" }}
+              server {{ .Address }}:{{ .Port }};
+            {{ end }}
+          }
+
+          upstream front {
+            {{ range nomadService "nextjs" }}
+              server {{ .Address }}:{{ .Port }};
+            {{ end }}
+          }
+
           server {
             listen 80;
             server_name ${hostname};
 
             location /${strapi_prefix} {
               rewrite ^/${strapi_prefix}/?(.*)$ /$1 break;
-              {{ range nomadService "strapi" }}
-                proxy_pass http://{{ .Address }}:{{ .Port }};
-              {{ end }}
+              proxy_pass http://strapi;
               proxy_set_header Host $host;
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -51,9 +61,7 @@ job "nginx" {
             }
 
             location / {
-              {{ range nomadService "nextjs" }}
-                proxy_pass http://{{ .Address }}:{{ .Port }};
-              {{ end }}
+              proxy_pass http://front;
               proxy_set_header Host $host;
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -67,9 +75,7 @@ job "nginx" {
               server_name ${hostname};
 
               location / {
-                {{ range nomadService "strapi" }}
-                  proxy_pass http://{{ .Address }}:{{ .Port }};
-                {{ end }}
+                proxy_pass http://strapi;
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -78,7 +84,7 @@ job "nginx" {
             }
         EOH
 
-        destination = "$${NOMAD_TASK_DIR}/nginx.conf"
+        destination = "local/nginx.conf"
       }
     }
   }
