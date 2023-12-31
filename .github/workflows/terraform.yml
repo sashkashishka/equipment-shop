@@ -10,56 +10,56 @@ env:
   STRAPI_VERSION: 2.0.0
 
 jobs:
-  # front:
-  #   name: Build images
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Checkout repository
-  #     uses: actions/checkout@v4
+  front:
+    name: Build images
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-  #   - uses: dorny/paths-filter@v2
-  #     id: changes
-  #     with:
-  #       filters: |
-  #         front:
-  #           - 'front/**'
+    - uses: dorny/paths-filter@v2
+      id: changes
+      with:
+        filters: |
+          front:
+            - 'front/**'
 
-  #   - name: Extract metadata (tags, labels) for Docker
-  #     id: meta
-  #     uses: docker/metadata-action@v5
-  #     with:
-  #       images: |
-  #         sashkashishka/pgi-front
-  #         sashkashishka/pgi-strapi
-  #       tags: |
-  #         type=schedule
-  #         type=ref,event=branch
-  #         type=ref,event=pr
-  #         type=semver,pattern={{version}}
-  #         type=semver,pattern={{major}}.{{minor}}
-  #         type=semver,pattern={{major}}
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: |
+          sashkashishka/pgi-front
+          sashkashishka/pgi-strapi
+        tags: |
+          type=schedule
+          type=ref,event=branch
+          type=ref,event=pr
+          type=semver,pattern={{version}}
+          type=semver,pattern={{major}}.{{minor}}
+          type=semver,pattern={{major}}
 
-  #   - name: Set up QEMU
-  #     uses: docker/setup-qemu-action@v3
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
 
-  #   - name: Set up Docker Buildx
-  #     uses: docker/setup-buildx-action@v3
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
 
-  #   - name: Log in to Docker Hub
-  #     uses: docker/login-action@v3
-  #     with:
-  #       username: ${{ secrets.DOCKER_USERNAME }}
-  #       password: ${{ secrets.DOCKER_TOKEN }}
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_TOKEN }}
 
-  #   - name: Build and push front image
-  #     if: steps.changes.outputs.front == 'true'
-  #     uses: docker/build-push-action@v5
-  #     with:
-  #       context: ./front
-  #       file: ./front/Dockerfile
-  #       push: true
-  #       tags: ${{ steps.meta.outputs.tags }}
-  #       labels: ${{ steps.meta.outputs.labels }}
+    - name: Build and push front image
+      if: steps.changes.outputs.front == 'true'
+      uses: docker/build-push-action@v5
+      with:
+        context: ./front
+        file: ./front/Dockerfile
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
 
 
   # # strapi:
@@ -67,7 +67,7 @@ jobs:
   terraform:
     name: Build and deploy
     runs-on: ubuntu-latest
-    # needs: [front]
+    needs: [front]
 
     steps:
     - name: Checkout repository
@@ -89,7 +89,7 @@ jobs:
           type=semver,pattern={{major}}
 
     - name: Echo tags
-      run: echo ${{  steps.meta.outputs.tags  }}
+      run: echo ${{  steps.meta.outputs.tags[0]  }}
 
 
   #   - name: Log in to Docker Hub
