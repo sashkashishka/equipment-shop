@@ -1,0 +1,83 @@
+version: "3.8"
+services:
+  nginx:
+    container_name: nginx-pgi
+    image: nginx:1.25.3
+    restart: on-failure
+    volumes:
+      - type: bind
+        source: ./volume/nginx/nginx.conf
+        target: /etc/nginx/conf.d/default.conf
+        read_only: true
+    expose:
+      - 80
+      - 8000
+    ports:
+      - 80:80
+      - 8000:8000
+    networks:
+      - pgi_bridge
+    depends_on:
+      - nextjs
+
+  nextjs:
+    container_name: nextjs-pgi
+    image: sashkashishka/pgi-front:$FRONT_VERSION
+    restart: on-failure
+    volumes:
+      - type: bind
+        source: ./volume/nextjs
+        target: /usr/app/logs
+        read_only: false
+    # healthcheck:
+    #   test: wget http://localhost:3000/api/healthcheck || exit 1
+    #   interval: 10s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 2m
+    env_file:
+      - "./envs/.env.nextjs"
+    networks:
+      - pgi_bridge
+    depends_on:
+      - strapi
+
+  strapi:
+    container_name: strapi-pgi
+    image: sashkashishka/pgi-strapi:$STRAPI_VERSION
+    restart: on-failure
+    volumes:
+      - type: bind
+        source: ./volume/strapi
+        target: /opt/app/public
+        read_only: false
+    # healthcheck:
+    #   test: wget http://localhost:1337 || exit 1
+    #   interval: 10s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 2m
+    env_file:
+      - "./envs/.env.strapi"
+    networks:
+      - pgi_bridge
+    depends_on:
+      - db
+
+  db:
+    container_name: mysql-pgi
+    platform: linux/amd64
+    restart: on-failure
+    image: mysql:8.2.0
+    volumes:
+      - type: bind
+        source: ./volume/mysql
+        target: /var/lib/mysql
+        read_only: false
+    env_file:
+      - "./envs/.env.strapi"
+    networks:
+      - pgi_bridge
+
+networks:
+  pgi_bridge:

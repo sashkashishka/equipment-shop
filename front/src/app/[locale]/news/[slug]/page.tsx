@@ -28,7 +28,7 @@ export default async function BlogPostPage({ params }: iProps) {
       <Link href={ROUTES.NEWS}>{t`Back to news`}</Link>
 
       <div className={styles.headerContainer}>
-        <h2 className={cn('h2Title', styles.title)}>{title.repeat(5)}</h2>
+        <h2 className={cn('h2Title', styles.title)}>{title}</h2>
 
         <time className={styles.time} dateTime={publishedAt}>
           {formatDate(publishedAt)}
