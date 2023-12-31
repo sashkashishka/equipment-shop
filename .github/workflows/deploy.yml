@@ -78,7 +78,7 @@ jobs:
         username: ${{ secrets.USER }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        source: "deploy/docker-compose.yaml,deploy/scripts/,deploy/config/,!deploy/envs/,deploy/volume/"
+        source: "deploy/docker-compose.yaml,deploy/scripts/,deploy/config/,!deploy/envs/,!deploy/volume/"
         target: ~/${{ secrets.DIR }}
 
     - name: Pull images
@@ -96,33 +96,3 @@ jobs:
         script: |
           bash ~/${{ secrets.DIR }}/deploy/scripts/pull-images.sh
           bash ~/${{ secrets.DIR }}/deploy/scripts/start-images.sh
-
-    # - name: Setup Terraform
-    #   uses: hashicorp/setup-terraform@v1
-
-    # - name: Terraform Init
-    #   working-directory: config/terraform
-    #   run: terraform init
-
-    # - name: Terraform Apply
-    #   working-directory: config/terraform
-    #   run: |
-    #     terraform apply -auto-approve -input=false \
-    #     -var mysql_root_password=${{ secrets.MYSQL_ROOT_PASSWORD }} \
-    #     -var db_name=${{ secrets.DB_NAME }} \
-    #     -var db_user=${{ secrets.DB_USER }} \
-    #     -var db_password=${{ secrets.DB_PASSWORD}} \
-    #     -var nomad_token=${{ secrets.NOMAD_TOKEN }} \
-    #     -var nomad_addr=${{ secrets.NOMAD_ADDR }} \
-    #     -var jwt_secret=${{ secrets.JWT_SECRET }} \
-    #     -var node_env=production \
-    #     -var strapi_image=${{ steps.metaStrapi.outputs.tags }} \
-    #     -var front_image=${{ steps.metaFront.outputs.tags }} \
-    #     -var strapi_app_keys=${{ secrets.STRAPI_APP_KEYS }} \
-    #     -var strapi_api_token_salt=${{ secrets.STRAPI_API_TOKEN_SALT }} \
-    #     -var strapi_admin_jwt_secret=${{ secrets.STRAPI_ADMIN_JWT_SECRET }} \
-    #     -var strapi_transfer_token_salt=${{ secrets.STRAPI_TRANSFER_TOKEN_SALT }} \
-    #     -var strapi_prefix=${{ secrets.STRAPI_PREFIX }} \
-    #     -var strapi_api_token=${{ secrets.STRAPI_API_TOKEN }} \
-    #     -var jwt_secret=${{ secrets.JWT_SECRET }} \
-    #     -var hostname=${{ secrets.HOSTNAME }}
