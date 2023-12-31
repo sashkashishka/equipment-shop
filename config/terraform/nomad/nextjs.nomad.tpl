@@ -45,7 +45,7 @@ job "nextjs" {
       template {
         data = <<EOH
           {{ range nomadService "strapi" }}
-            STRAPI_HOST={{ .Address }}:{{ .Port }}
+            STRAPI_HOST=http://{{ .Address }}:{{ .Port }}
           {{ end }}
         EOH
 
