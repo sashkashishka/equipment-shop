@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_metatags_metatags",
+  "info": {
+    "displayName": "metatags"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

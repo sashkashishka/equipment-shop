@@ -16,6 +16,7 @@ export interface iEquipmentContent {
   bottomText: iEquipment['bottomText'];
   type: iEquipment['type'];
   link: string;
+  metatags: iEquipment['metatags'];
   children?: iEquipmentContent[];
 }
 
@@ -40,6 +41,7 @@ function transform(
     bottomText: attributes.bottomText,
     type: attributes.type,
     link: link.url,
+    metatags: attributes.metatags,
     children: (attributes?.children?.data || []).map((item) =>
       transform(item, equipmentLinksTree),
     ),

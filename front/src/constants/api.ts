@@ -82,6 +82,7 @@ export const QUERIES = {
       locale: getCurrentLocale(),
       populate: {
         photos: true,
+        metatags: true,
         children: {
           populate: ['slug', 'name', 'title', 'subtitle', 'photos'],
         },
@@ -93,6 +94,7 @@ export const QUERIES = {
       locale: getCurrentLocale(),
       filters,
       populate: {
+        metatags: true,
         content: {
           on: {
             'content.html': {
@@ -129,6 +131,7 @@ export const QUERIES = {
       locale: getCurrentLocale(),
       populate: {
         videos: true,
+        metatags: true,
         carousel: {
           populate: ['photos', 'videos'],
         },

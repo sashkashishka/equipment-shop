@@ -59,6 +59,17 @@
         }
       },
       "component": "carousel.carousel"
+    },
+    "metatags": {
+      "type": "component",
+      "repeatable": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "metatags.metatags",
+      "required": true
     }
   }
 }

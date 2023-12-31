@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { getDynamicPageContent } from '@/utils/strapi/getDynamicPageContent';
@@ -10,6 +11,14 @@ import styles from './page.module.css';
 
 interface iProps {
   params: { id: string };
+}
+
+export async function generateMetadata({ params }: iProps): Promise<Metadata> {
+  const data = await getDynamicPageContent(params.id);
+
+  if (!data) return {};
+
+  return data.metatags;
 }
 
 export default async function DynamicPage({ params }: iProps) {

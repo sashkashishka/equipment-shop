@@ -43,6 +43,7 @@ export interface iEquipment {
   children: {
     data: iStrapiResponse<iEquipment>[];
   };
+  metatags: iMetatags;
 }
 
 export interface iHtmlContent {
@@ -76,6 +77,7 @@ export interface iPage {
   name: string;
   slug: string;
   content: Array<iHtmlContent | iServicesContent | iContactsContent>;
+  metatags: iMetatags;
 }
 
 export interface iEquipmentConfig {
@@ -90,6 +92,7 @@ export interface iBlogPost {
   };
   content: string;
   publishedAt: string; // Date
+  metatags: iMetatags;
 }
 
 export interface iYoutubeVideoComponent {
@@ -112,4 +115,10 @@ export interface iMainPageConfig {
     };
     videos: iYoutubeVideoComponent[];
   };
+  metatags: iMetatags;
+}
+
+export interface iMetatags {
+  title: string;
+  description: string;
 }

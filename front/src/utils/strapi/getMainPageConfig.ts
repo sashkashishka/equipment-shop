@@ -14,7 +14,7 @@ import {
 import { includesSlug, searchTree } from '@/utils/searchTree';
 
 export interface iMainPageConfigContent
-  extends Pick<iMainPageConfig, 'aboutCompany' | 'videos'> {
+  extends Pick<iMainPageConfig, 'aboutCompany' | 'videos' | 'metatags'> {
   carousel: {
     videos: iMainPageConfig['carousel']['videos'];
     photos: iImage[];
@@ -34,6 +34,7 @@ function transform(
   const { attributes } = mainPageConfig;
 
   return {
+    metatags: attributes.metatags,
     aboutCompany: attributes.aboutCompany,
     videos: attributes.videos,
     services: attributes?.services?.data?.attributes?.content?.reduce<

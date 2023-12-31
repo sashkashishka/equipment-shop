@@ -34,6 +34,7 @@ export interface iContactsTypeContent
 export interface iDynamicPageContent {
   title: iPage['name'];
   slug: iPage['slug'];
+  metatags: iPage['metatags'];
   content: Array<
     iServicesTypeContent | iHtmlTypeContent | iContactsTypeContent
   >;
@@ -42,6 +43,7 @@ export interface iDynamicPageContent {
 function transform(data: iStrapiResponse<iPage>[]): iDynamicPageContent[] {
   return data.map(({ attributes }) => {
     return {
+      metatags: attributes.metatags,
       title: attributes.name,
       slug: attributes.slug,
       content: (attributes.content || []).map((content) => {
