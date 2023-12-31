@@ -38,7 +38,7 @@ jobs:
         context: ./front
         file: ./front/Dockerfile
         push: true
-        tags: sashkashishka/pgi-front:${{env.FRON_VERSION}}
+        tags: sashkashishka/pgi-front:${{env.FRONT_VERSION}}
 
     - name: Build and push strapi image
       uses: docker/build-push-action@v4
