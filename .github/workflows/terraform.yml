@@ -1,13 +1,9 @@
 name: Deploy
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-
-env:
-  FRONT_VERSION: 1.0.0
-  STRAPI_VERSION: 2.0.0
 
 jobs:
   front:
@@ -157,8 +153,8 @@ jobs:
         -var nomad_addr=${{ secrets.NOMAD_ADDR }} \
         -var jwt_secret=${{ secrets.JWT_SECRET }} \
         -var node_env=production \
-        -var strapi_image=${{ steps.metaStrapi.outputs.tag }} \
-        -var front_image=${{ steps.metaFront.outputs.tag }} \
+        -var strapi_image=${{ steps.metaStrapi.outputs.tags }} \
+        -var front_image=${{ steps.metaFront.outputs.tags }} \
         -var strapi_app_keys=${{ secrets.STRAPI_APP_KEYS }} \
         -var strapi_api_token_salt=${{ secrets.STRAPI_API_TOKEN_SALT }} \
         -var strapi_admin_jwt_secret=${{ secrets.STRAPI_ADMIN_JWT_SECRET }} \
