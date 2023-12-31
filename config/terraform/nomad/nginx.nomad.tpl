@@ -5,7 +5,7 @@ job "nginx" {
     count = 1
 
     network {
-      mode = "host"
+      mode = "bridge"
       port "nginx" {
         to = 80
         static = 80
