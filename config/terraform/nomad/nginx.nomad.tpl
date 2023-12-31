@@ -35,10 +35,36 @@ job "nginx" {
 
        template {
         data = <<EOH
+          server {
+            listen 3000;
+            server_name ${hostname};
+
+            location /${strapi_prefix} {
+              rewrite ^/${strapi_prefix}/?(.*)$ /$1 break;
+
+            {{ range nomadService "strapi" }}
+              proxy_pass http://{{ .Address }}:{{ .Port }};
+            {{ end }}
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+            }
+
+            location / {
+            {{ range nomadService "nginx" }}
+              proxy_pass http://{{ .Address }}:{{ .Port }};
+            {{ end }}
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+            }
+          }
 
 
             server {
-              listen 80;
+              listen 9090;
               server_name ${hostname};
 
               location / {
