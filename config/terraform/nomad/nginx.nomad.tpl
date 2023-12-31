@@ -7,8 +7,8 @@ job "nginx" {
     network {
       mode = "host"
       port "nginx1" {
-        to = 80
-        static = 80
+        to = 3000
+        static = 3000
       }
       port "nginx2" {
         to = 8000
@@ -34,7 +34,7 @@ job "nginx" {
        template {
         data = <<EOH
           server {
-            listen 80;
+            listen 3000;
             server_name ${hostname};
 
             location /${strapi_prefix} {
