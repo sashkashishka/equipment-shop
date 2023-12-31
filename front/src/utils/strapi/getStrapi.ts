@@ -36,22 +36,22 @@ interface iOptions<T extends API> extends iQueryBuilderOptions {
 }
 
 // TODO adapt cache policy
-function getTagCache(tag: string, enabled: boolean) {
-  if (process.env.NODE_ENV === 'development' || !enabled) {
-    return {
-      cache: 'no-store',
-    } as const;
-  }
+// function getTagCache(tag: string, enabled: boolean) {
+//   if (process.env.NODE_ENV === 'development' || !enabled) {
+//     return {
+//       cache: 'no-store',
+//     } as const;
+//   }
 
-  return {
-    next: { tags: [tag] },
-  };
-}
+//   return {
+//     next: { tags: [tag] },
+//   };
+// }
 
 export async function getStrapi<T extends API>(
   endpoint: T,
   {
-    enableTagCache = true,
+    // enableTagCache = true,
     params,
     filters,
     pagination,
@@ -68,7 +68,7 @@ export async function getStrapi<T extends API>(
 
   const response = await fetch(url, {
     headers: AUTH_HEADER,
-    ...getTagCache(url, enableTagCache),
+    // ...getTagCache(url, enableTagCache),
   });
 
   if (!response.ok) {
