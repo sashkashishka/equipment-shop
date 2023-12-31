@@ -10,7 +10,7 @@ job "nextjs" {
     }
 
     network {
-      mode = "bridge"
+      mode = "host"
       port "nextjs" {
         to = 3000
       }

@@ -10,7 +10,7 @@ job "database" {
     }
 
     network {
-      mode = "bridge"
+      mode = "host"
       port "db" {
         to = 3306
       }
