@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  FRONT_VERSION: 1.0.0
+  STRAPI_VERSION: 2.0.0
+
 jobs:
   build-and-deploy:
     name: Build and deploy
@@ -34,7 +38,7 @@ jobs:
         context: ./front
         file: ./front/Dockerfile
         push: true
-        tags: sashkashishka/pgi-front:latest
+        tags: sashkashishka/pgi-front:${{env.FRON_VERSION}}
 
     - name: Build and push strapi image
       uses: docker/build-push-action@v4
@@ -42,7 +46,7 @@ jobs:
         context: ./strapi
         file: ./strapi/Dockerfile
         push: true
-        tags: sashkashishka/pgi-strapi:latest
+        tags: sashkashishka/pgi-strapi:${{env.STRAPI_VERSION}}
 
 
     - name: Setup Terraform
@@ -69,8 +73,8 @@ jobs:
         -var jwt_secret=${{ secrets.JWT_SECRET }} \
         -var node_env=production \
         -var docker_username=${{ secrets.DOCKER_USERNAME }} \
-        -var strapi_version=latest \
-        -var front_version=latest \
+        -var strapi_version=${{ env.STRAPI_VERSION }} \
+        -var front_version=${{ env.FRONT_VERSION }} \
         -var strapi_app_keys=${{ secrets.STRAPI_APP_KEYS }} \
         -var strapi_api_token_salt=${{ secrets.STRAPI_API_TOKEN_SALT }} \
         -var strapi_admin_jwt_secret=${{ secrets.STRAPI_ADMIN_JWT_SECRET }} \

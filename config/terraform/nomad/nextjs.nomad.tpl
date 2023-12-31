@@ -20,6 +20,14 @@ job "nextjs" {
       name     = "nextjs"
       provider = "nomad"
       port     = "nextjs"
+      check {
+        name = "nextjs_check"
+        type = "http"
+        method = "get"
+        path = "/api/healthcheck"
+        timeout = "30s"
+        interval = "5s"
+      }
     }
 
     task "nextjs" {

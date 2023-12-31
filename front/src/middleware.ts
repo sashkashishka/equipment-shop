@@ -59,8 +59,5 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
-  matcher: [
-    // TODO remove hardcode of capi
-    '/((?!api|_next/static|_next/image|favicon.ico|manifest.json).*)',
-  ],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|manifest.json).*)'],
 };

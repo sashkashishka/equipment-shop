@@ -37,15 +37,21 @@ interface iOptions<T extends API> extends iQueryBuilderOptions {
 
 // TODO adapt cache policy
 function getTagCache(tag: string, enabled: boolean) {
+  if (process.env.NODE_ENV === 'development' || !enabled) {
+    return {
+      cache: 'no-store',
+    } as const;
+  }
+
   return {
-    cache: 'no-store',
-  } as const;
+    next: { tags: [tag] },
+  };
 }
 
 export async function getStrapi<T extends API>(
   endpoint: T,
   {
-    enableTagCache = true,
+    enableTagCache = false,
     params,
     filters,
     pagination,
