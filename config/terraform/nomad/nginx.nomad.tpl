@@ -35,24 +35,16 @@ job "nginx" {
 
        template {
         data = <<EOH
-          upstream strapi {
-            {{ range nomadService "strapi" }}
-              server {{ .Address }}:{{ .Port }};
-            {{ end }}
-          }
-
-          upstream front {
-            {{ range nomadService "nextjs" }}
-              server {{ .Address }}:{{ .Port }};
-            {{ end }}
-          }
-
           server {
             listen 80;
+            server_name ${hostname};
 
             location /${strapi_prefix} {
               rewrite ^/${strapi_prefix}/?(.*)$ /$1 break;
-              proxy_pass http://strapi;
+
+            {{ range nomadService "strapi" }}
+              proxy_pass http://{{ .Address }}:{{ .Port }};
+            {{ end }}
               proxy_set_header Host $host;
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -60,7 +52,9 @@ job "nginx" {
             }
 
             location / {
-              proxy_pass http://front;
+            {{ range nomadService "nginx" }}
+              proxy_pass http://{{ .Address }}:{{ .Port }};
+            {{ end }}
               proxy_set_header Host $host;
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -71,9 +65,12 @@ job "nginx" {
 
             server {
               listen 8000;
+              server_name ${hostname};
 
               location / {
-                proxy_pass http://strapi;
+            {{ range nomadService "strapi" }}
+              proxy_pass http://{{ .Address }}:{{ .Port }};
+            {{ end }}
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
