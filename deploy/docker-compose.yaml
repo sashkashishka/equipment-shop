@@ -29,6 +29,12 @@ services:
         source: ./volume/nextjs
         target: /usr/app/logs
         read_only: false
+    healthcheck:
+      test: wget http://localhost:3000/api/healthcheck || exit 1
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 2m
     env_file:
       - "./envs/.env.nextjs"
     networks:
@@ -45,6 +51,12 @@ services:
         source: ./volume/strapi
         target: /opt/app/public
         read_only: false
+    healthcheck:
+      test: wget http://localhost:1337 || exit 1
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 2m
     env_file:
       - "./envs/.env.strapi"
     networks:

@@ -78,7 +78,7 @@ jobs:
         username: ${{ secrets.USER }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        source: "deploy/docker-compose.yaml,deploy/scripts/,deploy/volume/,deploy/config/,!deploy/envs/"
+        source: "deploy/docker-compose.yaml,deploy/scripts/,deploy/config/,!deploy/envs/,deploy/volume/"
         target: ~/${{ secrets.DIR }}
 
     - name: Pull images
