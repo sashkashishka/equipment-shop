@@ -6,7 +6,9 @@ import cn from 'classnames';
 
 import styles from './Link.module.css';
 
-interface iProps extends React.HTMLAttributes<HTMLAnchorElement>, LinkProps {}
+interface iProps
+  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
+    LinkProps {}
 
 export function Link({ className, href, ...props }: iProps) {
   const { locale } = useParams();

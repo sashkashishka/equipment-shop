@@ -14,8 +14,7 @@
   background: var(--p-color-basic-1);
 
   .cardContent {
-    display: grid;
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 }
 
@@ -36,6 +35,7 @@
 .title {
   font-size: 18px;
   font-weight: 500;
+  word-break: break-word;
 }
 
 @mixin media-768 {

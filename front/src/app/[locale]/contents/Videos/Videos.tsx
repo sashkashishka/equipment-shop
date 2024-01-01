@@ -1,6 +1,7 @@
 import { t } from 'ttag';
 import { YoutubeThumb } from '@/components/YoutubeVideo';
 import { Button } from '@/components/Button';
+import { Link } from '@/components/Link';
 import { HTMLParser } from '@/components/HTMLParser';
 import { iYoutubeVideosComponent } from '@/types/strapi';
 
@@ -19,7 +20,13 @@ export function Videos({ content }: iProps) {
 
       <div className={styles.cardsGrid}>
         {videos.map(({ url, name }) => (
-          <div key={url} className={styles.card}>
+          <Link
+            key={url}
+            href={url}
+            rel="noreferrer"
+            target="_blank"
+            className={styles.card}
+          >
             <YoutubeThumb
               className={styles.thumb}
               width="100%"
@@ -35,7 +42,7 @@ export function Videos({ content }: iProps) {
               type="button"
               className={styles.cardButton}
             >{t`Watch`}</Button>
-          </div>
+          </Link>
         ))}
       </div>
 

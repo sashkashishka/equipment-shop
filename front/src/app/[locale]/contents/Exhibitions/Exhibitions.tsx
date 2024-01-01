@@ -1,6 +1,4 @@
-import { t } from 'ttag';
 import { Link } from '@/components/Link';
-import { Button } from '@/components/Button';
 import { HTMLParser } from '@/components/HTMLParser';
 import { iExhibitionsComponentContent } from '@/utils/strapi/getMainPageConfig';
 
@@ -19,7 +17,13 @@ export function Exhibitions({ content }: iProps) {
 
       <div className={styles.cardsList}>
         {exhibitions.map(({ link, logo, name }) => (
-          <Link key={link} href={link} rel="noreferrer" className={styles.card}>
+          <Link
+            key={link}
+            href={link}
+            target="_blank"
+            rel="noreferrer"
+            className={styles.card}
+          >
             <p className={styles.cardTitle}>{name}</p>
 
             <img className={styles.logo} src={logo.url} alt={name} />
