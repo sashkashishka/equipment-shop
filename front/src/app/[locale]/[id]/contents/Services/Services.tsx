@@ -1,10 +1,10 @@
 import { Link } from '@/components/Link';
-import { iServicesTypeContent } from '@/utils/strapi/getDynamicPageContent';
+import { iServicesComponentContent } from '@/utils/strapi/getDynamicPageContent';
 
 import styles from './Services.module.css';
 
 interface iProps {
-  content: iServicesTypeContent;
+  content: iServicesComponentContent;
 }
 
 export async function ServicesContent({ content }: iProps) {

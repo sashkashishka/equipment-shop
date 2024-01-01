@@ -130,26 +130,43 @@ export const QUERIES = {
     return qs.stringify({
       locale: getCurrentLocale(),
       populate: {
-        videos: true,
         metatags: true,
-        carousel: {
-          populate: ['photos', 'videos'],
-        },
-        equipment: {
-          fields: ['id', 'slug', 'name'],
-          populate: ['photos'],
-        },
-        services: {
-          populate: {
-            content: {
-              on: {
-                'services.services': {
-                  populate: {
-                    service: {
-                      populate: ['description', 'photo', 'children'],
-                    },
-                  },
-                },
+        content: {
+          on: {
+            'carousel.carousel': {
+              populate: ['photos', 'videos'],
+            },
+
+            'services.services': {
+              populate: {
+                service: {
+                  populate: ['photo', 'description', 'children']
+                }
+              },
+            },
+            'content.html': {
+              fields: ['html', 'title'],
+            },
+            'youtube-video.videos': {
+              fields: ['title', 'bottomText'],
+              populate: ['videos'],
+            },
+            'callback-form.callback-form': {
+              fields: ['title', 'subtitle'],
+              populate: ['illustration'],
+            },
+            'main.equipment-block': {
+              populate: {
+                equipment: {
+                  populate: ['photos']
+                }
+              },
+            },
+            'main.exhibitions': {
+              populate: {
+                exhibitions: {
+                  populate: ['logo']
+                }
               },
             },
           },

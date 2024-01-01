@@ -16,50 +16,6 @@
     }
   },
   "attributes": {
-    "equipment": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::equipment-category.equipment-category"
-    },
-    "aboutCompany": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "customField",
-      "options": {
-        "output": "HTML",
-        "preset": "rich"
-      },
-      "customField": "plugin::ckeditor.CKEditor"
-    },
-    "services": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::page.page"
-    },
-    "videos": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "youtube-video.youtube-video",
-      "required": true
-    },
-    "carousel": {
-      "type": "component",
-      "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "carousel.carousel"
-    },
     "metatags": {
       "type": "component",
       "repeatable": false,
@@ -70,6 +26,23 @@
       },
       "component": "metatags.metatags",
       "required": true
+    },
+    "content": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "dynamiczone",
+      "components": [
+        "carousel.carousel",
+        "services.services",
+        "content.html",
+        "youtube-video.videos",
+        "callback-form.callback-form",
+        "main.equipment-block",
+        "main.exhibitions"
+      ]
     }
   }
 }

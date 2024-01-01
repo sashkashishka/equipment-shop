@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_main_exhibitions",
+  "info": {
+    "displayName": "Exhibitions",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "exhibitions": {
+      "displayName": "Exhibition",
+      "type": "component",
+      "repeatable": true,
+      "component": "main.exhibition"
+    },
+    "bottomText": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
+    }
+  }
+}

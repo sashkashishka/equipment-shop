@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_callback_form_callback_forms",
+  "info": {
+    "displayName": "callbackForm",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "illustration": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

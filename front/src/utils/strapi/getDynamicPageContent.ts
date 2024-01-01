@@ -5,21 +5,21 @@ import {
   iPage,
   iStrapiResponse,
   iContactsContent,
-  iServiceContent,
-  iServicesContent,
+  iServiceComponent,
+  iServicesComponent,
 } from '@/types/strapi';
 import { iImage, transformImages } from '@/utils/strapi/transformImages';
 
-export interface iServiceTypeContent {
+export interface iServiceComponentContent {
   title: iPage['name'];
   link: string;
   photo: iImage[];
-  description: iServiceContent['description'];
+  description: iServiceComponent['description'];
 }
 
-export interface iServicesTypeContent
-  extends Pick<iServicesContent, '__component'> {
-  service: Array<iServiceTypeContent>;
+export interface iServicesComponentContent
+  extends Pick<iServicesComponent, '__component' | 'title'> {
+  service: Array<iServiceComponentContent>;
 }
 
 export interface iHtmlTypeContent
@@ -36,7 +36,7 @@ export interface iDynamicPageContent {
   slug: iPage['slug'];
   metatags: iPage['metatags'];
   content: Array<
-    iServicesTypeContent | iHtmlTypeContent | iContactsTypeContent
+    iServicesComponentContent | iHtmlTypeContent | iContactsTypeContent
   >;
 }
 
@@ -51,6 +51,7 @@ function transform(data: iStrapiResponse<iPage>[]): iDynamicPageContent[] {
           case 'services.services': {
             return {
               __component: content.__component,
+              title: content.title,
               service: content.service.map((service) => ({
                 title: service?.children?.data?.attributes?.name,
                 link: `/${service?.children?.data?.attributes?.slug}`,

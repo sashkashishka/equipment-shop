@@ -11,10 +11,118 @@ export interface iStrapiMeta {
   };
 }
 
+// ===============
+// ===============
+// misc
+// ===============
+// ===============
+
 export interface iLinks {
   slug: string;
   name: string;
 }
+
+export interface iMediaImage {
+  url: string;
+}
+
+// ===============
+// ===============
+// COMPONENTS
+// ===============
+// ===============
+
+export interface iHtmlContent {
+  html: string;
+  title: string;
+  __component: 'content.html';
+}
+
+export interface iServiceComponent {
+  photo: {
+    data: iStrapiResponse<iMediaImage>;
+  };
+  description: string;
+  children: {
+    data: iStrapiResponse<iPage>;
+  };
+}
+
+export interface iServicesComponent {
+  title: string;
+  service: iServiceComponent[];
+  __component: 'services.services';
+}
+
+export interface iContactsContent {
+  email: string;
+  phone: string;
+  address: string;
+  __component: 'contacts.contacts';
+}
+
+export interface iYoutubeVideoComponent {
+  name: string;
+  url: string;
+}
+
+export interface iMetatagsComponent {
+  title: string;
+  description: string;
+}
+
+export interface iCarouselComponent {
+  photos: {
+    data: iStrapiResponse<iMediaImage>[];
+  };
+  videos: iYoutubeVideoComponent[];
+  __component: 'carousel.carousel';
+}
+
+export interface iCallbackFormComponent {
+  title: string;
+  subtitle: string;
+  illustration: {
+    data: iStrapiResponse<iMediaImage>;
+  };
+  __component: 'callback-form.callback-form';
+}
+
+export interface iMainEquipmentComponent {
+  title: string;
+  equipment: {
+    data: iStrapiResponse<iEquipment>[];
+  };
+  __component: 'main.equipment-block';
+}
+
+export interface iExhibitionComponent {
+  name: string;
+  logo: {
+    data: iStrapiResponse<iMediaImage>;
+  };
+  link: string;
+}
+
+export interface iExhibitionsComponent {
+  title: string;
+  bottomText: string;
+  exhibitions: iExhibitionComponent[];
+  __component: 'main.exhibitions';
+}
+
+export interface iYoutubeVideosComponent {
+  title: string;
+  bottomText: string;
+  videos: iYoutubeVideoComponent[];
+  __component: 'youtube-video.videos';
+}
+
+// ===============
+// ===============
+// CONFIGS
+// ===============
+// ===============
 
 export interface iCommonConfig {
   phone: string;
@@ -25,9 +133,28 @@ export interface iCommonConfig {
   };
 }
 
-export interface iMediaImage {
-  url: string;
+export interface iEquipmentConfig {
+  services: iServiceComponent[];
 }
+
+export interface iMainPageConfig {
+  metatags: iMetatagsComponent;
+  content: Array<
+    | iCarouselComponent
+    | iServicesComponent
+    | iHtmlContent
+    | iYoutubeVideosComponent
+    | iCallbackFormComponent
+    | iMainEquipmentComponent
+    | iExhibitionsComponent
+  >;
+}
+
+// ===============
+// ===============
+// COLLECTIONS
+// ===============
+// ===============
 
 export interface iEquipment {
   slug: string;
@@ -43,45 +170,14 @@ export interface iEquipment {
   children: {
     data: iStrapiResponse<iEquipment>[];
   };
-  metatags: iMetatags;
-}
-
-export interface iHtmlContent {
-  html: string;
-  __component: 'content.html';
-}
-
-export interface iServiceContent {
-  photo: {
-    data: iStrapiResponse<iMediaImage>;
-  };
-  description: string;
-  children: {
-    data: iStrapiResponse<iPage>;
-  };
-}
-
-export interface iServicesContent {
-  service: iServiceContent[];
-  __component: 'services.services';
-}
-
-export interface iContactsContent {
-  email: string;
-  phone: string;
-  address: string;
-  __component: 'contacts.contacts';
+  metatags: iMetatagsComponent;
 }
 
 export interface iPage {
   name: string;
   slug: string;
-  content: Array<iHtmlContent | iServicesContent | iContactsContent>;
-  metatags: iMetatags;
-}
-
-export interface iEquipmentConfig {
-  services: iServiceContent[];
+  content: Array<iHtmlContent | iServicesComponent | iContactsContent>;
+  metatags: iMetatagsComponent;
 }
 
 export interface iBlogPost {
@@ -92,33 +188,5 @@ export interface iBlogPost {
   };
   content: string;
   publishedAt: string; // Date
-  metatags: iMetatags;
-}
-
-export interface iYoutubeVideoComponent {
-  name: string;
-  url: string;
-}
-
-export interface iMainPageConfig {
-  aboutCompany: string;
-  equipment: {
-    data: iStrapiResponse<iEquipment>[];
-  };
-  services: {
-    data: iStrapiResponse<iPage>;
-  };
-  videos: iYoutubeVideoComponent[];
-  carousel: {
-    photos: {
-      data: iStrapiResponse<iMediaImage>[];
-    };
-    videos: iYoutubeVideoComponent[];
-  };
-  metatags: iMetatags;
-}
-
-export interface iMetatags {
-  title: string;
-  description: string;
+  metatags: iMetatagsComponent;
 }

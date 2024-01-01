@@ -2,7 +2,11 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
-  max-width: 1640px;
-  margin: auto;
-  padding: 24px 16px;
+  margin: 24px 0;
+}
+
+@mixin media-768 {
+  .container {
+    gap: 32px;
+  }
 }

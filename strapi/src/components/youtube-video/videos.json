@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_youtube_video_videos",
+  "info": {
+    "displayName": "videos",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "videos": {
+      "type": "component",
+      "repeatable": true,
+      "component": "youtube-video.youtube-video"
+    },
+    "title": {
+      "type": "string"
+    },
+    "bottomText": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
+    }
+  }
+}

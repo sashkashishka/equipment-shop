@@ -2,7 +2,7 @@ import cn from 'classnames';
 
 import { getEquipmentContent } from '@/utils/strapi/getEquipmentContent';
 import { HTMLParser } from '@/components/HTMLParser';
-import { CategoryCard } from '../CategoryCard';
+import { CategoryCard } from '@/components/CategoryCard';
 
 import styles from './Category.module.css';
 

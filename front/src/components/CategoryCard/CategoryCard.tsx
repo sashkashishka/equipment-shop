@@ -4,7 +4,7 @@ import { Link } from '@/components/Link';
 import styles from './CategoryCard.module.css';
 
 interface iProps {
-  category: iEquipmentContent;
+  category: Pick<iEquipmentContent, 'title' | 'link' | 'photos' | 'subtitle'>;
 }
 
 export function CategoryCard({ category }: iProps) {
@@ -19,7 +19,7 @@ export function CategoryCard({ category }: iProps) {
 
         <p className={styles.title}>{title}</p>
 
-        <p className={styles.subtitle}>{subtitle}</p>
+        {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
       </Link>
     </div>
   );

@@ -1,1 +1,1 @@
-export { YoutubeVideo } from './YoutubeVideo';
+export { YoutubeVideo, YoutubeThumb } from './YoutubeVideo';

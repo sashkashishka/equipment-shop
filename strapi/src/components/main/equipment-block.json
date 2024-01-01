@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_main_equipment_blocks",
+  "info": {
+    "displayName": "Equipment block"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "equipment": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::equipment-category.equipment-category"
+    }
+  }
+}

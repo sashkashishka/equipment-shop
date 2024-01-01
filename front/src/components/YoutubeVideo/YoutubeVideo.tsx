@@ -16,6 +16,7 @@ interface iProps {
   className?: string;
   width?: string;
   height?: string;
+  showYoutubeBtn?: boolean;
   handleClick?(): void;
 }
 
@@ -25,6 +26,7 @@ export function YoutubeThumb({
   name,
   height,
   width,
+  showYoutubeBtn = true,
   handleClick,
 }: iProps) {
   const videoId = getYoutubeId(link);
@@ -38,11 +40,13 @@ export function YoutubeThumb({
         height={height}
         className={styles.thumb}
       />
-      <YoutubeButtonIcon
-        width="68px"
-        height="48px"
-        className={styles.youtubeBtn}
-      />
+      {showYoutubeBtn && (
+        <YoutubeButtonIcon
+          width="68px"
+          height="48px"
+          className={styles.youtubeBtn}
+        />
+      )}
     </div>
   );
 }

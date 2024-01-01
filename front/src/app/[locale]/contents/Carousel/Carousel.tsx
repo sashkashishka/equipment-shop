@@ -2,17 +2,17 @@
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Mousewheel, Keyboard } from 'swiper/modules';
-import { iMainPageConfigContent } from '@/utils/strapi/getMainPageConfig';
+import { YoutubeVideo } from '@/components/YoutubeVideo';
+import { iCarouselComponentContent } from '@/utils/strapi/getMainPageConfig';
 
 import styles from './Carousel.module.css';
-import { YoutubeVideo } from '@/components/YoutubeVideo';
 
 interface iProps {
-  carousel: iMainPageConfigContent['carousel'];
+  content: iCarouselComponentContent;
 }
 
-export function Carousel({ carousel }: iProps) {
-  const { photos, videos } = carousel;
+export function Carousel({ content }: iProps) {
+  const { photos, videos } = content;
 
   return (
     <Swiper
