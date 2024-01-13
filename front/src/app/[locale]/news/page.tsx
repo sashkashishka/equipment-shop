@@ -8,11 +8,15 @@ import { BlogPostCard } from './components/BlogPostCard';
 import styles from './page.module.css';
 
 interface iProps {
+  params: { locale: string };
   searchParams: { page?: string };
 }
 
-export default async function NewsPage({ searchParams }: iProps) {
-  const { posts, pagination } = await getBlogPosts(searchParams.page);
+export default async function NewsPage({ searchParams, params }: iProps) {
+  const { posts, pagination } = await getBlogPosts(
+    searchParams.page,
+    params.locale,
+  );
 
   return (
     <div>
@@ -20,7 +24,7 @@ export default async function NewsPage({ searchParams }: iProps) {
 
       <div className={styles.postGrid}>
         {posts.map((post) => (
-          <BlogPostCard key={post.id} post={post} />
+          <BlogPostCard key={post.id} post={post} locale={params.locale} />
         ))}
       </div>
 

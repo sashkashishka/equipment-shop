@@ -7,11 +7,12 @@ import styles from './layout.module.css';
 import { getCommonConfig } from '@/utils/strapi/getCommonConfig';
 
 interface iProps {
+  params: { locale: string };
   children: React.ReactNode | React.ReactNode[];
 }
 
-export default async function EquipmentLayout({ children }: iProps) {
-  const { equipmentLinksTree } = await getCommonConfig();
+export default async function EquipmentLayout({ params, children }: iProps) {
+  const { equipmentLinksTree } = await getCommonConfig(params.locale);
 
   return (
     <div className={styles.layout}>

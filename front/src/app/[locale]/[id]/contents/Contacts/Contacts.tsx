@@ -7,9 +7,10 @@ import styles from './Contacts.module.css';
 
 interface iProps {
   content: iContactsTypeContent;
+  locale: string;
 }
 
-export function ContactsContent({ content }: iProps) {
+export function ContactsContent({ content, locale }: iProps) {
   return (
     <div className={styles.container}>
       <div className={styles.contactsData}>
@@ -29,7 +30,7 @@ export function ContactsContent({ content }: iProps) {
         </div>
       </div>
 
-      <Form />
+      <Form locale={locale} />
     </div>
   );
 }

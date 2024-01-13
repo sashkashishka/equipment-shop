@@ -15,7 +15,7 @@ export function ProductCard({ category }: iProps) {
   return (
     <div className={styles.card}>
       <Link href={link} className={styles.cardContent}>
-        <img className={styles.photo} src={photo.url} alt={title} />
+        <img className={styles.photo} src={photo?.url} alt={title} />
 
         <div>
           <p className={styles.title}>{title}</p>

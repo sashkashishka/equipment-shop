@@ -48,9 +48,10 @@ function transform(
   };
 }
 
-export async function getEquipmentContent(id: number) {
-  const { equipmentLinksTree } = await getCommonConfig();
+export async function getEquipmentContent(id: number, locale: string) {
+  const { equipmentLinksTree } = await getCommonConfig(locale);
   const { data } = await getStrapi(API.EQUIPMENT_CATEGORY, {
+    locale,
     params: { id: String(id) },
   });
 

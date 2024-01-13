@@ -19,7 +19,7 @@ export interface iStrapiMeta {
 
 export interface iLinks {
   slug: string;
-  name: string;
+  linkName: string;
 }
 
 export interface iMediaImage {
@@ -158,7 +158,7 @@ export interface iMainPageConfig {
 
 export interface iEquipment {
   slug: string;
-  name: string;
+  linkName: string;
   type: 'category' | 'productList' | 'product';
   title: string;
   subtitle: string;
@@ -174,7 +174,7 @@ export interface iEquipment {
 }
 
 export interface iPage {
-  name: string;
+  linkName: string;
   slug: string;
   content: Array<iHtmlContent | iServicesComponent | iContactsContent>;
   metatags: iMetatagsComponent;

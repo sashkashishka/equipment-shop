@@ -1,5 +1,4 @@
 import 'server-only';
-import { getCurrentLocale } from '@/i18n/common';
 
 const defaultOptions: Intl.DateTimeFormatOptions = {
   year: 'numeric',
@@ -9,9 +8,10 @@ const defaultOptions: Intl.DateTimeFormatOptions = {
 
 export function formatDate(
   stringDate: string,
+  locale: string,
   options = defaultOptions,
 ): string {
   const date = new Date(stringDate);
 
-  return new Intl.DateTimeFormat(getCurrentLocale(), options).format(date);
+  return new Intl.DateTimeFormat(locale, options).format(date);
 }

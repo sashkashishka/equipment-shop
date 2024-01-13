@@ -1,5 +1,4 @@
 import qs from 'qs';
-import { getCurrentLocale } from '@/i18n/common';
 
 export const STRAPI_HOST = process.env.STRAPI_HOST;
 export const STRAPI_PREFIX = process.env.STRAPI_PREFIX;
@@ -26,22 +25,23 @@ export interface iQueryBuilderOptions {
     withCount: boolean;
   };
   sort?: string[];
+  locale: string;
 }
 
 export const QUERIES = {
-  [API.COMMON_CONFIG]() {
+  [API.COMMON_CONFIG]({ locale }: iQueryBuilderOptions) {
     return qs.stringify({
-      locale: getCurrentLocale(),
+      locale,
       populate: {
         links: {
-          fields: ['slug', 'name'],
+          fields: ['slug', 'linkName'],
         },
       },
     });
   },
-  [API.EQUIPMENT_CONFIG]() {
+  [API.EQUIPMENT_CONFIG]({ locale }: iQueryBuilderOptions) {
     return qs.stringify({
-      locale: getCurrentLocale(),
+      locale,
       populate: {
         services: {
           populate: ['title', 'description', 'photo', 'children'],
@@ -49,24 +49,24 @@ export const QUERIES = {
       },
     });
   },
-  [API.EQUIPMENT_CATEGORIES]() {
+  [API.EQUIPMENT_CATEGORIES]({ locale }: iQueryBuilderOptions) {
     return qs.stringify({
-      locale: getCurrentLocale(),
+      locale,
       filters: {
         root: true,
       },
       populate: {
         children: {
-          fields: ['slug', 'name', 'type'],
+          fields: ['slug', 'linkName', 'type'],
           populate: {
             children: {
-              fields: ['slug', 'name', 'type'],
+              fields: ['slug', 'linkName', 'type'],
               populate: {
                 children: {
-                  fields: ['slug', 'name', 'type'],
+                  fields: ['slug', 'linkName', 'type'],
                   populate: {
                     children: {
-                      fields: ['slug', 'name', 'type'],
+                      fields: ['slug', 'linkName', 'type'],
                     },
                   },
                 },
@@ -77,21 +77,21 @@ export const QUERIES = {
       },
     });
   },
-  [API.EQUIPMENT_CATEGORY]() {
+  [API.EQUIPMENT_CATEGORY]({ locale }: iQueryBuilderOptions) {
     return qs.stringify({
-      locale: getCurrentLocale(),
+      locale,
       populate: {
         photos: true,
         metatags: true,
         children: {
-          populate: ['slug', 'name', 'title', 'subtitle', 'photos'],
+          populate: ['slug', 'linkName', 'title', 'subtitle', 'photos'],
         },
       },
     });
   },
-  [API.PAGE]({ filters }: iQueryBuilderOptions = {}) {
+  [API.PAGE]({ filters, locale }: iQueryBuilderOptions) {
     return qs.stringify({
-      locale: getCurrentLocale(),
+      locale,
       filters,
       populate: {
         metatags: true,
@@ -116,9 +116,9 @@ export const QUERIES = {
     });
   },
 
-  [API.BLOG]({ filters, pagination, sort }: iQueryBuilderOptions = {}) {
+  [API.BLOG]({ filters, pagination, sort, locale }: iQueryBuilderOptions) {
     return qs.stringify({
-      locale: getCurrentLocale(),
+      locale,
       sort,
       filters,
       pagination,
@@ -126,9 +126,9 @@ export const QUERIES = {
     });
   },
 
-  [API.MAIN_PAGE]() {
+  [API.MAIN_PAGE]({ locale }: iQueryBuilderOptions) {
     return qs.stringify({
-      locale: getCurrentLocale(),
+      locale,
       populate: {
         metatags: true,
         content: {
@@ -140,8 +140,8 @@ export const QUERIES = {
             'services.services': {
               populate: {
                 service: {
-                  populate: ['photo', 'description', 'children']
-                }
+                  populate: ['photo', 'description', 'children'],
+                },
               },
             },
             'content.html': {
@@ -158,15 +158,15 @@ export const QUERIES = {
             'main.equipment-block': {
               populate: {
                 equipment: {
-                  populate: ['photos']
-                }
+                  populate: ['photos'],
+                },
               },
             },
             'main.exhibitions': {
               populate: {
                 exhibitions: {
-                  populate: ['logo']
-                }
+                  populate: ['logo'],
+                },
               },
             },
           },

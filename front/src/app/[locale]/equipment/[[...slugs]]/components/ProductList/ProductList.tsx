@@ -8,11 +8,14 @@ import styles from './ProductList.module.css';
 
 interface iProps {
   id: number;
+  locale: string;
 }
 
-export async function ProductList({ id }: iProps) {
-  const { title, topText, bottomText, children } =
-    await getEquipmentContent(id);
+export async function ProductList({ id, locale }: iProps) {
+  const { title, topText, bottomText, children } = await getEquipmentContent(
+    id,
+    locale,
+  );
 
   return (
     <>

@@ -5,9 +5,13 @@ import { getCommonConfig } from '@/utils/strapi/getCommonConfig';
 
 import styles from './Footer.module.css';
 
-export async function Footer() {
+interface iProps {
+  locale: string;
+}
+
+export async function Footer({ locale }: iProps) {
   const { copyright, phone, equipmentLinksFlatten, links } =
-    await getCommonConfig();
+    await getCommonConfig(locale);
 
   return (
     <footer className={styles.container}>
@@ -37,10 +41,7 @@ export async function Footer() {
         </div>
 
         <div className={styles.column}>
-          <Link
-            className={styles.phoneLink}
-            href={`tel:${phone}`}
-          >
+          <Link className={styles.phoneLink} href={`tel:${phone}`}>
             {phone}
           </Link>
 

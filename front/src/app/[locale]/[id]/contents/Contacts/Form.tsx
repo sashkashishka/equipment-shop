@@ -8,8 +8,12 @@ import { getCommonConfig } from '@/utils/strapi/getCommonConfig';
 
 import styles from './Form.module.css';
 
-export async function Form() {
-  const { equipmentLinksFlatten } = await getCommonConfig();
+interface iProps {
+  locale: string;
+}
+
+export async function Form({ locale }: iProps) {
+  const { equipmentLinksFlatten } = await getCommonConfig(locale);
 
   const items = equipmentLinksFlatten.slice(1).map(({ id, label, slug }) => ({
     id,

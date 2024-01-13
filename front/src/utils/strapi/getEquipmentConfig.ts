@@ -9,14 +9,14 @@ function transform(config: iStrapiResponse<iEquipmentConfig>) {
   return {
     serviceTypes: attributes.services.map((content) => ({
       photo: transformImages([content?.photo?.data]),
-      title: content?.children?.data?.attributes?.name,
+      title: content?.children?.data?.attributes?.linkName,
       link: `/${content?.children?.data?.attributes?.slug}`,
     })),
   };
 }
 
-export async function getEquipmentConfig() {
-  const { data: config } = await getStrapi(API.EQUIPMENT_CONFIG);
+export async function getEquipmentConfig(locale: string) {
+  const { data: config } = await getStrapi(API.EQUIPMENT_CONFIG, { locale });
 
   return transform(config);
 }

@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "ttag": "ttag",
+    "tsc": "tsc",
     "ttag:update": "node ./scripts/ttag-update.mjs",
     "ttag:json": "node ./scripts/ttag-po2json.mjs"
   },
@@ -15,8 +16,8 @@
     "@types/qs": "^6.9.11",
     "classnames": "^2.3.2",
     "dompurify": "^3.0.6",
-    "negotiator": "^0.6.3",
     "next": "14.0.4",
+    "next-i18n-router": "^5.2.0",
     "qs": "^6.11.2",
     "react": "^18",
     "react-dom": "^18",

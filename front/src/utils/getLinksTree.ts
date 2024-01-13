@@ -4,7 +4,7 @@ import type { iEquipment, iStrapiResponse } from '@/types/strapi';
 export interface iEquipmentLink {
   id: number;
   type: iEquipment['type'];
-  label: iEquipment['name'];
+  label: iEquipment['linkName'];
   url: string;
   slug: iEquipment['slug'];
   children?: iEquipmentLink[];
@@ -17,7 +17,7 @@ export function getEquipmentLinksTree(
   return data.map<iEquipmentLink>((v) => {
     const id = v.id;
     const type = v.attributes.type;
-    const label = v.attributes.name;
+    const label = v.attributes.linkName;
     const slug = v.attributes.slug;
     const url = `${prefix}/${v.attributes.slug}`;
 

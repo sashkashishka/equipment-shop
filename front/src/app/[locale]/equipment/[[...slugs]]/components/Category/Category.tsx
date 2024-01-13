@@ -8,11 +8,14 @@ import styles from './Category.module.css';
 
 interface iProps {
   id: number;
+  locale: string;
 }
 
-export async function Category({ id }: iProps) {
-  const { title, topText, bottomText, children } =
-    await getEquipmentContent(id);
+export async function Category({ id, locale }: iProps) {
+  const { title, topText, bottomText, children } = await getEquipmentContent(
+    id,
+    locale,
+  );
 
   return (
     <>

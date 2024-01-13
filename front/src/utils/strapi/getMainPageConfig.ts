@@ -99,7 +99,7 @@ function transform(
           return {
             title: content.title,
             service: content.service.map((service) => ({
-              title: service?.children?.data?.attributes?.name,
+              title: service?.children?.data?.attributes?.linkName,
               link: `/${service?.children?.data?.attributes?.slug}`,
               photo: transformImages([service?.photo?.data]),
               description: service.description,
@@ -150,10 +150,10 @@ function transform(
   };
 }
 
-export async function getMainPageConfig() {
+export async function getMainPageConfig(locale: string) {
   const [{ data: mainPageConfig }, commonConfig] = await Promise.all([
-    getStrapi(API.MAIN_PAGE),
-    getCommonConfig(),
+    getStrapi(API.MAIN_PAGE, { locale }),
+    getCommonConfig(locale),
   ]);
 
   return transform(mainPageConfig, commonConfig);

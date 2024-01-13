@@ -9,9 +9,13 @@ import { getCommonConfig } from '@/utils/strapi/getCommonConfig';
 
 import styles from './Navbar.module.css';
 
-export async function Navbar() {
+interface iProps {
+  locale: string;
+}
+
+export async function Navbar({ locale }: iProps) {
   const { phone, languages, equipmentLinksTree, links } =
-    await getCommonConfig();
+    await getCommonConfig(locale);
 
   return (
     <header className={styles.header}>

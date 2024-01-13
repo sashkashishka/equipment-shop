@@ -7,10 +7,11 @@ import styles from './SimilarProducts.module.css';
 
 interface iProps {
   id: number;
+  locale: string;
 }
 
-export async function SimilarProducts({ id }: iProps) {
-  const products = await getEquipmentSimilarProducts(id);
+export async function SimilarProducts({ id, locale }: iProps) {
+  const products = await getEquipmentSimilarProducts(id, locale);
 
   if (!products) return null;
 

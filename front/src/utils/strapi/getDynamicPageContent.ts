@@ -11,7 +11,7 @@ import {
 import { iImage, transformImages } from '@/utils/strapi/transformImages';
 
 export interface iServiceComponentContent {
-  title: iPage['name'];
+  title: iPage['linkName'];
   link: string;
   photo: iImage[];
   description: iServiceComponent['description'];
@@ -32,7 +32,7 @@ export interface iContactsTypeContent
   > {}
 
 export interface iDynamicPageContent {
-  title: iPage['name'];
+  title: iPage['linkName'];
   slug: iPage['slug'];
   metatags: iPage['metatags'];
   content: Array<
@@ -44,7 +44,7 @@ function transform(data: iStrapiResponse<iPage>[]): iDynamicPageContent[] {
   return data.map(({ attributes }) => {
     return {
       metatags: attributes.metatags,
-      title: attributes.name,
+      title: attributes.linkName,
       slug: attributes.slug,
       content: (attributes.content || []).map((content) => {
         switch (content.__component) {
@@ -53,7 +53,7 @@ function transform(data: iStrapiResponse<iPage>[]): iDynamicPageContent[] {
               __component: content.__component,
               title: content.title,
               service: content.service.map((service) => ({
-                title: service?.children?.data?.attributes?.name,
+                title: service?.children?.data?.attributes?.linkName,
                 link: `/${service?.children?.data?.attributes?.slug}`,
                 photo: transformImages([service?.photo?.data]),
                 description: service.description,
@@ -83,8 +83,8 @@ function transform(data: iStrapiResponse<iPage>[]): iDynamicPageContent[] {
   });
 }
 
-export function getDynamicPageContent(slug: string) {
-  return getStrapi(API.PAGE, { filters: { slug } })
+export function getDynamicPageContent(slug: string, locale: string) {
+  return getStrapi(API.PAGE, { filters: { slug }, locale })
     .then(({ data }) => data)
     .then(transform)
     .then(([data]) => data);

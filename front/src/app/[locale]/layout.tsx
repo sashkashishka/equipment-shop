@@ -22,11 +22,11 @@ export default async function PageLayout({ children, params }: iProps) {
       <body>
         <div className="body">
           <InitTtag locale={params.locale} />
-          <Navbar />
+          <Navbar locale={params.locale} />
 
           <div className="content">{children}</div>
 
-          <Footer />
+          <Footer locale={params.locale} />
         </div>
       </body>
     </html>

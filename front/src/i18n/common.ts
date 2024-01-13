@@ -2,12 +2,11 @@ export const locales = ['en', 'sk'];
 
 export const defaultLocale = 'en';
 
-let currentLocale = defaultLocale;
+export const LANG_COOKIE = 'PGI_LOCALE_COOKIE';
 
-export function setCurrentLocale(locale: string) {
-  currentLocale = locale;
-}
-
-export function getCurrentLocale() {
-  return currentLocale;
-}
+export const i18nConfig = {
+  locales,
+  defaultLocale,
+  localeCookie: LANG_COOKIE,
+  serverSetCookie: 'always' as const,
+};

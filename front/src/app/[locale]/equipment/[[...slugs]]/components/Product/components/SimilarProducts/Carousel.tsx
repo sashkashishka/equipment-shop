@@ -19,7 +19,7 @@ function Card({ product }: iCardProps) {
   return (
     <div className={styles.card}>
       <Link href={link} className={styles.cardContent}>
-        <img className={styles.photo} src={photo.url} alt={title} />
+        <img className={styles.photo} src={photo?.url} alt={title} />
 
         <p className={styles.title}>{title}</p>
       </Link>

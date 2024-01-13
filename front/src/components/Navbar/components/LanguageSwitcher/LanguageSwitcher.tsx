@@ -3,7 +3,10 @@
 import { useMemo } from 'react';
 import { useParams, usePathname } from 'next/navigation';
 import { Select } from '@/components/Select';
+import { generatePath } from '@/utils/generatePath';
 import { iCommonConfig } from '@/types/strapi';
+import { LANG_COOKIE, defaultLocale } from '@/i18n/common';
+import { ROUTES } from '@/constants/routes';
 
 import styles from './LanguageSwitcher.module.css';
 
@@ -14,6 +17,8 @@ interface iProps {
 const FLAGS: Record<string, string> = {
   en: '🇬🇧',
   sk: '🇸🇰',
+  pl: '🇵🇱',
+  de: '🇩🇪',
 };
 
 export function LanguageSwitcher({ languages }: iProps) {
@@ -31,13 +36,35 @@ export function LanguageSwitcher({ languages }: iProps) {
       value={params.locale as string}
       onChange={(e) => {
         const lang = e.target.value;
+        const newLang = lang === defaultLocale ? '' : lang;
+        const currLang = params.locale as string;
 
-        let url = pathname.replace(params.locale as string, lang);
+        if (lang === currLang) return;
 
-        if (pathname.includes('/equipment')) {
-          url = `/${lang}`;
+        let url = '';
+
+        switch (true) {
+          case pathname.includes(ROUTES.EQUIPMENT): {
+            url = `/${newLang}`;
+
+            break;
+          }
+
+          case currLang === defaultLocale: {
+            url = `/${newLang}${pathname}`;
+            break;
+          }
+
+          default: {
+            url =
+              pathname.replace(
+                generatePath(`/:id?`, { id: currLang }),
+                newLang,
+              ) || '/';
+          }
         }
 
+        document.cookie = `${LANG_COOKIE}=${lang};path=/`;
         window.location.replace(url);
       }}
     />

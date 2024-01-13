@@ -5,8 +5,12 @@ import { getEquipmentConfig } from '@/utils/strapi/getEquipmentConfig';
 
 import styles from './ServiceBlock.module.css';
 
-export async function ServiceBlock() {
-  const { serviceTypes } = await getEquipmentConfig();
+interface iProps {
+  locale: string;
+}
+
+export async function ServiceBlock({ locale }: iProps) {
+  const { serviceTypes } = await getEquipmentConfig(locale);
 
   return (
     <div className={styles.wrapper}>

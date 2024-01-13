@@ -16,7 +16,7 @@
     }
   },
   "attributes": {
-    "name": {
+    "linkName": {
       "type": "string",
       "pluginOptions": {
         "i18n": {

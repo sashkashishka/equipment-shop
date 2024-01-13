@@ -10,11 +10,11 @@ import { ServicesContent } from './contents/Services';
 import styles from './page.module.css';
 
 interface iProps {
-  params: { id: string };
+  params: { id: string; locale: string; };
 }
 
 export async function generateMetadata({ params }: iProps): Promise<Metadata> {
-  const data = await getDynamicPageContent(params.id);
+  const data = await getDynamicPageContent(params.id, params.locale);
 
   if (!data) return {};
 
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: iProps): Promise<Metadata> {
 }
 
 export default async function DynamicPage({ params }: iProps) {
-  const data = await getDynamicPageContent(params.id);
+  const data = await getDynamicPageContent(params.id, params.locale);
 
   if (!data) {
     notFound();
@@ -40,7 +40,7 @@ export default async function DynamicPage({ params }: iProps) {
             }
 
             case 'contacts.contacts': {
-              return <ContactsContent content={item} />;
+              return <ContactsContent content={item} locale={params.locale} />;
             }
 
             case 'services.services': {

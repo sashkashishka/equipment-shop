@@ -12,9 +12,11 @@ import styles from './Product.module.css';
 
 interface iProps {
   id: number;
+  locale: string;
 }
-export async function Product({ id }: iProps) {
-  const { title, bottomText, photos } = await getEquipmentContent(id);
+
+export async function Product({ id, locale }: iProps) {
+  const { title, bottomText, photos } = await getEquipmentContent(id, locale);
 
   return (
     <div className={styles.container}>
@@ -28,10 +30,9 @@ export async function Product({ id }: iProps) {
       {bottomText && <HTMLParser>{bottomText}</HTMLParser>}
 
       <div className={styles.blocks}>
-      <ServiceBlock />
+        <ServiceBlock locale={locale} />
 
-      <SimilarProducts id={id} />
-
+        <SimilarProducts id={id} locale={locale} />
       </div>
     </div>
   );

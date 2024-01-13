@@ -11,14 +11,18 @@ import { Exhibitions } from './contents/Exhibitions';
 
 import styles from './page.module.css';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { metatags } = await getMainPageConfig();
+interface iProps {
+  params: { locale: string };
+}
+
+export async function generateMetadata({ params }: iProps): Promise<Metadata> {
+  const { metatags } = await getMainPageConfig(params.locale);
 
   return metatags;
 }
 
-export default async function MainPage() {
-  const { content } = await getMainPageConfig();
+export default async function MainPage({ params }: iProps) {
+  const { content } = await getMainPageConfig(params.locale);
 
   return (
     <div className={styles.container}>

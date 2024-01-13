@@ -50,24 +50,20 @@ function getTagCache(tag: string, enabled: boolean) {
 export async function getStrapi<T extends API>(
   endpoint: T,
   {
+    locale,
     enableTagCache = false,
     params,
     filters,
     pagination,
     sort,
-  }: iOptions<T> = {},
+  }: iOptions<T>,
 ) {
-  let url: string = generatePath(endpoint, params);
+  const url = new URL(generatePath(endpoint, params), STRAPI_HOST);
 
-  if (QUERIES[endpoint]) {
-    url = `${STRAPI_HOST}${url}?${new URLSearchParams(
-      QUERIES[endpoint]({ filters, pagination, sort }),
-    )}`;
-  }
+  url.search = QUERIES[endpoint]({ filters, pagination, sort, locale });
 
   const response = await fetch(url, {
     headers: AUTH_HEADER,
-    ...getTagCache(url, enableTagCache),
   });
 
   if (!response.ok) {

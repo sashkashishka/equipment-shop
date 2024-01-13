@@ -8,10 +8,11 @@ import styles from './BlogPostCard.module.css';
 import { formatDate } from '@/utils/formatDate';
 
 interface iProps {
+  locale: string;
   post: iBlogPostContent;
 }
 
-export function BlogPostCard({ post }: iProps) {
+export function BlogPostCard({ post, locale }: iProps) {
   const { photos, title, slug, content, publishedAt } = post;
 
   return (
@@ -30,7 +31,7 @@ export function BlogPostCard({ post }: iProps) {
           <HTMLParser>{content}</HTMLParser>
         </div>
 
-        <p className={styles.time}>{formatDate(publishedAt)}</p>
+        <p className={styles.time}>{formatDate(publishedAt, locale)}</p>
       </Link>
     </div>
   );

@@ -3,7 +3,6 @@ import { API } from '@/constants/api';
 import type {
   iCommonConfig,
   iEquipment,
-  iLinks,
   iStrapiResponse,
 } from '@/types/strapi';
 import { getStrapi } from '@/utils/strapi/getStrapi';
@@ -14,7 +13,8 @@ import {
 } from '@/utils/getLinksTree';
 import { ROUTES } from '@/constants/routes';
 
-interface iLinksContent extends Pick<iLinks, 'name'> {
+interface iLinksContent {
+  name: string;
   link: string;
 }
 
@@ -34,7 +34,7 @@ function transform(
   const { attributes } = config;
 
   const links = attributes.links.data.map((l) => ({
-    name: l.attributes.name,
+    name: l.attributes.linkName,
     link: `/${l.attributes.slug}`,
   }));
 
@@ -50,10 +50,10 @@ function transform(
   };
 }
 
-export async function getCommonConfig() {
+export async function getCommonConfig(locale: string) {
   const [{ data: commonConfig }, { data: equipmentLinks }] = await Promise.all([
-    getStrapi(API.COMMON_CONFIG),
-    getStrapi(API.EQUIPMENT_CATEGORIES),
+    getStrapi(API.COMMON_CONFIG, { locale }),
+    getStrapi(API.EQUIPMENT_CATEGORIES, { locale }),
   ]);
 
   return transform(commonConfig, equipmentLinks);

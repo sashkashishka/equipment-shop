@@ -5,7 +5,10 @@ import { getPaginationParams } from '@/utils/getPaginationParams';
 import { transformImages, iImage } from './transformImages';
 
 export interface iBlogPostContent
-  extends Pick<iBlogPost, 'slug' | 'title' | 'content' | 'publishedAt'> {
+  extends Pick<
+    iBlogPost,
+    'slug' | 'title' | 'content' | 'publishedAt' | 'metatags'
+  > {
   id: iStrapiResponse<iBlogPost>['id'];
   photos: iImage[];
 }
@@ -21,12 +24,14 @@ function transform(posts: iStrapiResponse<iBlogPost>[]): iBlogPostContent[] {
       photos: transformImages(attributes.photos.data),
       content: attributes.content,
       publishedAt: attributes.publishedAt,
+      metatags: attributes.metatags,
     };
   });
 }
 
-export async function getBlogPosts(page: string = '1') {
+export async function getBlogPosts(page: string = '1', locale: string) {
   const { data, meta } = await getStrapi(API.BLOG, {
+    locale,
     sort: ['publishedAt:desc'],
     pagination: getPaginationParams(Number(page), 10),
   });
@@ -37,9 +42,10 @@ export async function getBlogPosts(page: string = '1') {
   };
 }
 
-export async function getBlogPostBySlug(slug: string) {
+export async function getBlogPostBySlug(slug: string, locale: string) {
   try {
     const { data } = await getStrapi(API.BLOG, {
+      locale,
       filters: { slug },
     });
 
