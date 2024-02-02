@@ -1,19 +1,20 @@
+import path from 'node:path';
 import { exec } from 'node:child_process';
+import { readdirSync } from 'node:fs';
 
-exec('npm run ttag update ./src/i18n/source/en.po ./src', (err) => {
-  if (err) {
-    console.error(err);
-    return;
-  }
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
-  console.log('Updated EN translations list');
-});
+const localesDir = path.resolve(__dirname, '../src/i18n/source');
 
-exec('npm run ttag update ./src/i18n/source/sk.po ./src', (err) => {
-  if (err) {
-    console.error(err);
-    return;
-  }
+const localeFiles = readdirSync(localesDir);
 
-  console.log('Updated SK translations list');
+localeFiles.forEach((locale) => {
+  exec(`npm run ttag update ./src/i18n/source/${locale} ./src`, (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    console.log(`Updated ${locale} translations list`);
+  });
 });

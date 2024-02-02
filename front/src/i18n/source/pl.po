@@ -1,24 +1,14 @@
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
-"Plural-Forms: nplurals = 2; plural = (n != 1);\n"
-"Language: en\n"
+"Plural-Forms: nplurals = 3; plural = (n == 1 ? 0 : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 1 : 2);\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:63
-msgid "Equipment"
-msgstr ""
 
 #: src/app/[locale]/news/page.tsx:23
 #: src/utils/strapi/getCommonConfig.ts:28
 msgid "News"
-msgstr ""
-
-#: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:57
-#: src/components/OrderCallback/Form.tsx:46
-#: src/components/OrderCallback/OrderCallback.tsx:19
-msgid "Request a call back"
 msgstr ""
 
 #: src/components/OrderCallback/Form.tsx:16
@@ -56,6 +46,12 @@ msgstr ""
 #: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:39
 #: src/components/OrderCallback/Form.tsx:40
 msgid "Phone number"
+msgstr ""
+
+#: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:57
+#: src/components/OrderCallback/Form.tsx:46
+#: src/components/OrderCallback/OrderCallback.tsx:19
+msgid "Request a call back"
 msgstr ""
 
 #: src/app/[locale]/error.tsx:12
@@ -129,6 +125,10 @@ msgstr ""
 
 #: src/app/[locale]/[id]/contents/Contacts/Form.tsx:26
 msgid "Feedback"
+msgstr ""
+
+#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:63
+msgid "Equipment"
 msgstr ""
 
 #: src/app/[locale]/[id]/contents/Contacts/Form.tsx:67
