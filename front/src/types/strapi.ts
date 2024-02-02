@@ -126,7 +126,7 @@ export interface iYoutubeVideosComponent {
 
 export interface iCommonConfig {
   phone: string;
-  languages: string[];
+  locales: string[];
   copyright: string;
   links: {
     data: iStrapiResponse<iLinks>[];

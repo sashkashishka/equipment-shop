@@ -5,13 +5,13 @@ import { useParams, usePathname } from 'next/navigation';
 import { Select } from '@/components/Select';
 import { generatePath } from '@/utils/generatePath';
 import { iCommonConfig } from '@/types/strapi';
-import { LANG_COOKIE, defaultLocale } from '@/i18n/common';
+import { LANG_COOKIE, defaultLocale, locales } from '@/i18n/common';
 import { ROUTES } from '@/constants/routes';
 
 import styles from './LanguageSwitcher.module.css';
 
 interface iProps {
-  languages: iCommonConfig['languages'];
+  locales: iCommonConfig['locales'];
 }
 
 const FLAGS: Record<string, string> = {
@@ -21,12 +21,26 @@ const FLAGS: Record<string, string> = {
   de: '🇩🇪',
 };
 
-export function LanguageSwitcher({ languages }: iProps) {
+export function LanguageSwitcher({ locales }: iProps) {
   const params = useParams();
   const pathname = usePathname();
   const items = useMemo(
-    () => languages.map((l, i) => ({ id: i, value: l, label: FLAGS[l] })),
-    [languages],
+    () =>
+      locales.reduce<{ id: number; value: string; label: string }[]>(
+        (acc, lang, i) => {
+          if (locales.includes(lang)) {
+            acc.push({
+              id: i,
+              value: lang,
+              label: FLAGS[lang],
+            });
+          }
+
+          return acc;
+        },
+        [],
+      ),
+    [locales],
   );
 
   return (
@@ -36,7 +50,6 @@ export function LanguageSwitcher({ languages }: iProps) {
       value={params.locale as string}
       onChange={(e) => {
         const lang = e.target.value;
-        const newLang = lang === defaultLocale ? '' : lang;
         const currLang = params.locale as string;
 
         if (lang === currLang) return;
@@ -45,13 +58,8 @@ export function LanguageSwitcher({ languages }: iProps) {
 
         switch (true) {
           case pathname.includes(ROUTES.EQUIPMENT): {
-            url = `/${newLang}`;
+            url = `/${lang}`;
 
-            break;
-          }
-
-          case currLang === defaultLocale: {
-            url = `/${newLang}${pathname}`;
             break;
           }
 
@@ -59,7 +67,7 @@ export function LanguageSwitcher({ languages }: iProps) {
             url =
               pathname.replace(
                 generatePath(`/:id?`, { id: currLang }),
-                newLang,
+                generatePath(`/:id?`, { id: lang }),
               ) || '/';
           }
         }

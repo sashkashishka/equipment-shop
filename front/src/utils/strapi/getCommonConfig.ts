@@ -19,7 +19,7 @@ interface iLinksContent {
 }
 
 export interface iCommonConfigContent
-  extends Pick<iCommonConfig, 'phone' | 'languages' | 'copyright'> {
+  extends Pick<iCommonConfig, 'phone' | 'locales' | 'copyright'> {
   links: Array<iLinksContent>;
   equipmentLinksTree: iEquipmentLink[];
   equipmentLinksFlatten: Omit<iEquipmentLink, 'children'>[];
@@ -43,7 +43,7 @@ function transform(
   return {
     phone: attributes.phone,
     copyright: attributes.copyright,
-    languages: attributes.languages,
+    locales: attributes.locales,
     links,
     equipmentLinksTree: getEquipmentLinksTree(equipmentLinks),
     equipmentLinksFlatten: getEquipmentLinksFlatten(equipmentLinks),

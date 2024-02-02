@@ -24,14 +24,6 @@
         }
       }
     },
-    "languages": {
-      "type": "json",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "copyright": {
       "pluginOptions": {
         "i18n": {

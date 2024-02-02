@@ -14,7 +14,7 @@ interface iProps {
 }
 
 export async function Navbar({ locale }: iProps) {
-  const { phone, languages, equipmentLinksTree, links } =
+  const { phone, locales, equipmentLinksTree, links } =
     await getCommonConfig(locale);
 
   return (
@@ -29,7 +29,7 @@ export async function Navbar({ locale }: iProps) {
             </Link>
 
             <Sidebar>
-              <LanguageSwitcher languages={languages} />
+              <LanguageSwitcher locales={locales} />
 
               <Links links={links} equipmentLinksTree={equipmentLinksTree} />
             </Sidebar>
@@ -53,7 +53,7 @@ export async function Navbar({ locale }: iProps) {
 
             <OrderCallback />
 
-            <LanguageSwitcher languages={languages} />
+            <LanguageSwitcher locales={locales} />
           </div>
 
           <div className={styles.bottomSection}>
