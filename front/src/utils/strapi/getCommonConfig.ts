@@ -25,13 +25,12 @@ export interface iCommonConfigContent
   equipmentLinksFlatten: Omit<iEquipmentLink, 'children'>[];
 }
 
-const staticLinks = [{ name: t`News`, link: ROUTES.NEWS }];
-
 function transform(
   config: iStrapiResponse<iCommonConfig>,
   equipmentLinks: iStrapiResponse<iEquipment>[],
 ): iCommonConfigContent {
   const { attributes } = config;
+  const staticLinks = [{ name: t`News`, link: ROUTES.NEWS }];
 
   const links = attributes.links.data.map((l) => ({
     name: l.attributes.linkName,

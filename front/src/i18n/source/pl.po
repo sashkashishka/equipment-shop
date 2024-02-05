@@ -7,31 +7,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/app/[locale]/news/page.tsx:23
-#: src/utils/strapi/getCommonConfig.ts:28
+#: src/utils/strapi/getCommonConfig.ts:33
 msgid "News"
-msgstr ""
+msgstr "Aktualności"
 
 #: src/components/OrderCallback/Form.tsx:16
 msgid "Have a questions?"
-msgstr ""
+msgstr "Masz pytania?"
 
 #: src/components/OrderCallback/Form.tsx:18
 msgid "We will call you back"
-msgstr ""
+msgstr "Oddzwonimy do Ciebie"
 
 #: src/app/[locale]/[id]/contents/Contacts/Form.tsx:28
 #: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:32
 #: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:20
 #: src/components/OrderCallback/Form.tsx:21
 msgid "Name"
-msgstr ""
+msgstr "Imię"
 
 #: src/app/[locale]/[id]/contents/Contacts/Form.tsx:35
 #: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:39
 #: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:27
 #: src/components/OrderCallback/Form.tsx:28
 msgid "Your name"
-msgstr ""
+msgstr "Twoje imię"
 
 #: src/app/[locale]/[id]/contents/Contacts/Contacts.tsx:23
 #: src/app/[locale]/[id]/contents/Contacts/Form.tsx:40
@@ -39,64 +39,64 @@ msgstr ""
 #: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:32
 #: src/components/OrderCallback/Form.tsx:33
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #: src/app/[locale]/[id]/contents/Contacts/Form.tsx:47
 #: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:51
 #: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:39
 #: src/components/OrderCallback/Form.tsx:40
 msgid "Phone number"
-msgstr ""
+msgstr "Numer telefonu"
 
 #: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:57
 #: src/components/OrderCallback/Form.tsx:46
 #: src/components/OrderCallback/OrderCallback.tsx:19
 msgid "Request a call back"
-msgstr ""
+msgstr "Poproś o oddzwonienie"
 
 #: src/app/[locale]/error.tsx:12
 msgid "Something went wrong"
-msgstr ""
+msgstr "Coś poszło nie tak"
 
 #: src/app/[locale]/error.tsx:21
 msgid "Please reload page"
-msgstr ""
+msgstr "Proszę przeładować stronę"
 
 #: src/app/[locale]/not-found.tsx:10
 msgid "Page not found"
-msgstr ""
+msgstr "Strona nie znaleziona"
 
 #: src/app/[locale]/not-found.tsx:15
 msgid "Go to main page"
-msgstr ""
+msgstr "Przejdź do strony głównej"
 
 #: src/app/[locale]/news/not-found.tsx:11
 msgid "No such post found"
-msgstr ""
+msgstr "Nie znaleziono takiego wpisu"
 
 #: src/app/[locale]/news/not-found.tsx:17
 msgid "Go to news page"
-msgstr ""
+msgstr "Przejdź do strony z aktualnościami"
 
 #: src/app/[locale]/news/[slug]/page.tsx:37
 msgid "Back to news"
-msgstr ""
+msgstr "Powrót do wiadomości"
 
 #: src/app/[locale]/equipment/[[...slugs]]/components/Sidebar/Sidebar.tsx:66
 msgid "Equipment catalog"
-msgstr ""
+msgstr "Katalog sprzętu"
 
 #: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/SimilarProducts/SimilarProducts.tsx:20
 msgid "Similar products"
-msgstr ""
+msgstr "Podobne produkty"
 
 #: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/ServiceBlock/ServiceBlock.tsx:17
 msgid "Services"
-msgstr ""
+msgstr "Usługi"
 
 #: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:17
 msgid "You will receive a detailed commercial offer"
-msgstr ""
+msgstr "Otrzymasz szczegółową ofertę handlową"
 
 #: src/app/[locale]/[id]/contents/Contacts/Contacts.tsx:28
 #: src/app/[locale]/[id]/contents/Contacts/Form.tsx:52
@@ -104,33 +104,37 @@ msgstr ""
 #: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:44
 #: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:50
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: src/app/[locale]/[id]/contents/Contacts/Form.tsx:72
 #: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:56
 msgid "Get the price"
-msgstr ""
+msgstr "Uzyskaj cenę"
 
 #: src/app/[locale]/equipment/[[...slugs]]/components/Breadcrumbs/Breadcrumbs.tsx:24
 msgid "Main"
-msgstr ""
+msgstr "Główna"
 
 #: src/app/[locale]/contents/Videos/Videos.tsx:44
 msgid "Watch"
-msgstr ""
+msgstr "Oglądać"
 
 #: src/app/[locale]/[id]/contents/Contacts/Contacts.tsx:18
 msgid "Address"
-msgstr ""
+msgstr "Adres"
 
 #: src/app/[locale]/[id]/contents/Contacts/Form.tsx:26
 msgid "Feedback"
-msgstr ""
+msgstr "Informacja zwrotna"
 
 #: src/app/[locale]/[id]/contents/Contacts/Form.tsx:63
 msgid "Equipment"
-msgstr ""
+msgstr "Sprzęt"
 
 #: src/app/[locale]/[id]/contents/Contacts/Form.tsx:67
 msgid "Message"
-msgstr ""
+msgstr "Wiadomość"
+
+#: src/components/SiteSearch/SiteSearch.tsx:5
+msgid "Search"
+msgstr "Szukaj"
