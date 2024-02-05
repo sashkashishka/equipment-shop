@@ -42,8 +42,8 @@
       "type": "dynamiczone",
       "components": [
         "content.html",
-        "contacts.contacts",
-        "services.services"
+        "services.services",
+        "contacts.contacts-list"
       ]
     },
     "metatags": {

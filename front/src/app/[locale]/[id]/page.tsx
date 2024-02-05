@@ -10,7 +10,7 @@ import { ServicesContent } from './contents/Services';
 import styles from './page.module.css';
 
 interface iProps {
-  params: { id: string; locale: string; };
+  params: { id: string; locale: string };
 }
 
 export async function generateMetadata({ params }: iProps): Promise<Metadata> {
@@ -39,7 +39,7 @@ export default async function DynamicPage({ params }: iProps) {
               return <HTMLParser key={i}>{item.html}</HTMLParser>;
             }
 
-            case 'contacts.contacts': {
+            case 'contacts.contacts-list': {
               return <ContactsContent content={item} locale={params.locale} />;
             }
 

@@ -1,12 +1,12 @@
 import { t } from 'ttag';
-import { iContactsTypeContent } from '@/utils/strapi/getDynamicPageContent';
+import { iContactsListTypeContent } from '@/utils/strapi/getDynamicPageContent';
 import { Link } from '@/components/Link';
 import { Form } from './Form';
 
 import styles from './Contacts.module.css';
 
 interface iProps {
-  content: iContactsTypeContent;
+  content: iContactsListTypeContent;
   locale: string;
 }
 
@@ -14,20 +14,24 @@ export function ContactsContent({ content, locale }: iProps) {
   return (
     <div className={styles.container}>
       <div className={styles.contactsData}>
-        <div className={styles.row}>
-          <div className={styles.label}>{t`Address`}:</div>
-          {content.address}
-        </div>
+        {content.contacts.map((contact) => (
+          <div className={styles.contact}>
+            <div className={styles.row}>
+              <div className={styles.label}>{t`Address`}:</div>
+              {contact.address}
+            </div>
 
-        <div className={styles.row}>
-          <div className={styles.label}>{t`Phone`}:</div>
-          <Link href={`tel:${content.phone}`}>{content.phone}</Link>
-        </div>
+            <div className={styles.row}>
+              <div className={styles.label}>{t`Phone`}:</div>
+              <Link href={`tel:${contact.phone}`}>{contact.phone}</Link>
+            </div>
 
-        <div className={styles.row}>
-          <div className={styles.label}>{t`Email`}:</div>
-          <Link href={`mailto:${content.email}`}>{content.email}</Link>
-        </div>
+            <div className={styles.row}>
+              <div className={styles.label}>{t`Email`}:</div>
+              <Link href={`mailto:${contact.email}`}>{contact.email}</Link>
+            </div>
+          </div>
+        ))}
       </div>
 
       <Form locale={locale} />

@@ -100,8 +100,12 @@ export const QUERIES = {
             'content.html': {
               fields: ['html'],
             },
-            'contacts.contacts': {
-              fields: ['address', 'phone', 'email'],
+            'contacts.contacts-list': {
+              populate: {
+                contacts: {
+                  populate: ['address', 'phone', 'email'],
+                },
+              },
             },
             'services.services': {
               populate: {

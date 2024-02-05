@@ -4,9 +4,9 @@ import {
   iHtmlContent,
   iPage,
   iStrapiResponse,
-  iContactsContent,
   iServiceComponent,
   iServicesComponent,
+  iContactsListComponent,
 } from '@/types/strapi';
 import { iImage, transformImages } from '@/utils/strapi/transformImages';
 
@@ -25,18 +25,14 @@ export interface iServicesComponentContent
 export interface iHtmlTypeContent
   extends Pick<iHtmlContent, '__component' | 'html'> {}
 
-export interface iContactsTypeContent
-  extends Pick<
-    iContactsContent,
-    '__component' | 'email' | 'phone' | 'address'
-  > {}
+export interface iContactsListTypeContent extends iContactsListComponent {}
 
 export interface iDynamicPageContent {
   title: iPage['linkName'];
   slug: iPage['slug'];
   metatags: iPage['metatags'];
   content: Array<
-    iServicesComponentContent | iHtmlTypeContent | iContactsTypeContent
+    iServicesComponentContent | iHtmlTypeContent | iContactsListTypeContent
   >;
 }
 
@@ -61,12 +57,10 @@ function transform(data: iStrapiResponse<iPage>[]): iDynamicPageContent[] {
             };
           }
 
-          case 'contacts.contacts': {
+          case 'contacts.contacts-list': {
             return {
               __component: content.__component,
-              email: content.email,
-              phone: content.phone,
-              address: content.address,
+              contacts: content.contacts,
             };
           }
 

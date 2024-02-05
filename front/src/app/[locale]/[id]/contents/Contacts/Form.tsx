@@ -25,47 +25,53 @@ export async function Form({ locale }: iProps) {
     <form action="/api/send-request" className={styles.form}>
       <p className={styles.title}>{t`Feedback`}</p>
 
-      <label htmlFor="p-name">{t`Name`}</label>
-      <Input
-        id="p-name"
-        type="text"
-        name="name"
-        required
-        minLength={2}
-        placeholder={t`Your name`}
-      />
-      <br />
-      <br />
+      <div className={styles.grid}>
+        <label htmlFor="p-name">
+          {t`Name`}
+          <Input
+            id="p-name"
+            type="text"
+            name="name"
+            required
+            minLength={2}
+            placeholder={t`Your name`}
+          />
+        </label>
 
-      <label htmlFor="p-phone">{t`Phone`}</label>
-      <Input
-        id="p-phone"
-        type="tel"
-        name="phone"
-        required
-        pattern="(\+|\d|-|\(|\)|\s){6,20}"
-        placeholder={t`Phone number`}
-      />
-      <br />
-      <br />
+        <label htmlFor="p-phone">
+          {t`Phone`}
+          <Input
+            id="p-phone"
+            type="tel"
+            name="phone"
+            required
+            pattern="(\+|\d|-|\(|\)|\s){6,20}"
+            placeholder={t`Phone number`}
+          />
+        </label>
 
-      <label htmlFor="p-email">{t`Email`}</label>
-      <Input
-        id="p-email"
-        type="email"
-        name="phone"
-        required
-        placeholder={t`Email`}
-      />
-      <br />
-      <br />
+        <label htmlFor="p-email">
+          {t`Email`}
+          <Input
+            id="p-email"
+            type="email"
+            name="phone"
+            required
+            placeholder={t`Email`}
+          />
+        </label>
 
-      <label htmlFor="p-product">{t`Equipment`}</label>
-      <Select id="p-product" items={items} required />
+        <label htmlFor="p-product">
+          {t`Equipment`}
+          <Select id="p-product" items={items} required />
+        </label>
+      </div>
 
       <br />
-      <label htmlFor="p-message">{t`Message`}</label>
-      <Textarea id="p-message" rows={3} />
+      <label htmlFor="p-message">
+        {t`Message`}
+        <Textarea id="p-message" rows={5} />
+      </label>
 
       <br />
       <br />

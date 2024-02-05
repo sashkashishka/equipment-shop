@@ -1,13 +1,12 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
   gap: 24px;
 }
 
 .contactsData {
-  display: inline-grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
+  gap: 24px;
   align-content: start;
   justify-content: start;
 }

@@ -61,6 +61,11 @@ export interface iContactsContent {
   __component: 'contacts.contacts';
 }
 
+export interface iContactsListComponent {
+  contacts: iContactsContent[];
+  __component: 'contacts.contacts-list';
+}
+
 export interface iYoutubeVideoComponent {
   name: string;
   url: string;
@@ -176,7 +181,7 @@ export interface iEquipment {
 export interface iPage {
   linkName: string;
   slug: string;
-  content: Array<iHtmlContent | iServicesComponent | iContactsContent>;
+  content: Array<iHtmlContent | iServicesComponent | iContactsListComponent>;
   metatags: iMetatagsComponent;
 }
 
