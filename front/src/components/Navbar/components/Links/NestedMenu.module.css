@@ -6,6 +6,10 @@
   padding: 8px;
 }
 
+.topLink {
+  text-transform: uppercase;
+}
+
 @mixin media-768 {
   .container {
     padding: 16px;

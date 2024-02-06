@@ -37,6 +37,10 @@
     text-decoration: none;
     pointer-events: none;
   }
+
+  .uppercase {
+    text-transform: uppercase;
+  }
 }
 
 @mixin media-768 {

@@ -27,7 +27,7 @@ function Block({ link, isNested }: iBlockProps) {
     >
       <Link
         href={link.url}
-        className={cn(isNested && styles.link)}
+        className={cn(isNested && styles.link, !isNested && styles.topLink)}
         onClick={(e) => {
           if (hasChild && !isOpen) {
             e.preventDefault();

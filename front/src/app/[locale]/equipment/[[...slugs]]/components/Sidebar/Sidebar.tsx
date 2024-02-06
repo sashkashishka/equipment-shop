@@ -33,7 +33,11 @@ function NestedMenu({ equipmentLinksTree }: iNestedMenuProps) {
             <Link
               href={link.url}
               data-test={active}
-              className={cn(styles.link, active && styles.linkActive)}
+              className={cn(
+                styles.link,
+                active && styles.linkActive,
+                link.type !== 'product' && styles.uppercase,
+              )}
             >
               {link.label}
 
