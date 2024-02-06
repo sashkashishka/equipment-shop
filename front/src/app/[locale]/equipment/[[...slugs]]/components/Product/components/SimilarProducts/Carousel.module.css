@@ -14,6 +14,7 @@
   background: var(--p-color-basic-1);
 
   .cardContent {
+    width: 100%;
     flex-direction: column;
   }
 }

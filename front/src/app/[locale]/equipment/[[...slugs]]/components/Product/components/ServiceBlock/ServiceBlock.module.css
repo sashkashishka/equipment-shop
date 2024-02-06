@@ -8,14 +8,17 @@
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(auto, 150px));
+  grid-template-rows: repeat(auto-fit, minmax(auto, 150px));
   gap: 16px;
 }
 
 .card .link {
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
   justify-items: center;
   gap: 8px;
+  height: 100%;
   padding: 8px;
   background: var(--p-color-basic-1);
   border-radius: 10px;
