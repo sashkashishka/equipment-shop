@@ -15,7 +15,7 @@ export function ContactsContent({ content, locale }: iProps) {
     <div className={styles.container}>
       <div className={styles.contactsData}>
         {content.contacts.map((contact) => (
-          <div className={styles.contact}>
+          <div key={contact.address} className={styles.contact}>
             <div className={styles.row}>
               <div className={styles.label}>{t`Address`}:</div>
               {contact.address}
