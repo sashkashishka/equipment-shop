@@ -34,29 +34,22 @@ interface iOptions<T extends API> extends iQueryBuilderOptions {
   };
 }
 
-// TODO adapt cache policy
-function getTagCache(tag: string, enabled: boolean) {
-  if (process.env.NODE_ENV === 'development' || !enabled) {
+function getTagCache(tag: string) {
+  if (process.env.NODE_ENV === 'development') {
     return {
       cache: 'no-store',
     } as const;
   }
 
   return {
+    cache: 'force-cache' as const,
     next: { tags: [tag] },
   };
 }
 
 export async function getStrapi<T extends API>(
   endpoint: T,
-  {
-    locale,
-    enableTagCache = false,
-    params,
-    filters,
-    pagination,
-    sort,
-  }: iOptions<T>,
+  { locale, params, filters, pagination, sort }: iOptions<T>,
 ) {
   const url = new URL(generatePath(endpoint, params), STRAPI_HOST);
 
@@ -64,10 +57,11 @@ export async function getStrapi<T extends API>(
 
   const response = await fetch(url, {
     headers: AUTH_HEADER,
+    ...getTagCache('strapi'),
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch ${API.COMMON_CONFIG}`);
+    throw new Error(`Failed to fetch ${endpoint}`);
   }
 
   const { data, meta } = await response.json();
