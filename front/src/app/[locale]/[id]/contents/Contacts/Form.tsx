@@ -22,7 +22,7 @@ export async function Form({ locale }: iProps) {
   }));
 
   return (
-    <form action="/api/send-request" className={styles.form}>
+    <form action="/api/send-request" method="POST" className={styles.form}>
       <p className={styles.title}>{t`Feedback`}</p>
 
       <div className={styles.grid}>
@@ -55,7 +55,7 @@ export async function Form({ locale }: iProps) {
           <Input
             id="p-email"
             type="email"
-            name="phone"
+            name="email"
             required
             placeholder={t`Email`}
           />
@@ -63,14 +63,14 @@ export async function Form({ locale }: iProps) {
 
         <label htmlFor="p-product">
           {t`Equipment`}
-          <Select id="p-product" items={items} required />
+          <Select id="p-product" name="product" items={items} required />
         </label>
       </div>
 
       <br />
       <label htmlFor="p-message">
         {t`Message`}
-        <Textarea id="p-message" rows={5} />
+        <Textarea id="p-message" name="message" rows={5} />
       </label>
 
       <br />

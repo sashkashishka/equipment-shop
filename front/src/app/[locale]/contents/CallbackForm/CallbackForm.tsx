@@ -28,7 +28,11 @@ export function CallbackForm({ content }: iProps) {
             alt={title}
           />
 
-          <form action="/api/request-callback" className={styles.form}>
+          <form
+            action="/api/send-request"
+            method="POST"
+            className={styles.form}
+          >
             <label htmlFor="oc-name">{t`Name`}</label>
             <Input
               id="oc-name"

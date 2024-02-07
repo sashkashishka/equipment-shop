@@ -1,4 +1,3 @@
-'use client';
 import { t } from 'ttag';
 
 import { Button } from '@/components/Button';
@@ -12,7 +11,7 @@ interface iProps {
 
 export function Form({ productName }: iProps) {
   return (
-    <form action="/api/send-request" className={styles.form}>
+    <form action="/api/send-request" method="POST" className={styles.form}>
       <p className={styles.title}>
         {t`You will receive a detailed commercial offer`}
       </p>
@@ -45,7 +44,7 @@ export function Form({ productName }: iProps) {
       <Input
         id="p-email"
         type="email"
-        name="phone"
+        name="email"
         required
         placeholder={t`Email`}
       />

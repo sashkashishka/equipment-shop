@@ -4,6 +4,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
 import './globals.css';
 
+import { RequestConfirmationSnackbar } from '@/components/Snackbar';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { initTtag } from '@/i18n/server';
@@ -21,6 +22,7 @@ export default async function PageLayout({ children, params }: iProps) {
     <html>
       <body>
         <div className="body">
+          <RequestConfirmationSnackbar />
           <InitTtag locale={params.locale} />
           <Navbar locale={params.locale} />
 

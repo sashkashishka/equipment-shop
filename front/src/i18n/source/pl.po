@@ -19,36 +19,36 @@ msgstr "Masz pytania?"
 msgid "We will call you back"
 msgstr "Oddzwonimy do Ciebie"
 
-#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:28
-#: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:32
-#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:20
+#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:30
+#: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:36
+#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:19
 #: src/components/OrderCallback/Form.tsx:21
 msgid "Name"
 msgstr "Imię"
 
-#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:35
-#: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:39
-#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:27
+#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:37
+#: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:43
+#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:26
 #: src/components/OrderCallback/Form.tsx:28
 msgid "Your name"
 msgstr "Twoje imię"
 
-#: src/app/[locale]/[id]/contents/Contacts/Contacts.tsx:23
-#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:40
-#: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:44
-#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:32
+#: src/app/[locale]/[id]/contents/Contacts/Contacts.tsx:25
+#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:42
+#: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:48
+#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:31
 #: src/components/OrderCallback/Form.tsx:33
 msgid "Phone"
 msgstr "Telefon"
 
-#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:47
-#: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:51
-#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:39
+#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:49
+#: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:55
+#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:38
 #: src/components/OrderCallback/Form.tsx:40
 msgid "Phone number"
 msgstr "Numer telefonu"
 
-#: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:57
+#: src/app/[locale]/contents/CallbackForm/CallbackForm.tsx:61
 #: src/components/OrderCallback/Form.tsx:46
 #: src/components/OrderCallback/OrderCallback.tsx:19
 msgid "Request a call back"
@@ -82,7 +82,7 @@ msgstr "Przejdź do strony z aktualnościami"
 msgid "Back to news"
 msgstr "Powrót do wiadomości"
 
-#: src/app/[locale]/equipment/[[...slugs]]/components/Sidebar/Sidebar.tsx:66
+#: src/app/[locale]/equipment/[[...slugs]]/components/Sidebar/Sidebar.tsx:70
 msgid "Equipment catalog"
 msgstr "Katalog sprzętu"
 
@@ -94,20 +94,20 @@ msgstr "Podobne produkty"
 msgid "Services"
 msgstr "Usługi"
 
-#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:17
+#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:16
 msgid "You will receive a detailed commercial offer"
 msgstr "Otrzymasz szczegółową ofertę handlową"
 
-#: src/app/[locale]/[id]/contents/Contacts/Contacts.tsx:28
-#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:52
-#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:58
-#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:44
-#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:50
+#: src/app/[locale]/[id]/contents/Contacts/Contacts.tsx:30
+#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:54
+#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:60
+#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:43
+#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:49
 msgid "Email"
 msgstr "E-mail"
 
-#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:72
-#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:56
+#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:78
+#: src/app/[locale]/equipment/[[...slugs]]/components/Product/components/Form/Form.tsx:55
 msgid "Get the price"
 msgstr "Uzyskaj cenę"
 
@@ -119,7 +119,7 @@ msgstr "Główna"
 msgid "Watch"
 msgstr "Oglądać"
 
-#: src/app/[locale]/[id]/contents/Contacts/Contacts.tsx:18
+#: src/app/[locale]/[id]/contents/Contacts/Contacts.tsx:20
 msgid "Address"
 msgstr "Adres"
 
@@ -127,14 +127,22 @@ msgstr "Adres"
 msgid "Feedback"
 msgstr "Informacja zwrotna"
 
-#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:63
+#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:65
 msgid "Equipment"
 msgstr "Sprzęt"
 
-#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:67
+#: src/app/[locale]/[id]/contents/Contacts/Form.tsx:72
 msgid "Message"
 msgstr "Wiadomość"
 
 #: src/components/SiteSearch/SiteSearch.tsx:5
 msgid "Search"
 msgstr "Szukaj"
+
+#: src/components/Snackbar/RequestConfirmation.tsx:41
+msgid "Thank you for request! We will contact you soon!"
+msgstr "Dziękujemy za prośbę! Skontaktujemy się z Tobą wkrótce!"
+
+#: src/components/Snackbar/RequestConfirmation.tsx:42
+msgid "Oops! Something went wrong. Please try again"
+msgstr "Ups! Coś poszło nie tak. Proszę spróbuj ponownie"

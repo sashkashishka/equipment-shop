@@ -1,0 +1,28 @@
+.snackbar {
+  position: fixed;
+  top: 16px;
+  right: 0;
+  min-height: 60px;
+  min-width: 250px;
+  max-width: calc(100vw - 32px);
+  border-radius: 12px;
+  padding: 16px;
+  z-index: 999;
+  box-shadow: 0px 4px 8px 4px rgba(0, 0, 0, 0.2);
+  color: var(--p-color-basic-0);
+  font-size: 18px;
+  transform: translate(calc(100% + 8px));
+  transition: transform 0.4s ease-in-out;
+}
+
+.success {
+  background: linear-gradient(to right, rgb(0, 176, 155), rgb(150, 201, 61));
+}
+
+.fail {
+  background: linear-gradient(to right, rgb(255, 95, 109), rgb(255, 195, 113));
+}
+
+.visible {
+  transform: translate(-16px);
+}
