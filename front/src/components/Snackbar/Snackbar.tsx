@@ -20,17 +20,17 @@ export function Snackbar({
   hide,
   timeout = 3000,
 }: iProps) {
-  // useEffect(() => {
-  //   if (!isVisible) return () => void 0;
+  useEffect(() => {
+    if (!isVisible) return () => void 0;
 
-  //   const timer = window.setTimeout(() => {
-  //     hide();
-  //   }, timeout);
+    const timer = window.setTimeout(() => {
+      hide();
+    }, timeout);
 
-  //   return () => {
-  //     window.clearTimeout(timer);
-  //   };
-  // }, [timeout, isVisible]);
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [timeout, isVisible]);
 
   switch (type) {
     case 'success': {

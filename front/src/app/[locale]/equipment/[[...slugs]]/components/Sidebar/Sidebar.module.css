@@ -32,6 +32,10 @@
     }
   }
 
+  .nested {
+    font-size: 14px;
+  }
+
   .linkActive {
     font-weight: 700;
     text-decoration: none;
@@ -39,6 +43,15 @@
   }
 
   .uppercase {
+    text-transform: uppercase;
+  }
+
+  .productLink {
+    display: block;
+    text-transform: lowercase;
+  }
+
+  .productLink:first-letter {
     text-transform: uppercase;
   }
 }

@@ -15,7 +15,7 @@ interface iNestedMenuProps {
   isNested?: boolean;
 }
 
-function NestedMenu({ equipmentLinksTree }: iNestedMenuProps) {
+function NestedMenu({ isNested, equipmentLinksTree }: iNestedMenuProps) {
   const params = useParams();
 
   const activeEquipment = params.slugs.slice(1);
@@ -36,7 +36,9 @@ function NestedMenu({ equipmentLinksTree }: iNestedMenuProps) {
               className={cn(
                 styles.link,
                 active && styles.linkActive,
+                isNested && styles.nested,
                 link.type !== 'product' && styles.uppercase,
+                link.type === 'product' && styles.productLink,
               )}
             >
               {link.label}
