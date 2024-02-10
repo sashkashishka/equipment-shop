@@ -111,3 +111,18 @@ jobs:
         envs: FRONT_VERSION,STRAPI_VERSION,DIR
         script: |
           bash ~/${{ secrets.DIR }}/deploy/scripts/start-images.sh
+
+    - name: Setup crontab
+      uses: appleboy/ssh-action@v1.0.1
+      env:
+        FRONT_VERSION: ${{ github.sha }}
+        STRAPI_VERSION: ${{ github.sha }}
+        DIR: ${{ secrets.DIR }}
+      with:
+        host: ${{ secrets.HOSTNAME }}
+        username: ${{ secrets.USER }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        envs: FRONT_VERSION,STRAPI_VERSION,DIR
+        script: |
+          bash ~/${{ secrets.DIR }}/deploy/scripts/setup-crontab.sh
